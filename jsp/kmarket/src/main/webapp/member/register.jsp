@@ -1,11 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>    
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="./css/member.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="top">
+                <div>
+                    <a href="./member/login.html">로그인</a>
+                    <a href="/kmarket/member/register.do">회원가입</a>
+                    <a href="#">마이페이지</a>
+                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+                </div>
+            </div>
+            <div class="logo">
+                <div>
+                    <a href="../index.html"><img src="../img/header_logo.png" alt="로고"/></a>
+                </div>
+            </div>
+        </header>
+
 <jsp:include page="./_header.jsp"/>
+
         <main id="member">
             <div class="register">
                 <nav>
                     <h1>일반 회원가입</h1>
                 </nav>
-				<form action="#" method="POST">
+				<form action="register.do" method="POST">
 					<section>
 						<table>
 							<caption>필수 정보입력</caption>
@@ -16,13 +52,13 @@
 							</tr>
 							<tr>
 								<th><span class="essential">*</span>비밀번호</th>
-								<td><input type="password" name="km_pass" placeholder="비밀번호를 입력"
+								<td><input type="password" name="km_pass1" placeholder="비밀번호를 입력"
 									required /> <span class="msgPass">영문, 숫자, 특수문자를 조합하여
 										8~12자까지 설정해 주세요.</span></td>
 							</tr>
 							<tr>
 								<th><span class="essential">*</span>비밀번호확인</th>
-								<td><input type="password" name="km_pass" placeholder="비밀번호를 확인"
+								<td><input type="password" name="km_pass2" placeholder="비밀번호를 확인"
 									required /> <span class="msgPass">비밀번호 재입력</span></td>
 							</tr>
 						</table>
