@@ -26,7 +26,9 @@
     <!--
     <Manager pathname="" />
     -->
-   <Resource
+    
+  <Resource 
+
     	name="dbcp_kmarket"
     	auth="Container"
     	type="javax.sql.DataSource"
@@ -38,5 +40,5 @@
     	maxIdle="8"
     	maxWaitMillis="3000"
     />
-    
+
 </Context>
