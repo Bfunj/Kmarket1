@@ -44,7 +44,7 @@
         <div class="top">
           <div>
             <a href="./member/login.html">로그인</a>
-            <a href="#">회원가입</a>
+            <a href="./member/register.do">회원가입</a>
             <a href="#">마이페이지</a>
             <a href="#"
               ><i class="fa fa-shopping-cart" aria-hidden="true"></i

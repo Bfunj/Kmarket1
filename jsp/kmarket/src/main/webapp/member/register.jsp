@@ -21,7 +21,7 @@
             <div class="top">
                 <div>
                     <a href="./member/login.html">로그인</a>
-                    <a href="#">회원가입</a>
+                    <a href="/kmarket/member/register.do">회원가입</a>
                     <a href="#">마이페이지</a>
                     <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 </div>
@@ -37,7 +37,7 @@
                 <nav>
                     <h1>일반 회원가입</h1>
                 </nav>
-				<form action="#" method="POST">
+				<form action="register.do" method="POST">
 					<section>
 						<table>
 							<caption>필수 정보입력</caption>
@@ -48,13 +48,13 @@
 							</tr>
 							<tr>
 								<th><span class="essential">*</span>비밀번호</th>
-								<td><input type="password" name="km_pass" placeholder="비밀번호를 입력"
+								<td><input type="password" name="km_pass1" placeholder="비밀번호를 입력"
 									required /> <span class="msgPass">영문, 숫자, 특수문자를 조합하여
 										8~12자까지 설정해 주세요.</span></td>
 							</tr>
 							<tr>
 								<th><span class="essential">*</span>비밀번호확인</th>
-								<td><input type="password" name="km_pass" placeholder="비밀번호를 확인"
+								<td><input type="password" name="km_pass2" placeholder="비밀번호를 확인"
 									required /> <span class="msgPass">비밀번호 재입력</span></td>
 							</tr>
 						</table>
