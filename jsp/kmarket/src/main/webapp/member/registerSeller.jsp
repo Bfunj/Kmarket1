@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="./_header.jsp"/>
+<script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/kmarket/js/postcode.js"></script>
+<script src="/kmarket/js/validation.js"></script>
         <main id="member">
             <div class="registerSeller">
 				<nav>

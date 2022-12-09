@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+
 @WebServlet("/member/login.do")
 
 public class LoginController extends HttpServlet {
@@ -24,13 +25,16 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/user/login.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/login.jsp");
 		dispatcher.forward(req, resp);	
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-	
+		
+		String uid  = req.getParameter("uid");
+		String pass = req.getParameter("pass");
+		
+		
 	}
 }
