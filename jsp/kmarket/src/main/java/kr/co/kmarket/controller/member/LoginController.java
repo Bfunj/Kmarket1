@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+
 @WebServlet("/member/login.do")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,7 +38,7 @@ public class LoginController extends HttpServlet {
 		
 		// 데이터베이스 처리
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO vo = dao.selectUser(uid, pass);
+		MemberVO vo = dao.selectMember(uid, pass);
 	
 		// 로그인 처리
 		if(vo != null) {
