@@ -1,6 +1,7 @@
 package kr.co.kmarket.controller.admin;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,25 +11,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.AdminService;
-import kr.co.kmarket.vo.Cate1VO;
+import com.google.gson.Gson;
 
-@WebServlet("/admin/register.do")
-public class RegisterController extends HttpServlet{
+import kr.co.kmarket.service.AdminService;
+import kr.co.kmarket.vo.Cate2VO;
+
+@WebServlet("/admin/cate2Select.do")
+public class Cate2SelectController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	private AdminService service = AdminService.instance;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<Cate1VO> cateVO = service.selectCate1s();
-		req.setAttribute("cateVO", cateVO);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/register.jsp");
-		dispatcher.forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+String cate1 = req.getParameter("cate1");
+		
+		List<Cate2VO> cate2VO = service.selectCate2s(cate1);
+		
+		System.out.println("진행중");
+		System.out.println(cate2VO.size());
 	
+		req.setAttribute("cate2VO", cate2VO);
+		
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(cate2VO);
+
 	}
 }

@@ -8,41 +8,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
-    <script src="../js/gnb.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="../admin/css/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
     
-    	function optionChange() {
-	        var cate11 = ['남성의류'];
-	        var cate12 = ['가전 디지털'];
-	        var cate13 = ['식품'];
-	        var cate14 = ['문구류'];
-	        var cate1 = $( '#category1' ).val();
-	        var cate;
-	        
-	        var cate;
-	        if ( cate1 == 'cate11' ) {
-	          cate = cate11;
-	        } else if ( cate1 == 'cate12' ) {
-	          cate = cate12;
-	        } else if ( cate1 == 'cate13' ) {
-		          cate = cate13;
-	        } else if (cate1 == 'cate14') {
-		          cate = cate14;
-	        } else {
-	          cate = [];
-	        }
-	        $( '#category2' ).empty();
-	        $( '#category2' ).append( '<option></option>' );
-	        for ( var i = 0; i < cate.length; i++ ) {
-	          $( '#category2' ).append( '<option>' + cate[ i ] + '</option>' );
-	        }
-	      }
+    $(function() {
+    	
+	    $('#category1').change(function(){
+	    
+	    	var cate1 = $(this).val();
+	    	
+	    	let jsonData = { "cate1" : cate1};
+	    	console.log(jsonData);
+	    	$.ajax({
+	    		url:'/kmarket/admin/cate2Select.do',
+	    		method:'post',
+	    		data: jsonData,
+	    		dataType: 'json',
+	    		success:function(data){
+	    			
+	    		}
+	    	});
+	    });
     
-    
+    });
+
     </script>
 </head>
 <body>
@@ -132,24 +124,27 @@
                                 <tr>
                                     <td>1차 분류</td>
                                     <td>
-                                        <select name="category1" id="category1" onchange="optionChange();">
-                                            <option value="cate0">1차 분류 선택</option>
-                                            <option value="cate11">패션·의류·뷰티</option>
-                                            <option value="cate12">가전·디지털</option>
-                                            <option value="cate13">식품·생필품</option>
-                                            <option value="cate14">홈·문구·취미</option>                                                
+                                        <select name="category1" id="category1">
+                                            <option >1차 분류 선택</option>
+                                            <c:forEach var="cate1" items="${cateVO }">
+                                             <option value="${cate1.cate1 }">${cate1.c1Name }</option>
+                                            </c:forEach>
+                                          
+                                                        
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2차 분류</td>
                                     <td>
+                                    
                                         <select id="category2" name="category2">
-                                            <option value="cate0">2차 분류 선택</option>
-                                            <option value="cate21">남성의류</option>
-                                            <option value="cate22">여성의류</option>
-                                            <option value="cate23">잡화</option>
-                                            <option value="cate24">뷰티</option>                                                
+                                            <option value="cate0">2차 분류 선택</option>                
+                                       
+                                            <c:forEach var="cate2" items="${cate2VO }">
+                                             <option value="${cate2VO.cate2 }">${cate2VO.c2Name }</option>
+                                            </c:forEach>
+                                            
                                         </select>
                                     </td>
                                 </tr>
