@@ -1,5 +1,5 @@
 package kr.co.kmarket.dao;
 
-public class ProductDAO {
+public class AdminDAO {
 
 }
