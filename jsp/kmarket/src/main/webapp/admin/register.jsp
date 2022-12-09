@@ -13,28 +13,31 @@
     <link rel="stylesheet" href="../admin/css/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-    
-    $(function() {
     	
-	    $('#category1').change(function(){
-	    
-	    	var cate1 = $(this).val();
-	    	
-	    	let jsonData = { "cate1" : cate1};
-	    	console.log(jsonData);
-	    	$.ajax({
-	    		url:'/kmarket/admin/cate2Select.do',
-	    		method:'post',
-	    		data: jsonData,
-	    		dataType: 'json',
-	    		success:function(data){
-	    			
-	    		}
-	    	});
-	    });
+    	$(document).ready(function(){
+    		$('select[name=category1]').change(function(){
+    			let cate1 = $(this).val();
+    			//alert(cate1);
+    			let jsonData = {'cate1': cate1};
+    			
+    			$.ajax({
+    				url :'/kmarket/admin/register.do',
+    				type : 'POST',
+    				data : jsonData,
+    				dataType : 'json',
+    				success : function(data){
+    					
+    					//화면처리
+    					$('#cate2*').empty("<option></option>");
+    					for (let cate of data){
+    						$('select[name=category2]').append("<option value='"+cate.cate2+"'>"+cate.c2Name+"</option>");
+    						
+    					}	
+    				} 
+    			});
+    		});
+    	});
     
-    });
-
     </script>
 </head>
 <body>
@@ -124,10 +127,10 @@
                                 <tr>
                                     <td>1차 분류</td>
                                     <td>
-                                        <select name="category1" id="category1">
+                                        <select name="category1">
                                             <option >1차 분류 선택</option>
-                                            <c:forEach var="cate1" items="${cateVO }">
-                                             <option value="${cate1.cate1 }">${cate1.c1Name }</option>
+                                            <c:forEach var="cate" items="${cate1s }">
+                                             <option value="${cate.cate1 }">${cate.c1Name }</option>
                                             </c:forEach>
                                           
                                                         
@@ -138,13 +141,9 @@
                                     <td>2차 분류</td>
                                     <td>
                                     
-                                        <select id="category2" name="category2">
+                                        <select name="category2" id="cate2">
                                             <option value="cate0">2차 분류 선택</option>                
-                                       
-                                            <c:forEach var="cate2" items="${cate2VO }">
-                                             <option value="${cate2VO.cate2 }">${cate2VO.c2Name }</option>
-                                            </c:forEach>
-                                            
+                                             <option value=""></option>
                                         </select>
                                     </td>
                                 </tr>

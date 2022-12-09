@@ -22,7 +22,7 @@
             <div class="top">
                 <div>
                     <a href="./member/login.html">로그인</a>
-                    <a href="/kmarket/member/register.do">회원가입</a>
+                    <a href="./member/register.do">회원가입</a>
                     <a href="#">마이페이지</a>
                     <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 </div>
@@ -41,7 +41,7 @@
                 <nav>
                     <h1>일반 회원가입</h1>
                 </nav>
-				<form action="register.do" method="POST">
+				<form action="/kmarket/member/register.do" method="POST">
 					<section>
 						<table>
 							<caption>필수 정보입력</caption>
