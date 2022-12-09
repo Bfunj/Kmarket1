@@ -13,6 +13,27 @@ public class Sql {
 	
 	
 	
+	//insert admin product 
+		public static final String INSERT_ADMIN_PRODUCT = "INSERT INTO `km_product` SET "
+														+ "`proname` = ?, "
+														+ "`descript` = ?, "
+														+ "`company` = ?, "
+														+ "`price` = ?, "
+														+ "`discount` = ?, "
+														+ "`point` = ?, "
+														+ "`stock` = ?, "
+														+ "`delivery` = ?, "
+														+ "`thumb1` = ?, "
+														+ "`thumb2` = ?, "
+														+ "`thumb3` = ?, "
+														+ "`detail` = ?, "
+														+ "`status` = ?, "
+														+ "`duty` = ?, "
+														+ "`receipt` = ?, "
+														+ "`origin` = ?, "
+														+ "`ip` = ?, "
+														+ "`rdate`=NOW()";
+		
 	
 	//insert member
 	public static final String Insert_Member =  "INSERT INTO `km_member` SET   "
@@ -26,7 +47,7 @@ public class Sql {
 												+ "`zip` 	= ? , "
 												+ "`addr1` 	= ? ,"
 												+ "`addr2` 	= ? , "
-												+ "`regip`	= ? , "
+												+ "`ip`	= ? , "
 												+ "`rdate` 	= NOW()";
 }
 

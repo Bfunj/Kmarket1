@@ -12,6 +12,7 @@ import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.vo.Cate1VO;
 import kr.co.kmarket.vo.Cate2VO;
+import kr.co.kmarket.vo.ProductVO;
 
 public class AdminDAO extends DBHelper{
 	
@@ -78,5 +79,38 @@ public class AdminDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}
 		return cate2s;
+	}
+	
+	//admin insert product
+	public void INSERT_ADMIN_PRODUCT(ProductVO pv) {
+		
+		try {
+			logger.info("insert admin product start...");
+			
+			conn = getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_ADMIN_PRODUCT);
+			psmt.setString(1, pv.getProName());
+			psmt.setString(2, pv.getDescript());
+			psmt.setString(3, pv.getCompany());
+			psmt.setInt(4, pv.getPrice());
+			psmt.setInt(5, pv.getDiscount());
+			psmt.setInt(6, pv.getPoint());
+			psmt.setInt(7, pv.getStock());
+			psmt.setInt(8, pv.getDelivery());
+			psmt.setString(9, pv.getThumb1());
+			psmt.setString(10, pv.getThumb2());
+			psmt.setString(11, pv.getThumb3());
+			psmt.setString(12, pv.getDetail());
+			psmt.setString(13, pv.getStatus());
+			psmt.setString(14, pv.getDuty());
+			psmt.setString(15, pv.getRecipt());
+			psmt.setString(16, pv.getOrigin());
+			psmt.setString(17, pv.getIp());
+			psmt.executeUpdate();
+			clone();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
 	}
 }
