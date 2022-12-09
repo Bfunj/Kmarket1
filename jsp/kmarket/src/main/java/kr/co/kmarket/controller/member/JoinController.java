@@ -1,5 +1,5 @@
 package kr.co.kmarket.controller.member;
 
-public class EmailAuthController {
+public class JoinController {
 
 }

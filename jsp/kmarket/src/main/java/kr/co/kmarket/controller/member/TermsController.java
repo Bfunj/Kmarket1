@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("#.do")
+@WebServlet()
 public class TermsController extends HttpServlet  {
 	private static final long serialVersionUID = 1L;
 	
@@ -21,7 +21,7 @@ public class TermsController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/user/terms.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/terms.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
