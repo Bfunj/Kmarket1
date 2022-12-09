@@ -8,8 +8,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DBCP {
-	
-	protected static DataSource ds = null;
+
+protected static DataSource ds = null;
 	
 	public static Connection getConnection() throws NamingException, SQLException {
 		if(ds == null) {
@@ -17,5 +17,4 @@ public class DBCP {
 		}
 		return ds.getConnection();
 	}
-	
 }

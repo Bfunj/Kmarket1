@@ -1,34 +1,35 @@
 package kr.co.kmarket.vo;
 
 public class MemberVO {
-	private String uid;
-	private String pass;
-	private String name;
-	private int gender;
-	private String hp;
-	private String email;
-	private int type;
-	private int point;
-	private int level;
-	private String zip;
-	private String addr1;
-	private String addr2;
-	private String company;
-	private String ced;
-	private String bizRegNum;
-	private String comRegNum;
-	private String tel;
-	private String manager;
-	private String managerHp;
-	private String fax;
-	private String regip;
-	private String wdate;
-	private String rdate;
-	private int etc1;
-	private int etc2;
-	private String etc3;
-	private String etc4;
-	private String etc5;
+	public String uid;
+	public String pass;
+	public String name;
+	public int gender;
+	public String hp;
+	public String email;
+	public int type;
+	public int point;
+	public int level;
+	public String zip;
+	public String addr1;
+	public String addr2;
+	public String company;
+	public String ceo;
+	public String bizRegNum;
+	public String comRegNum;
+	public String tel;
+	public String manager;
+	public String managerHp;
+	public String fax;
+	public String regip;
+	public String wdate;
+	public String rdate;
+	public int etc1;
+	public int etc2;
+	public String etc3;
+	public String etc4;
+	public String etc5;
+	
 	
 	public String getUid() {
 		return uid;
@@ -54,11 +55,6 @@ public class MemberVO {
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
-	
-	public void setGender(String gender) {
-		this.gender = Integer.parseInt(gender);
-	}
-	
 	public String getHp() {
 		return hp;
 	}
@@ -113,11 +109,11 @@ public class MemberVO {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	public String getCed() {
-		return ced;
+	public String getCeo() {
+		return ceo;
 	}
-	public void setCed(String ced) {
-		this.ced = ced;
+	public void setCeo(String ceo) {
+		this.ceo = ceo;
 	}
 	public String getBizRegNum() {
 		return bizRegNum;
@@ -203,7 +199,6 @@ public class MemberVO {
 	public void setEtc5(String etc5) {
 		this.etc5 = etc5;
 	}
-	
 	
 	
 }
