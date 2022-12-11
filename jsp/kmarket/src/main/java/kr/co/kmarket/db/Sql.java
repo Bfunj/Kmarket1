@@ -11,28 +11,32 @@ public class Sql {
 	//select terms
 	public static final String SELECT_TERMS = "SELECT * FROM `km_member_terms` ";
 	
-	
-	
 	//insert admin product 
-		public static final String INSERT_ADMIN_PRODUCT = "INSERT INTO `km_product` SET "
-														+ "`proname` = ?, "
-														+ "`descript` = ?, "
-														+ "`company` = ?, "
-														+ "`price` = ?, "
-														+ "`discount` = ?, "
-														+ "`point` = ?, "
-														+ "`stock` = ?, "
-														+ "`delivery` = ?, "
-														+ "`thumb1` = ?, "
-														+ "`thumb2` = ?, "
-														+ "`thumb3` = ?, "
-														+ "`detail` = ?, "
-														+ "`status` = ?, "
-														+ "`duty` = ?, "
-														+ "`receipt` = ?, "
-														+ "`origin` = ?, "
-														+ "`ip` = ?, "
-														+ "`rdate`=NOW()";
+	public static final String INSERT_ADMIN_PRODUCT = "INSERT INTO `km_product` SET "
+													+ "`cate1` = ?, "
+													+ "`cate2` = ?, "
+													+ "`proName` = ?, "
+													+ "`descript` = ?, "
+													+ "`company` = ?, "
+													+ "`seller` = '판매자' ,"
+													+ "`price` = ?, "
+													+ "`discount` = ?, "
+													+ "`point` = ?, "
+													+ "`stock` = ?, "
+													+ "`delivery` = ?, "
+													+ "`thumb1` = ?, "
+													+ "`thumb2` = ?, "
+													+ "`thumb3` = ?, "
+													+ "`detail` = ?, "
+													+ "`status` = ?, "
+													+ "`duty` = ?, "
+													+ "`receipt` = ?, "
+													+ "`origin` = ?, "
+													+ "`ip` = ?, "
+													+ "`rdate`=NOW()"; 
+													//seller not null 이라 임의의 데이터 입력
+													//나중에 수정 해야함
+		
 		
 	
 	//insert member
@@ -43,7 +47,8 @@ public class Sql {
 												+ "`gender` = ? , "
 												+ "`email` 	= ? , "
 												+ "`hp` 	= ? , "
-												+ "`type` 	= 1 , " //type 데이터 확인
+												+ "`type` 	= 1 , " 
+												//타입 not null 이라 임의의 데이터 입력
 												+ "`zip` 	= ? , "
 												+ "`addr1` 	= ? ,"
 												+ "`addr2` 	= ? , "
