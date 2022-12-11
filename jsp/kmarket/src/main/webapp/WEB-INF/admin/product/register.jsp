@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/kmarket/css/admin.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-    	
+    	//cate1 선택에 따른 cate2 출력
     	$(document).ready(function(){
     		$('select[name=category1]').change(function(){
     			let cate1 = $(this).val();
@@ -36,7 +36,7 @@
     				} 
     			});
     		});
-    	});
+    	});//cate1 선택에 따른 cate2 출력 완료
     
     </script>
 </head>
@@ -130,7 +130,7 @@
                                         <select name="category1">
                                             <option value="">1차 분류 선택</option>
                                             <c:forEach var="cate" items="${cate1s }">
-                                             <option value="${cate.cate1 }">${cate.c1Name }</option>
+                                             <option name="cate1" value="${cate.cate1 }">${cate.c1Name }</option>
                                             </c:forEach>
                                           
                                                         
@@ -198,7 +198,7 @@
                                     <td>배송비</td>
                                     <td>
                                         <span>0을 입력하면 배송비 무료</span>
-                                        <input type="text" name="delivary"/>원
+                                        <input type="text" name="delivery"/>원
                                     </td>
                                 </tr>
                                 <tr>

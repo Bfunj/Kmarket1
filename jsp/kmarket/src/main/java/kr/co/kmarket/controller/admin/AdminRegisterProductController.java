@@ -36,8 +36,8 @@ public class AdminRegisterProductController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 			//데이터 수신
-			String cate1 		= req.getParameter("cate1");
-			String cate2 		= req.getParameter("cate2");
+			String cate1 		= req.getParameter("category1");
+			String cate2 		= req.getParameter("category2");
 			String proName 		= req.getParameter("proName");
 			String descript 	= req.getParameter("descript");
 			String company 		= req.getParameter("company");
@@ -58,6 +58,8 @@ public class AdminRegisterProductController extends HttpServlet{
 			
 			//VO데이터 설정
 			ProductVO pv = new ProductVO();
+			pv.setCate1(cate1);
+			pv.setCate2(cate2);
 			pv.setProName(proName);
 			pv.setDescript(descript);
 			pv.setCompany(company);

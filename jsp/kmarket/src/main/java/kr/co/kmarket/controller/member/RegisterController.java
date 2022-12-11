@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.dao.MemberDAO;
+import kr.co.kmarket.service.MemberService;
 import kr.co.kmarket.vo.MemberVO;
 
 @WebServlet("/member/register.do")
 public class RegisterController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-
+	private MemberService service = MemberService.INSTANCE;
 	@Override
 	public void init() throws ServletException {
 	}
@@ -58,7 +58,7 @@ public class RegisterController extends HttpServlet{
 		mv.setRegip(regip);
 		
 		//데이터베이스 처리
-		MemberDAO.getInstance().InsertMember(mv);
+		service.InsertMember(mv);
 		
 		//리다이렉트
 		resp.sendRedirect("/kmarket/index.do");

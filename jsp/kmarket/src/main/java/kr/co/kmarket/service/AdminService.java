@@ -19,5 +19,6 @@ public enum AdminService {
 		return dao.SelectAdminProduct2(cate1);
 	}
 	public void INSERT_ADMIN_PRODUCT(ProductVO pv) {
+		dao.INSERT_ADMIN_PRODUCT(pv);
 	}
 }
