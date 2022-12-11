@@ -58,6 +58,7 @@ public class AdminRegisterProductController extends HttpServlet{
 			//VO데이터 설정
 			ProductVO pv = new ProductVO();
 			pv.setCate1(cate1);
+			pv.setCate2(cate2);
 			pv.setProName(proName);
 			pv.setDescript(descript);
 			pv.setCompany(company);
