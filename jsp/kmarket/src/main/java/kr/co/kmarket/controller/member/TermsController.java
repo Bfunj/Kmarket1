@@ -27,7 +27,7 @@ public class TermsController extends HttpServlet  {
 		req.setAttribute("tv", tv);
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/signup.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/signup.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
