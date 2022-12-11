@@ -10,7 +10,8 @@
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="../admin/css/admin.css">
+
+    <link rel="stylesheet" href="/kmarket/css/admin.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
     	
@@ -21,17 +22,16 @@
     			let jsonData = {'cate1': cate1};
     			
     			$.ajax({
-    				url :'/kmarket/admin/register.do',
+    				url :'/kmarket/admin/product/register.do',
     				type : 'POST',
     				data : jsonData,
     				dataType : 'json',
     				success : function(data){
-    					
     					//화면처리
     					$('#cate2*').empty("<option></option>");
+    					$('select[name=category2]').append("<option value='cate0'>2차 분류 선택</option>");
     					for (let cate of data){
     						$('select[name=category2]').append("<option value='"+cate.cate2+"'>"+cate.c2Name+"</option>");
-    						
     					}	
     				} 
     			});
@@ -44,7 +44,7 @@
     <div id="admin-wrapper">
         <header>
             <div>
-                <a href="../index.html" class="logo"><img src="../admin/img/admin_logo.png" alt="admin_logo"/></a>
+                <a href="../index.do" class="logo"><img src="/kmarket/img/admin/admin_logo.png" alt="admin_logo"/></a>
                 <p>
                     <span>홍길동님 반갑습니다.</span>
                     <a href="#">HOME |</a>
