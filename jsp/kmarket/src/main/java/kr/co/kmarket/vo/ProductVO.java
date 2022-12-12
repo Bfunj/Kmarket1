@@ -1,6 +1,7 @@
 package kr.co.kmarket.vo;
 
 public class ProductVO {
+	
 	private int proNo;
 	private int cate1;
 	private int cate2;
