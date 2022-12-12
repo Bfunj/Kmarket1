@@ -305,7 +305,7 @@
         margin-left: 600px;
         width: 42px;
         height: 42px;
-        background-image: url(../img/top.png);
+        background-image: url(../img/product/top.png);
         border: none;
         font-size: 0;
         cursor: pointer;
@@ -415,7 +415,7 @@
         vertical-align: text-bottom;
         width: 55px;
         height: 13px;
-        background: url(./img/ico_free_delivery.gif) no-repeat;
+        background: url(./img/product/ico_free_delivery.gif) no-repeat;
         margin-top: 4px;
     }
 
@@ -424,7 +424,7 @@
         margin-bottom: 6px;
     }
     #product > section > table tr .badge.power {
-        background: url(../img/ico_power_dealer.gif) no-repeat;
+        background: url(../img/product/ico_power_dealer.gif) no-repeat;
         width: 80px;
         height: 20px;
         font-size: 0;
@@ -433,7 +433,7 @@
     #product > section > table tr .rating {
         margin-top: 12px;
         font-size: 11px;
-        background-image: url(../img/rating_star.png);
+        background-image: url(../img/product/rating_star.png);
         background-repeat: no-repeat;
         background-position: 35px -2px;
         background-size: auto 100%;
@@ -548,7 +548,7 @@
         width: 150px;
         height: 20px;
         font-size: 0px;
-        background-image: url(../img/ico_rating_star.png);
+        background-image: url(../img/product/ico_rating_star.png);
         background-repeat: no-repeat;
         background-position: -1px -2px;
         text-indent: 86px;
@@ -630,7 +630,7 @@
         position: absolute;
         width: 21px;
         height: 21px;
-        background-image: url(../img/ico_sprites.png);
+        background-image: url(../img/product/ico_sprites.png);
         font-size: 0;
         background-color: transparent;
         border: none;
@@ -844,7 +844,7 @@
         width: 150px;
         height: 20px;
         font-size: 0;
-        background-image: url(../img/ico_rating_star.png);
+        background-image: url(../img/product/ico_rating_star.png);
         background-repeat: no-repeat;
         background-position: -1px -2px;
         text-indent: 86px;
@@ -1449,7 +1449,6 @@
     }
 
     #product > .order > form > .payment > .etc > p > label > img {
-        border: 1px solid red;
     }
 
     #product > .order > form > .alert {
