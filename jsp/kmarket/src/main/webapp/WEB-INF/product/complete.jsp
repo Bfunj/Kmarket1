@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Kmarket::complete</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/kmarket/css/product.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         
@@ -58,7 +58,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="#"><img src="../img/header_logo.png" alt="로고"/></a>
+                    <a href="#"><img src="../img/product/header_logo.png" alt="로고"/></a>
                     <form action="#">
                         <input type="text" name="keyword"/>
                         <button><i class="fa fa-search"></i></button>
@@ -254,7 +254,7 @@
                 <li><a href="#">전자금융거래약관</a></li>
             </ul>
             <div>
-                <p><img src="../img/footer_logo.png" alt="로고"></p>
+                <p><img src="../img/product/footer_logo.png" alt="로고"></p>
                 <p>
                   <strong>(주)KMARKET</strong><br />
                   부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />

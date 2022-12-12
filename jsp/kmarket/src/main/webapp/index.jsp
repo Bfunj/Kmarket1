@@ -54,7 +54,7 @@
         </div>
         <div class="logo">
           <div>
-            <a href="#"><img src="./img/header_logo.png" alt="로고" /></a>
+            <a href="#"><img src="./img/common/header_logo.png" alt="로고" /></a>
             <form action="#">
               <input type="text" name="search" />
               <button><i class="fa fa-search"></i></button>
@@ -835,7 +835,7 @@
           <li><a href="#">전자금융거래약관</a></li>
         </ul>
         <div>
-          <p><img src="./img/footer_logo.png" alt="로고" /></p>
+          <p><img src="./img/common/footer_logo.png" alt="로고" /></p>
           <p>
             <strong>(주)KMARKET</strong><br />
             부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br />
