@@ -1,33 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Kmarket 고객센터</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
-</head>
-<body>
-    <div class="wrapper">
-        <header>
-            <div class="top">
-                <div>
-                    <p>
-                        <a href="#">로그인</a>
-                        <a href="#">회원가입</a>
-                        <a href="#">마이페이지</a>
-                        <a href="#">장바구니</a>
-                    </p>
-                </div>
-            </div>
-            <div class="logo">
-                <div>
-                    <a href="#">
-                        <img src="./img/logo.png" alt="로고">고객센터
-                    </a>
-                </div>
-            </div>
-        </header>
+<jsp:include page="./_header.jsp"/>
+ 
         <section id="cs">
             <div class="main">
                 <h1 class="title">
