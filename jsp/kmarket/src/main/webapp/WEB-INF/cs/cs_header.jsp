@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Kmarket 고객센터</title>
     <link rel="stylesheet" href="/kmarket/css/cs.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/kmarket/img/common/favicon.ico" />
 </head>
 <body>
     <div class="wrapper">
@@ -23,7 +23,7 @@
             <div class="logo">
                 <div>
                     <a href="#">
-                        <img src="./img/logo.png" alt="로고">고객센터
+                        <img src="/kmarket/img/cs/logo.png" alt="로고">고객센터
                     </a>
                 </div>
             </div>

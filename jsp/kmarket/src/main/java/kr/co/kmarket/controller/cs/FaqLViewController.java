@@ -1,4 +1,4 @@
-package kr.co.kmarket.controller.cs.notice;
+package kr.co.kmarket.controller.cs;
 
 import java.io.IOException;
 
@@ -9,20 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.CsService;
-
-@WebServlet("/kmarket/notice/list.do")
-public class ListController extends HttpServlet{
+@WebServlet("/cs/faq/view.do")
+public class FaqLViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	private CsService service = CsService.INSTANCE;
-	
 	@Override
 	public void init() throws ServletException {
 		
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/notice/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/faq/view.jsp");
 		dispatcher.forward(req, resp);
 	}
 	@Override
