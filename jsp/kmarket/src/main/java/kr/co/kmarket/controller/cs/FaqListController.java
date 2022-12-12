@@ -1,4 +1,4 @@
-package kr.co.kmarket.controller.cs.faq;
+package kr.co.kmarket.controller.cs;
 
 import java.io.IOException;
 
@@ -9,13 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.service.CsService;
-
-@WebServlet("/kmarket/faq/list.do")
-public class ListController extends HttpServlet{
+@WebServlet("/cs/faq/list.do")
+public class FaqListController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	private CsService service = CsService.INSTANCE;
-	
 	@Override
 	public void init() throws ServletException {
 		
@@ -30,4 +26,3 @@ public class ListController extends HttpServlet{
 		
 	}
 }
-
