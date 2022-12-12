@@ -64,10 +64,10 @@
 
                 <table>
                     <tr>
-                        <td><a href="./view.html" class="thumb"><img src="https://via.placeholder.com/120x120" alt="상품이미지"/></a></td>
+                        <td><a href="./view.do" class="thumb"><img src="https://via.placeholder.com/120x120" alt="상품이미지"/></a></td>
                         <td>
                           <h3 class="name">상품명</h3>
-                          <a href="./view.html" class="desc">상품설명</a>
+                          <a href="./view.do" class="desc">상품설명</a>
                         </td>
                         <td>
                           <ul>
