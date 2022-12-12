@@ -54,5 +54,8 @@ public class Sql {
 												+ "`addr2` 	= ? , "
 												+ "`ip`	= ? , "
 												+ "`rdate` 	= NOW()";
+	
+	public static final String SELECT_COUNT_UID  = "select count(`uid`) from `km_member` where `uid`=?";
 }
+
 

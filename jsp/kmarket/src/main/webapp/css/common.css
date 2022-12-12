@@ -462,8 +462,9 @@ main > section > section > article .dis_price > .free {
   vertical-align: text-bottom;
   width: 55px;
   height: 13px;
-  background: url("/kmarket/img/common/ico_freeshiping.gif]") no-repeat;
-}
+
+  background: url("/kmarket/img/common/ico_freeshipping.gif") no-repeat;
+
 
 
 main > section > .slider {
