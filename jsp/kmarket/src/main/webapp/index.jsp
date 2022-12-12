@@ -19,7 +19,7 @@
           easing: "linear",
         });
       });
-      
+       
       $(function () {
         var best = $("aside > .best");
 
