@@ -99,4 +99,31 @@ public class MemberDAO extends DBHelper{
 		logger.debug("vo : " + vo);
 		return vo;
 	}
+
+	
+public int selectCountUid(String uid) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("selectCheckUid");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		logger.debug("result : " + result);
+		
+		return result;
+	}
 }

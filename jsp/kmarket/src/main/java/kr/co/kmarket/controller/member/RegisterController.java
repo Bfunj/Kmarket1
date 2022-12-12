@@ -32,16 +32,16 @@ public class RegisterController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//데이터 수신
-		String uid = req.getParameter("km_uid"); 
-		String pass1 = req.getParameter("km_pass1"); 
-		String pass2 = req.getParameter("km_pass2"); 
-		String name = req.getParameter("km_name"); 
-		String gender = req.getParameter("km_gender"); 
-		String email = req.getParameter("km_email"); 
-		String hp = req.getParameter("km_hp"); 
-		String zip = req.getParameter("km_zip"); 
-		String addr1 = req.getParameter("km_addr1"); 
-		String addr2 = req.getParameter("km_addr2"); 
+		String uid = req.getParameter("uid"); 
+		String pass1 = req.getParameter("pass1"); 
+		String pass2 = req.getParameter("pass2"); 
+		String name = req.getParameter("name"); 
+		String gender = req.getParameter("gender"); 
+		String email = req.getParameter("email"); 
+		String hp = req.getParameter("hp"); 
+		String zip = req.getParameter("zip"); 
+		String addr1 = req.getParameter("addr1"); 
+		String addr2 = req.getParameter("addr2"); 
 		String regip = req.getRemoteAddr();
 		
 		//VO 데이터설정
