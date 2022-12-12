@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.dao.AdminDAO;
+import kr.co.kmarket.service.AdminService;
 import kr.co.kmarket.vo.Cate1VO;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -18,7 +19,7 @@ import kr.co.kmarket.vo.ProductVO;
 public class AdminRegisterProductController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	
+	private AdminService service = AdminService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
@@ -27,7 +28,7 @@ public class AdminRegisterProductController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/register.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/product/register.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
@@ -78,7 +79,7 @@ public class AdminRegisterProductController extends HttpServlet{
 			pv.setIp(ip);
 			
 			//데이터베이스 처리
-			AdminDAO.getInstance().INSERT_ADMIN_PRODUCT(pv);
+			service.INSERT_ADMIN_PRODUCT(pv);
 			
 			//리다이렉트
 			resp.sendRedirect("/kmarket/index.do");

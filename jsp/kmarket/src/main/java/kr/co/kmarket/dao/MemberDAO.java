@@ -76,4 +76,54 @@ public class MemberDAO extends DBHelper{
 		}
 		return tv;
 	}
+	
+	public TermsVO selectTermsSeller () {
+		TermsVO vo = null;
+		
+		try {
+			logger.info("selectTermsSeller start...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_TERMS);
+			
+			if(rs.next()) {
+				vo = new TermsVO();
+				vo.setPrivacy(rs.getString(2));
+				vo.setLocation(rs.getString(3));
+				vo.setFinance(rs.getString(4));
+				vo.setTax(rs.getString(5));
+			}
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
+
+	
+public int selectCountUid(String uid) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("selectCheckUid");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		logger.debug("result : " + result);
+		
+		return result;
+	}
 }

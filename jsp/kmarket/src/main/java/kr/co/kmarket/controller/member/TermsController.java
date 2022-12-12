@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.kmarket.dao.MemberDAO;
+import kr.co.kmarket.service.MemberService;
 import kr.co.kmarket.vo.TermsVO;
 
 @WebServlet("/member/signup.do")
 public class TermsController extends HttpServlet  {
 	private static final long serialVersionUID = 1L;
-	
+	private MemberService service = MemberService.INSTANCE;
 	@Override
 	public void init() throws ServletException {
 	}
@@ -23,11 +23,11 @@ public class TermsController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		TermsVO tv = MemberDAO.getInstance().SelectTerms();
+		TermsVO tv = service.SelectTerms();
 		req.setAttribute("tv", tv);
 		
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/signup.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/signup.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
