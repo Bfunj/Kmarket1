@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="./_header.jsp"/>
-        <main id="member">
+     <main id="member">
             <div class="login">
                 <nav>
                     <h1>로그인</h1>
@@ -29,10 +29,10 @@
 						<a href="./signup.do">회원가입</a>
 					</span>
 
-                    <a href="#" class="banner"><img src="./img/member_login_banner.jpg" alt="1만원 할인 쿠폰 받기"></a>
+                    <a href="#" class="banner"><img src="/kmarket/img/member/member_login_banner.jpg" alt="1만원 할인 쿠폰 받기"></a>
 
 				</form>
-				<img src="./img/member_certifi_logo.gif" alt="banner">
+				<img src="/kmarket/img/member/member_certifi_logo.gif" alt="banner">
             </div>
         </main>        
 <jsp:include page="./_footer.jsp"/>

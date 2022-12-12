@@ -131,7 +131,7 @@
   float: left;
   width: 97px;
   height: 71px;
-  background-image: url("../img/member_btn_login.gif");
+  background-image: url("/kmarket/img/member/member_btn_login.gif");
   font-size: 0;
   border: none;
 }
@@ -494,4 +494,3 @@
   border-radius: 2px;
   cursor: pointer;
 }
-

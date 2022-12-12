@@ -76,4 +76,27 @@ public class MemberDAO extends DBHelper{
 		}
 		return tv;
 	}
+	
+	public TermsVO selectTermsSeller () {
+		TermsVO vo = null;
+		
+		try {
+			logger.info("selectTermsSeller start...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_TERMS);
+			
+			if(rs.next()) {
+				vo = new TermsVO();
+				vo.setPrivacy(rs.getString(2));
+				vo.setLocation(rs.getString(3));
+				vo.setFinance(rs.getString(4));
+				vo.setTax(rs.getString(5));
+			}
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		logger.debug("vo : " + vo);
+		return vo;
+	}
 }

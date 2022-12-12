@@ -11,7 +11,7 @@
 			let isCheck4 = $('input[name=agree4]').is(':checked');
 			
 			if(isCheck1 && isCheck2 && isCheck3 && isCheck4){
-				location.href = "/kmarket/member/register.do";
+				location.href = "/kmarket/member/join.do";
 				return true;
 				
 			}else{
