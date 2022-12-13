@@ -11,6 +11,9 @@ public class Sql {
 	//select terms
 	public static final String SELECT_TERMS = "SELECT * FROM `km_member_terms` ";
 	
+	//select member
+	public static final String Select_Member = "Select * from `km_member` where `uid` = ? and `pass` = SHA2(?, 256)";
+	
 	//insert admin product 
 	public static final String INSERT_ADMIN_PRODUCT = "INSERT INTO `km_product` SET "
 													+ "`cate1` = ?, "

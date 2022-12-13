@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.kmarket.dao.MemberDAO;
+import kr.co.kmarket.vo.MemberVO;
+
 
 @WebServlet("/member/login.do")
 
@@ -30,7 +33,24 @@ public class LoginController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		//데이터 수신
 		String uid  = req.getParameter("uid");
 		String pass = req.getParameter("pass");
+		
+		//데이터베이스 처리
+		 MemberVO mv = MemberDAO.getInstance().Select_Member(uid, pass);
+		 
+		 if(mv != null) {
+			 //회원O
+			 HttpSession session = req.getSession();
+			 session.setAttribute("sessUser", mv);
+			 
+			 resp.sendRedirect("/kmarket/index.do");
+			 
+		 }else {
+			 //회원 아님
+			 resp.sendRedirect("/kmarket/member/login.do?succuss=100");
+		 }
 	}
 }

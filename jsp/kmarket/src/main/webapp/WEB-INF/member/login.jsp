@@ -8,9 +8,7 @@
                         HOME > <strong>로그인</strong>
                     </p>
                 </nav>
-                
-				<form action="#">
-
+				<form action="/kmarket/member/login.do" method="post">
                     <table border="0">
                         <tr>
                             <td>아이디</td>
