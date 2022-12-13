@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="./_header.jsp"/>
+<script>
+	var success = "${success}";
+	
+	if(success == '100'){
+		alert('회원이 아닙니다. ');
+	}
+
+</script>
      <main id="member">
             <div class="login">
                 <nav>
