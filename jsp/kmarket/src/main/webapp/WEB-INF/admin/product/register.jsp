@@ -115,7 +115,7 @@
                 </nav>
                 <!-- 상품등록 컨텐츠 시작 -->
                 <article>
-                    <form action="/kmarket/admin/registerProduct.do" method="post">
+                    <form action="/kmarket/admin/registerProduct.do" method="post" enctype="multipart/form-data">
 
                         <!-- 상품분류 -->
                         <section>
@@ -133,7 +133,7 @@
                                              <option name="cate1" value="${cate.cate1 }">${cate.c1Name }</option>
                                             </c:forEach>
                                           
-                                                        
+                                                    
                                         </select>
                                     </td>
                                 </tr>
