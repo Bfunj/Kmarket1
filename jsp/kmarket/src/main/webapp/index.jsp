@@ -555,14 +555,14 @@
                 <div class="thumb">
                   <img src="https://via.placeholder.com/230x230" alt="t1" />
                 </div>
-                <h2>상품명</h2>
-                <p>간단한 상품 설명</p>
+                <h2>test</h2>
+                <p>테스트중</p>
                 <div class="org_price">
-                  <del>30,000</del>
+                  <del>500,00</del>
                   <span>10%</span>
                 </div>
                 <div class="dis_price">
-                  <ins>27,000</ins>
+                  <ins>10,000</ins>
                   <span class="free">무료배송</span>
                 </div>
               </a>
@@ -572,14 +572,14 @@
                 <div class="thumb">
                   <img src="https://via.placeholder.com/230x230" alt="t1" />
                 </div>
-                <h2>상품명</h2>
-                <p>간단한 상품 설명</p>
+                <h2>의류</h2>
+                <p>의류</p>
                 <div class="org_price">
-                  <del>30,000</del>
-                  <span>10%</span>
+                  <del>10,000</del>
+                  <span>100%</span>
                 </div>
                 <div class="dis_price">
-                  <ins>27,000</ins>
+                  <ins>10</ins>
                   <span class="free">무료배송</span>
                 </div>
               </a>
@@ -589,14 +589,14 @@
                 <div class="thumb">
                   <img src="https://via.placeholder.com/230x230" alt="t1" />
                 </div>
-                <h2>상품명</h2>
-                <p>간단한 상품 설명</p>
+                <h2>의류</h2>
+                <p>의류</p>
                 <div class="org_price">
-                  <del>30,000</del>
-                  <span>10%</span>
+                  <del>10,00</del>
+                  <span>100%</span>
                 </div>
                 <div class="dis_price">
-                  <ins>27,000</ins>
+                  <ins>10</ins>
                   <span class="free">무료배송</span>
                 </div>
               </a>
@@ -606,14 +606,14 @@
                 <div class="thumb">
                   <img src="https://via.placeholder.com/230x230" alt="t1" />
                 </div>
-                <h2>상품명</h2>
-                <p>간단한 상품 설명</p>
+                <h2>무신사스탠다드</h2>
+                <p>의류</p>
                 <div class="org_price">
-                  <del>30,000</del>
-                  <span>10%</span>
+                  <del>20,000</del>
+                  <span>0%</span>
                 </div>
                 <div class="dis_price">
-                  <ins>27,000</ins>
+                  <ins>1,000</ins>
                   <span class="free">무료배송</span>
                 </div>
               </a>
