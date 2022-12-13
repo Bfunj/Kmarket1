@@ -55,7 +55,10 @@ public class Sql {
 												+ "`ip`	= ? , "
 												+ "`rdate` 	= NOW()";
 	
-	public static final String SELECT_COUNT_UID  = "select count(`uid`) from `km_member` where `uid`=?";
+	public static final String SELECT_COUNT_UID  	= "select count(`uid`) from `km_member` where `uid`=?";
+	public static final String SELECT_PRODUCT  		= "SELECT * FROM `km_product`";
+
+	
 }
 
 
