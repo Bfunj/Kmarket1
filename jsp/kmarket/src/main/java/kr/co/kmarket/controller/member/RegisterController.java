@@ -61,6 +61,6 @@ public class RegisterController extends HttpServlet{
 		service.InsertMember(mv);
 		
 		//리다이렉트
-		resp.sendRedirect("/kmarket/index.do");
+		resp.sendRedirect("/kmarket/member/login.do");
 	}
 }
