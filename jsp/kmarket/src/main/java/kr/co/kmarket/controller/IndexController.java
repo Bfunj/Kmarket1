@@ -25,9 +25,15 @@ public class IndexController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<ProductVO> listProduct = service.SelectProduct();
+		List<ProductVO> listProduct = service.SelectProduct(0);
+		List<ProductVO> listProductHit = service.SelectProduct(1);
+		List<ProductVO> listProductNow = service.SelectProduct(2);
+		List<ProductVO> listProductDiscount = service.SelectProduct(3);
 		req.setAttribute("listProduct", listProduct);
-		
+		req.setAttribute("listProductHit", listProductHit);
+		req.setAttribute("listProductNow", listProductNow);
+		req.setAttribute("listProductDiscount", listProductDiscount);
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(req, resp);
 	}

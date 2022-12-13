@@ -52,7 +52,7 @@ public enum AdminService {
 		return newName;
 	}
 	
-	public List<ProductVO> SelectProduct() {
-		return dao.SelectProduct();
+	public List<ProductVO> SelectProduct(int code) {
+		return dao.SelectProduct(code);
 	}
 }
