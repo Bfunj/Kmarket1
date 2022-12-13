@@ -134,6 +134,7 @@ public class AdminDAO extends DBHelper{
 			if(code == 1) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_HIT);}
 			if(code == 2) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_NOW);}
 			if(code == 3) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_DISCOUNT);}
+			if(code == 4) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_BEST);}
 			
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();

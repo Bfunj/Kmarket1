@@ -156,94 +156,40 @@
           <article class="best">
             <h1><i class="fas fa-crown"></i>베스트상품</h1>
             <ol>
+            <c:set var="done_loop" value="false"/>
+            <c:set var="i" value="1"></c:set>
+            <c:forEach var="listProductBest" items="${listProductBest}">
+              <c:if test="${done_loop ne true}">
               <li>
                 <a href="#">
                   <div class="thumb">
-                    <i>1</i>
-                    <img src="https://via.placeholder.com/230" alt="item1" />
+                    <i>${i }</i>
+                    <c:choose>
+                    	<c:when test="${i eq 1 }">
+                    		<img src="file/${listProductBest.thumb2 }" width=230px height=230px alt="item1" />
+                    	</c:when>
+                    	<c:otherwise>
+                    		 <img src="file/${listProductBest.thumb2 }" width=50px height=50px alt="item1" />
+                    	</c:otherwise>
+                    </c:choose>          
                   </div>
                   <h2>상품명</h2>
                   <div class="org_price">
-                    <del>30,000</del>
-                    <span>10%</span>
+                    <del>${listProductBest.price }</del>
+                    <span>${listProductBest.discount }%</span>
                   </div>
                   <div class="dis_price">
-                    <ins>27,000</ins>
+                    <ins>${(listProductBest.price/100)*(100-listProductBest.discount)  }</ins>
                   </div>
                 </a>
               </li>
-              <li>
-                <a href="#">
-                  <div class="thumb">
-                    <i>2</i>
-                    <img src="https://via.placeholder.com/50" alt="item1" />
-                  </div>
-                  <article>
-                    <h2>상품명</h2>
-                    <div class="org_price">
-                      <del>30,000</del>
-                      <span>10%</span>
-                    </div>
-                    <div class="dis_price">
-                      <ins>27,000</ins>
-                    </div>
-                  </article>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="thumb">
-                    <i>3</i>
-                    <img src="https://via.placeholder.com/50" alt="item1" />
-                  </div>
-                  <article>
-                    <h2>상품명</h2>
-                    <div class="org_price">
-                      <del>30,000</del>
-                      <span>10%</span>
-                    </div>
-                    <div class="dis_price">
-                      <ins>27,000</ins>
-                    </div>
-                  </article>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="thumb">
-                    <i>4</i>
-                    <img src="https://via.placeholder.com/50" alt="item1" />
-                  </div>
-                  <article>
-                    <h2>상품명</h2>
-                    <div class="org_price">
-                      <del>30,000</del>
-                      <span>10%</span>
-                    </div>
-                    <div class="dis_price">
-                      <ins>27,000</ins>
-                    </div>
-                  </article>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="thumb">
-                    <i>5</i>
-                    <img src="https://via.placeholder.com/50" alt="item1" />
-                  </div>
-                  <article>
-                    <h2>상품명</h2>
-                    <div class="org_price">
-                      <del>30,000</del>
-                      <span>10%</span>
-                    </div>
-                    <div class="dis_price">
-                      <ins>27,000</ins>
-                    </div>
-                  </article>
-                </a>
-              </li>
+              		 <c:set var="i" value="${i+1}"></c:set>
+					  	<c:if test="${i eq 6}">
+                       		<c:set var="done_loop" value="true"/>
+                    	</c:if>
+              	</c:if>
+              </c:forEach>
+         
             </ol>
           </article>
         </aside>
@@ -281,12 +227,14 @@
           <!-- 히트상품 영역 -->
           <section class="hit">
             <h3><span>히트상품</span></h3>
-          
+          	<c:set var="done_loop" value="false"/>
+            <c:set var="num1" value="1"></c:set>
 			<c:forEach var="listProductHit" items="${listProductHit}">
+			  <c:if test="${done_loop ne true}">
 	            <article>
 	              <a href="#">
 	                <div class="thumb">
-	                  <img src="file/${listProductHit.thumb1 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProductHit.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProductHit.proName }</h2>
 	                <p> ${listProductHit.descript }</p>
@@ -307,17 +255,25 @@
 	                </div>
 	              </a>
 	            </article>
-	            </c:forEach>
+	             <c:set var="num1" value="${num1+1}"></c:set>
+					  	<c:if test="${num1 eq 9}">
+                       		<c:set var="done_loop" value="true"/>
+                    	</c:if>
+	           </c:if>
+	         </c:forEach>
          
           </section>
           <!-- 추천상품 영역 -->
           <section class="recommend">
             <h3><span>추천상품</span></h3>
+            <c:set var="done_loop" value="false"/>
+            <c:set var="num2" value="1"></c:set>
            	<c:forEach var="listProduct" items="${listProduct}">
+           	 <c:if test="${done_loop ne true}">
 	            <article>
 	              <a href="#">
 	                <div class="thumb">
-	                  <img src="file/${listProduct.thumb1 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProduct.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProduct.proName }</h2>
 	                <p> ${listProduct.descript }</p>
@@ -338,17 +294,25 @@
 	                </div>
 	              </a>
 	            </article>
-	            </c:forEach>
+	             <c:set var="num2" value="${num2+1}"></c:set>
+					  	<c:if test="${num2 eq 9}">
+                       		<c:set var="done_loop" value="true"/>
+                    	</c:if>
+	           </c:if>
+	       </c:forEach>
  
           </section>
           <!-- 최신상품 영역 -->
           <section class="new">
             <h3><span>최신상품</span></h3>
-            <c:forEach var="listProductNow" items="${listProductNow}">
+            <c:set var="done_loop" value="false"/>
+            <c:set var="num3" value="1"></c:set>
+           	<c:forEach var="listProductNow" items="${listProductNow}">
+           	 <c:if test="${done_loop ne true}">
 	            <article>
 	              <a href="#">
 	                <div class="thumb">
-	                  <img src="file/${listProductNow.thumb1 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProductNow.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProductNow.proName }</h2>
 	                <p> ${listProductNow.descript }</p>
@@ -369,18 +333,26 @@
 	                </div>
 	              </a>
 	            </article>
-	            </c:forEach>
+	             <c:set var="num3" value="${num3+1}"></c:set>
+					  	<c:if test="${num3 eq 9}">
+                       		<c:set var="done_loop" value="true"/>
+                    	</c:if>
+	           </c:if>
+	      </c:forEach>
 
           </section>
           
           <!-- 할인상품 영역 -->
           <section class="discount">
             <h3><span>할인상품</span></h3>
-            <c:forEach var="listProductDiscount" items="${listProductDiscount}">
+            <c:set var="done_loop" value="false"/>
+            <c:set var="num4" value="1"></c:set>
+           	<c:forEach var="listProductDiscount" items="${listProductDiscount}">
+           	 <c:if test="${done_loop ne true}">
 	            <article>
 	              <a href="#">
 	                <div class="thumb">
-	                  <img src="file/${listProductDiscount.thumb1 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProductDiscount.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProductDiscount.proName }</h2>
 	                <p> ${listProductDiscount.descript }</p>
@@ -401,6 +373,11 @@
 	                </div>
 	              </a>
 	            </article>
+	             <c:set var="num4" value="${num4+1}"></c:set>
+					  	<c:if test="${num4 eq 9}">
+                       		<c:set var="done_loop" value="true"/>
+                    	</c:if>
+	           </c:if>
 	            </c:forEach>
  
         </section>
