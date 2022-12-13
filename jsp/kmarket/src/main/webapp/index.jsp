@@ -282,7 +282,38 @@
           <section class="hit">
             <h3><span>히트상품</span></h3>
           
-			<c:forEach var="listProduct" items="${listProduct}">
+			<c:forEach var="listProductHit" items="${listProductHit}">
+	            <article>
+	              <a href="#">
+	                <div class="thumb">
+	                  <img src="file/${listProductHit.thumb1 }" width=230px height=230px alt="t1" />
+	                </div>
+	                <h2> ${listProductHit.proName }</h2>
+	                <p> ${listProductHit.descript }</p>
+	                <div class="org_price">
+	                  <del> ${listProductHit.price }</del>
+	                  <span> ${listProductHit.discount }%</span>
+	                </div>
+	                <div class="dis_price">
+	                 <ins> ${(listProductHit.price/100)*(100-listProductHit.discount)  }</ins>
+	                 <c:choose>
+	                 <c:when test="${listProductHit.delivery eq 0 }">
+	                 <span class="free">무료배송</span>
+	                 </c:when>
+	                 <c:otherwise>
+	                 <span >배송비 ${listProductHit.delivery }</span>
+	                 </c:otherwise>
+	                 </c:choose>
+	                </div>
+	              </a>
+	            </article>
+	            </c:forEach>
+         
+          </section>
+          <!-- 추천상품 영역 -->
+          <section class="recommend">
+            <h3><span>추천상품</span></h3>
+           	<c:forEach var="listProduct" items="${listProduct}">
 	            <article>
 	              <a href="#">
 	                <div class="thumb">
@@ -308,80 +339,69 @@
 	              </a>
 	            </article>
 	            </c:forEach>
-         
-          </section>
-          <!-- 추천상품 영역 -->
-          <section class="recommend">
-            <h3><span>추천상품</span></h3>
-            <c:forEach var="i" begin="1" end="8" step="1">
-            <article>
-              <a href="#">
-                <div class="thumb">
-                  <img src="https://via.placeholder.com/230x230" alt="t1" />
-                </div>
-                <h2>상품명</h2>
-                <p>간단한 상품 설명</p>
-                <div class="org_price">
-                  <del>30,000</del>
-                  <span>10%</span>
-                </div>
-                <div class="dis_price">
-                  <ins>27,000</ins>
-                  <span>배송비 3000</span>
-                </div>
-              </a>
-            </article>
-            </c:forEach>
  
           </section>
           <!-- 최신상품 영역 -->
           <section class="new">
             <h3><span>최신상품</span></h3>
-            <c:forEach var="i" begin="1" end="8" step="1">
-            <article>
-              <a href="#">
-                <div class="thumb">
-                  <img src="https://via.placeholder.com/230x230" alt="t1" />
-                </div>
-                <h2>test</h2>
-                <p>테스트중</p>
-                <div class="org_price">
-                  <del>500,00</del>
-                  <span>10%</span>
-                </div>
-                <div class="dis_price">
-                  <ins>10,000</ins>
-                  <span class="free">무료배송</span>
-                </div>
-              </a>
-            </article>
-
-            </c:forEach>
+            <c:forEach var="listProductNow" items="${listProductNow}">
+	            <article>
+	              <a href="#">
+	                <div class="thumb">
+	                  <img src="file/${listProductNow.thumb1 }" width=230px height=230px alt="t1" />
+	                </div>
+	                <h2> ${listProductNow.proName }</h2>
+	                <p> ${listProductNow.descript }</p>
+	                <div class="org_price">
+	                  <del> ${listProductNow.price }</del>
+	                  <span> ${listProductNow.discount }%</span>
+	                </div>
+	                <div class="dis_price">
+	                 <ins> ${(listProductNow.price/100)*(100-listProductNow.discount)  }</ins>
+	                 <c:choose>
+	                 <c:when test="${listProductNow.delivery eq 0 }">
+	                 <span class="free">무료배송</span>
+	                 </c:when>
+	                 <c:otherwise>
+	                 <span >배송비 ${listProductNow.delivery }</span>
+	                 </c:otherwise>
+	                 </c:choose>
+	                </div>
+	              </a>
+	            </article>
+	            </c:forEach>
 
           </section>
           
           <!-- 할인상품 영역 -->
           <section class="discount">
             <h3><span>할인상품</span></h3>
-            <c:forEach var="i" begin="1" end="8" step="1">
-            <article>
-              <a href="#">
-                <div class="thumb">
-                  <img src="https://via.placeholder.com/230x230" alt="t1" />
-                </div>
-                <h2>상품명2</h2>
-                <p>간단한 상품 설명</p>
-                <div class="org_price">
-                  <del>30,000</del>
-                  <span>10%</span>
-                </div>
-                <div class="dis_price">
-                  <ins>27,000</ins>
-                  <span class="free">무료배송</span>
-                </div>
-              </a>
-            </article>
-            </c:forEach>
+            <c:forEach var="listProductDiscount" items="${listProductDiscount}">
+	            <article>
+	              <a href="#">
+	                <div class="thumb">
+	                  <img src="file/${listProductDiscount.thumb1 }" width=230px height=230px alt="t1" />
+	                </div>
+	                <h2> ${listProductDiscount.proName }</h2>
+	                <p> ${listProductDiscount.descript }</p>
+	                <div class="org_price">
+	                  <del> ${listProductDiscount.price }</del>
+	                  <span> ${listProductDiscount.discount }%</span>
+	                </div>
+	                <div class="dis_price">
+	                 <ins> ${(listProductDiscount.price/100)*(100-listProductDiscount.discount)  }</ins>
+	                 <c:choose>
+	                 <c:when test="${listProductDiscount.delivery eq 0 }">
+	                 <span class="free">무료배송</span>
+	                 </c:when>
+	                 <c:otherwise>
+	                 <span >배송비 ${listProductDiscount.delivery }</span>
+	                 </c:otherwise>
+	                 </c:choose>
+	                </div>
+	              </a>
+	            </article>
+	            </c:forEach>
  
         </section>
       </main>
