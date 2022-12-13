@@ -333,19 +333,21 @@
                 <div class="thumb">
                   <img src="https://via.placeholder.com/230x230" alt="t1" />
                 </div>
-                <h2>상품명</h2>
-                <p>간단한 상품 설명</p>
+                <h2>test</h2>
+                <p>테스트중</p>
                 <div class="org_price">
-                  <del>30,000</del>
+                  <del>500,00</del>
                   <span>10%</span>
                 </div>
                 <div class="dis_price">
-                  <ins>27,000</ins>
+                  <ins>10,000</ins>
                   <span class="free">무료배송</span>
                 </div>
               </a>
             </article>
+
             </c:forEach>
+
           </section>
           
           <!-- 할인상품 영역 -->

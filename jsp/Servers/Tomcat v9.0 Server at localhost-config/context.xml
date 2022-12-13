@@ -26,19 +26,4 @@
     <!--
     <Manager pathname="" />
     -->
-    
-  <Resource 
-
-    	name="dbcp_kmarket"
-    	auth="Container"
-    	type="javax.sql.DataSource"
-    	driverClassName="com.mysql.cj.jdbc.Driver"
-    	url="jdbc:mysql://13.125.222.75:3306/kmarket"
-    	username="team5_db"
-    	password="user1111"
-    	maxTotal="8"
-    	maxIdle="8"
-    	maxWaitMillis="3000"
-    />
-
 </Context>
