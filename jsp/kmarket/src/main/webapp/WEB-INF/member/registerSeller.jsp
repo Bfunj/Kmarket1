@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="./_header.jsp"/>
+<script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/kmarket/js/postcode.js"></script>
+<script src="/kmarket/js/sellerValidation.js"></script>
         <main id="member">
             <div class="registerSeller">
 				<nav>
@@ -13,19 +16,19 @@
 							<tr>
 								<th><span class="essential">*</span>아이디</th>
 								<td><input type="text" name="uid" placeholder="아이디를 입력"
-									required /> <span class="msgSId">&nbsp;&nbsp;영문, 숫자로
+									required /> <span class="resultUid">&nbsp;&nbsp;영문, 숫자로
 										4~12자까지 설정해 주세요.</span></td>
 							</tr>
 							<tr>
 								<th><span class="essential">*</span>비밀번호</th>
 								<td><input type="password" name="pass"
-									placeholder="비밀번호를 입력" required /> <span class="msgPass">&nbsp;&nbsp;영문,
+									placeholder="비밀번호를 입력" required /> <span class="resultPass">&nbsp;&nbsp;영문,
 										숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.</span></td>
 							</tr>
 							<tr>
 								<th><span class="essential">*</span>비밀번호확인</th>
 								<td><input type="password" name="pass"
-									placeholder="비밀번호를 확인" required /> <span class="msgPass">&nbsp;&nbsp;비밀번호
+									placeholder="비밀번호를 확인" required /> <span class="resultPass">&nbsp;&nbsp;비밀번호
 										재입력</span></td>
 							</tr>
 						</table>

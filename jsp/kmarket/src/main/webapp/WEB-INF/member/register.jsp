@@ -13,7 +13,7 @@
 						<table>
 							<caption>필수 정보입력</caption>
 							<tr>
-								<th>아이디</th>
+								<th><span class="essential">*</span>아이디</th>
 								<td>
 									<input type="text" name="uid" placeholder="아이디를 입력"/>
 									<button type="button" id="btnUidCheck">중복확인</button>
@@ -21,14 +21,14 @@
 								</td>
 							</tr>
 							<tr>
-								<th>비밀번호</th>
+								<th><span class="essential">*</span>비밀번호</th>
 								<td>
 									<input type="password" name="pass1" placeholder="비밀번호를 입력"/> 
 									<span class="resultPass">영문, 숫자, 특수문자를 조합하여 5~15자까지 설정해 주세요.</span>
 								</td>
 							</tr>
 							<tr>
-								<th>비밀번호확인</th>
+								<th><span class="essential">*</span>비밀번호확인</th>
 								<td>
 									<input type="password" name="pass2" placeholder="비밀번호를 확인" />	
 								</td>
@@ -39,18 +39,18 @@
 						<table>
 							<caption>기본 정보입력</caption>
 							<tr>
-								<th>이름</th>
+								<th><span class="essential">*</span>이름</th>
 								<td><input type="text" name="name" placeholder="이름을 입력"
 									required /><span class="resultName"></span> </td>
 							</tr>
 							<tr>
-								<th>성별</th>
+								<th><span class="essential">*</span>성별</th>
 								<td><label><input type="radio" name="gender"
 										value="1" checked>&nbsp;남</label> <label><input
 										type="radio" name="gender" value="2">&nbsp;여</label></td>
 							</tr>
 							<tr>
-								<th>EMAIL</th>
+								<th><span class="essential">*</span>EMAIL</th>
 								<td><input type="email" name="email" placeholder="이메일 입력" required />
 								<span class="resultEmail"></span>
 								<button type="button" id="btnEmail">인증번호 받기</button>
@@ -61,7 +61,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>휴대폰</th>
+								<th><span class="essential">*</span>휴대폰</th>
 								<td><input type="text" name="hp" maxlength="13"
 									placeholder="휴대폰번호 입력" required /> <span class="resultHp"> -
 										포함 13자리를 입력하세요.</span></td>
