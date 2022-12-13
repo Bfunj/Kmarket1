@@ -408,6 +408,10 @@
         color: #eb000a;
         font-size: 10px;
     }
+    
+    #product > section > table tr .discount::after {
+    	content: "↓";
+    }
 
     #product > section > table tr .free-delivery {
         display: inline-block;
@@ -415,7 +419,7 @@
         vertical-align: text-bottom;
         width: 55px;
         height: 13px;
-        background: url(./img/product/ico_free_delivery.gif) no-repeat;
+        background: url(/kmarket/img/product/ico_free_delivery.gif) no-repeat;
         margin-top: 4px;
     }
 
@@ -1440,7 +1444,7 @@
     }
 
     #product > .order > form > .payment > div input {
-        vertical-align: bottom;
+        vertical-align: middle;
         margin-right: 5px;
     }
 
@@ -1449,6 +1453,7 @@
     }
 
     #product > .order > form > .payment > .etc > p > label > img {
+    	vertical-align: middle;
     }
 
     #product > .order > form > .alert {

@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
 
 import kr.co.kmarket.dao.AdminDAO;
 import kr.co.kmarket.service.AdminService;
@@ -35,53 +38,63 @@ public class AdminRegisterProductController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-			//데이터 수신
-			String cate1 		= req.getParameter("category1");
-			String cate2 		= req.getParameter("category2");
-			String proName 		= req.getParameter("proName");
-			String descript 	= req.getParameter("descript");
-			String company 		= req.getParameter("company");
-			String price 		= req.getParameter("price");
-			String discount 	= req.getParameter("discount");
-			String point 		= req.getParameter("point");
-			String stock 		= req.getParameter("stock");
-			String delivery 	= req.getParameter("delivery");
-			String thumb1 		= req.getParameter("thumb1");
-			String thumb2 		= req.getParameter("thumb2");
-			String thumb3 		= req.getParameter("thumb3");
-			String detail 		= req.getParameter("detail");
-			String status 		= req.getParameter("status");
-			String duty 		= req.getParameter("duty");
-			String recipt 		= req.getParameter("recipt");
-			String origin 		= req.getParameter("origin");
-			String ip 			= req.getRemoteAddr();
-			
-			//VO데이터 설정
-			ProductVO pv = new ProductVO();
-			pv.setCate1(cate1);
-			pv.setCate2(cate2);
-			pv.setProName(proName);
-			pv.setDescript(descript);
-			pv.setCompany(company);
-			pv.setPrice(price);
-			pv.setDiscount(discount);
-			pv.setPoint(point);
-			pv.setStock(stock);
-			pv.setDelivery(delivery);
-			pv.setThumb1(thumb1);
-			pv.setThumb2(thumb2);
-			pv.setThumb3(thumb3);
-			pv.setDetail(detail);
-			pv.setStatus(status);
-			pv.setDuty(duty);
-			pv.setRecipt(recipt);
-			pv.setOrigin(origin);
-			pv.setIp(ip);
-			
-			//데이터베이스 처리
-			service.INSERT_ADMIN_PRODUCT(pv);
-			
-			//리다이렉트
-			resp.sendRedirect("/kmarket/index.do");
+		// 파일 경로 설정
+		ServletContext ctx = req.getServletContext();
+		String path = ctx.getRealPath("/file");
+		MultipartRequest mr = service.uploadFile(req, path);
+
+		String thumb1Name = service.renameFile(mr.getFilesystemName("thumb1"), path);
+		String thumb2Name = service.renameFile(mr.getFilesystemName("thumb2"), path);
+		String thumb3Name = service.renameFile(mr.getFilesystemName("thumb3"), path);
+		String detailName = service.renameFile(mr.getFilesystemName("detail"), path);
+		
+		//데이터 수신
+		String cate1 		= mr.getParameter("category1");
+		String cate2 		= mr.getParameter("category2");
+		String proName 		= mr.getParameter("proName");
+		String descript 	= mr.getParameter("descript");
+		String company 		= mr.getParameter("company");
+		String price 		= mr.getParameter("price");
+		String discount 	= mr.getParameter("discount");
+		String point 		= mr.getParameter("point");
+		String stock 		= mr.getParameter("stock");
+		String delivery 	= mr.getParameter("delivery");
+		String thumb1 		= thumb1Name;
+		String thumb2 		= thumb2Name;
+		String thumb3 		= thumb3Name;
+		String detail 		= detailName;
+		String status 		= mr.getParameter("status");
+		String duty 		= mr.getParameter("duty");
+		String recipt 		= mr.getParameter("recipt");
+		String origin 		= mr.getParameter("origin");
+		String ip 			= req.getRemoteAddr();
+		
+		//VO데이터 설정
+		ProductVO pv = new ProductVO();
+		pv.setCate1(cate1);
+		pv.setCate2(cate2);
+		pv.setProName(proName);
+		pv.setDescript(descript);
+		pv.setCompany(company);
+		pv.setPrice(price);
+		pv.setDiscount(discount);
+		pv.setPoint(point);
+		pv.setStock(stock);
+		pv.setDelivery(delivery);
+		pv.setThumb1(thumb1);
+		pv.setThumb2(thumb2);
+		pv.setThumb3(thumb3);
+		pv.setDetail(detail);
+		pv.setStatus(status);
+		pv.setDuty(duty);
+		pv.setRecipt(recipt);
+		pv.setOrigin(origin);
+		pv.setIp(ip);
+		
+		//데이터베이스 처리
+		service.INSERT_ADMIN_PRODUCT(pv);
+		
+		//리다이렉트
+		resp.sendRedirect("/kmarket/index.do");
 	}
 }
