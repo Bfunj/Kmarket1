@@ -27,7 +27,7 @@ public class IndexController extends HttpServlet{
 		
 		List<ProductVO> listProduct = service.SelectProduct();
 		req.setAttribute("listProduct", listProduct);
-		
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(req, resp);
 	}

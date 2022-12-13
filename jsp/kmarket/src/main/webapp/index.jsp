@@ -44,21 +44,22 @@
       <header>
         <div class="top">
           <div>
-
+          
           	<c:choose>
-          	<c:when test="${empty sessUser} ">
-	            <a href="/kmarket/member/login.do">로그인</a>
-	            <a href="/kmarket/member/signup.do">회원가입</a>
-            </c:when>
-            <c:otherwise>
-            	<span>${sessUser.name}</span>
-	            <a href="/kmarket/member/logout.do">로그아웃</a>
-	            <a href="/kmarket/member/myPage.do">마이페이지</a>
-	            <a href="/kmarket/product/cart.do"
-	              ><i class="fa fa-shopping-cart" aria-hidden="true"></i
-	              >&nbsp;장바구니</a>
-            </c:otherwise>
-            </c:choose>
+		            <c:when test="${sessUser == null}">
+		          		  	<a href="/kmarket/member/login.do">로그인</a>
+		            		<a href="/kmarket/member/signup.do">회원가입</a>
+		            </c:when>
+	         		<c:otherwise> 
+						 <span class="nick">${sessUser.name }  </span>
+	               		    <a href="/kmarket/member/logout.do"> 로그아웃</a>
+		            		<a href="/kmarket/member/myPage.do">마이페이지</a>
+		            		<a href="/kmarket/product/cart.do">
+		            			<i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니
+		           		 	</a>
+					</c:otherwise> 
+            	 </c:choose>
+            	
 
           </div>
         </div>
