@@ -57,6 +57,15 @@
       <header>
         <div class="top">
           <div>
+<<<<<<< HEAD
+            <a href="./member/login.do">로그인</a>
+            <a href="./member/register.do">회원가입</a>
+            <a href="#">마이페이지</a>
+            <a href="/kmarket/product/cart.do"
+              ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+              >&nbsp;장바구니</a
+            >
+=======
 
 	          <c:choose>
 	          	<c:when test="${empty sessUser }">
@@ -74,6 +83,7 @@
 				</c:otherwise>
 		      </c:choose>
 
+>>>>>>> 5da3876482e3578b56a9bac175bb334ac58fd7f3
           </div>
         </div>
         <div class="logo">
@@ -97,10 +107,10 @@
               <li><a href="#">할인상품</a></li>
             </ul>
             <ul>
-              <li><a href="#">공지사항</a></li>
-              <li><a href="#">자주묻는질문</a></li>
-              <li><a href="#">문의하기</a></li>
-              <li><a href="#">고객센터</a></li>
+              <li><a href="./cs/notice/list.do">공지사항</a></li>
+              <li><a href="./cs/faq/list.do">자주묻는질문</a></li>
+              <li><a href="./cs/qna/write.do">문의하기</a></li>
+              <li><a href="./cs/qna/list.do">고객센터</a></li>
             </ul>
           </div>
         </div>
