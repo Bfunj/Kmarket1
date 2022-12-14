@@ -18,8 +18,9 @@ let receivedCode = 0;
 
 $(function(){
 	
-		$('input[name=uid]').keydown(function(){
-		isUidOk = false;
+	$('input[name=uid]').keydown(function(){
+	isUidOk = false;
+	
 	});
 	
 	$('#btnUidCheck').click(function(){
@@ -115,7 +116,7 @@ $(function(){
 		console.log('here1 : ' + email);
 		
 		if(email == ''){
-			alert('이메엘을 입력 하세요.');
+			alert('이메일을 입력 하세요.');
 			return;
 		}
 		

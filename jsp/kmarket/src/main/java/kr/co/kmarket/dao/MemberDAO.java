@@ -50,6 +50,39 @@ public class MemberDAO extends DBHelper{
 		}
 	}
 	
+	public void InsertMemberSeller(MemberVO vo) {
+		
+		try {
+			logger.info("insert MemberSeller start...");
+			
+			conn = getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.INSERT_Member_Seller);
+			psmt.setString(1, vo.getUid());
+			psmt.setString(2, vo.getPass());
+			psmt.setString(3, vo.getCompany());
+			psmt.setString(4, vo.getCeo());
+			psmt.setString(5, vo.getBizRegNum());
+			psmt.setString(6, vo.getComRegNum());
+			psmt.setString(7, vo.getTel());
+			psmt.setString(8, vo.getFax());
+			psmt.setString(9, vo.getEmail());
+			psmt.setString(10, vo.getZip());
+			psmt.setString(11, vo.getAddr1());
+			psmt.setString(12, vo.getAddr2());
+			psmt.setString(13, vo.getManager());
+			psmt.setString(14, vo.getManagerHp());
+			psmt.setString(15, vo.getRegip());
+			psmt.executeUpdate();
+			
+			psmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	
 	public TermsVO SelectTerms() {
 		
 		TermsVO tv = null;

@@ -12,6 +12,9 @@ public enum MemberService {
 	public void InsertMember(MemberVO mv) {
 		dao.InsertMember(mv);
 	}
+	public void InsertMemberSeller(MemberVO vo) {
+		dao.InsertMemberSeller(vo);
+	}
 	public TermsVO SelectTerms() {
 		return dao.SelectTerms();
 	}
