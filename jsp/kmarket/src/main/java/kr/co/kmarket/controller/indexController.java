@@ -15,7 +15,7 @@ import kr.co.kmarket.service.AdminService;
 import kr.co.kmarket.vo.ProductVO;
 
 @WebServlet("/index.do")
-public class IndexController extends HttpServlet{
+public class indexController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	private AdminService service = AdminService.INSTANCE;

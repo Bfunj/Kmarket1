@@ -8,22 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@SuppressWarnings("unused")
-@WebServlet("/admin/lndex.do")
-public class AdminIndexController {
+@WebServlet("/admin/index.do")
+public class AdminindexController extends HttpServlet {
 private static final long serialVersionUID = 1L;
 	
 	public void init() throws ServletException {
 	}
 	
 	protected void doGet(HttpServletRequest req, HttpServletRequest resp) throws ServletException, IOException {
-		@SuppressWarnings("unused")
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/lndex.jsp");
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/index.jsp");
 		
 	}	
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
 }
+
 
 
