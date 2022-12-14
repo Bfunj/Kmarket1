@@ -133,6 +133,7 @@ public class MemberDAO extends DBHelper{
 		
 		try {
 			logger.info("Select Member Start...");
+			
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.Select_Member);
 			psmt.setString(1, uid);

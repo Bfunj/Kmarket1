@@ -15,6 +15,9 @@
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script>
+    
+    	
+    	
       $(document).ready(function () {
         $(".slider > ul").bxSlider({
           easing: "linear",
@@ -36,6 +39,16 @@
             best.css({ position: "static" });
           }
         });
+        
+        let sessUser = "${sessUser}";
+        
+        $('.mypage').click(function(e){
+        	e.preventDefault();
+        	if(sessUser == null){
+        		alert('로그인 후 이용 가능합니다.');
+        		location.href="/kmarket/member/login.do";
+        	}
+        });
       });
     </script>
   </head>
@@ -44,22 +57,22 @@
       <header>
         <div class="top">
           <div>
-          
-          	<c:choose>
-		            <c:when test="${sessUser == null}">
-		          		  	<a href="/kmarket/member/login.do">로그인</a>
-		            		<a href="/kmarket/member/signup.do">회원가입</a>
-		            </c:when>
-	         		<c:otherwise> 
-						 <span class="nick">${sessUser.name }  </span>
-	               		    <a href="/kmarket/member/logout.do"> 로그아웃</a>
-		            		<a href="/kmarket/member/myPage.do">마이페이지</a>
-		            		<a href="/kmarket/product/cart.do">
-		            			<i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니
-		           		 	</a>
-					</c:otherwise> 
-            	 </c:choose>
-            	
+
+	          <c:choose>
+	          	<c:when test="${empty sessUser }">
+		            <a href="/kmarket/member/login.do">로그인</a>
+		            <a href="/kmarket/member/signup.do">회원가입</a>
+		            <a href="/kmarket/member/mypage.do" class="mypage">마이페이지</a>
+		      	</c:when>
+		      	<c:otherwise>
+		      		<span>${sessUser.name }</span>님 반갑습니다.
+		            <a href="/kmarket/member/logout.do">로그아웃</a>
+		            <a href="/kmarket/member/mypage.do">마이페이지</a>
+		            <a href="/kmarket/product/cart.do"
+		              ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+		              >&nbsp;장바구니</a>
+				</c:otherwise>
+		      </c:choose>
 
           </div>
         </div>
