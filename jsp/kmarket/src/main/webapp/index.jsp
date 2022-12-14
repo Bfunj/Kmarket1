@@ -174,7 +174,7 @@
             <c:forEach var="listProductBest" items="${listProductBest}">
               <c:if test="${done_loop ne true}">
               <li>
-                <a href="#">
+                <a href="/kmarket/product/view.do?&proNo=${listProductBest.proNo}&cate1=${listProductBest.cate1}&cate2=${listProductBest.cate2}">
                   <div class="thumb">
                     <i>${i }</i>
                     <c:choose>
@@ -245,7 +245,7 @@
 			<c:forEach var="listProductHit" items="${listProductHit}">
 			  <c:if test="${done_loop ne true}">
 	            <article>
-	              <a href="#">
+	              <a href="/kmarket/product/view.do?&proNo=${listProductHit.proNo}&cate1=${listProductHit.cate1}&cate2=${listProductHit.cate2}">
 	                <div class="thumb">
 	                  <img src="file/${listProductHit.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
@@ -284,7 +284,7 @@
            	<c:forEach var="listProduct" items="${listProduct}">
            	 <c:if test="${done_loop ne true}">
 	            <article>
-	              <a href="#">
+	              <a href="/kmarket/product/view.do?&proNo=${listProduct.proNo}&cate1=${listProduct.cate1}&cate2=${listProduct.cate2}">
 	                <div class="thumb">
 	                  <img src="file/${listProduct.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
@@ -323,7 +323,7 @@
            	<c:forEach var="listProductNow" items="${listProductNow}">
            	 <c:if test="${done_loop ne true}">
 	            <article>
-	              <a href="#">
+	              <a href="/kmarket/product/view.do?&proNo=${listProductNow.proNo}&cate1=${listProductNow.cate1}&cate2=${listProductNow.cate2}">
 	                <div class="thumb">
 	                  <img src="file/${listProductNow.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
@@ -363,7 +363,7 @@
            	<c:forEach var="listProductDiscount" items="${listProductDiscount}">
            	 <c:if test="${done_loop ne true}">
 	            <article>
-	              <a href="#">
+	              <a href="/kmarket/product/view.do?&proNo=${listProductDiscount.proNo}&cate1=${listProductDiscount.cate1}&cate2=${listProductDiscount.cate2}">
 	                <div class="thumb">
 	                  <img src="file/${listProductDiscount.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>

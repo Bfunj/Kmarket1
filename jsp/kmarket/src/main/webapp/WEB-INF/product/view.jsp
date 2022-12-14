@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./header.jsp"></jsp:include>
         <main id="product">
             <aside>
@@ -46,31 +47,31 @@
             <section class="view">
                 <nav>
                     <h1>상품목록</h1>
-                    <p>HOME > <span>패션·의류·뷰티</span> > <strong>남성의류</strong></p>
+                    <p>HOME > <span>${productView.c1Name }</span> > <strong>${productView.c2Name }</strong></p>
                 </nav>
 
                 <!-- 상품 전체 정보 내용 -->                
                 <article class="info">
                     <div class="image">
-                        <img src="https://via.placeholder.com/460x460" alt="상품이미지"/>
+                        <img src="../file/${productView.thumb3 }" width=460px height=460px alt="상품이미지"/>
                     </div>
                     <div class="summary">
                         <nav>
-                            <h1>(주)판매자명</h1>
+                            <h1>${productView.seller }</h1>
                             <h2>상품번호&nbsp;:&nbsp;<span>10010118412</span></h2>
                         </nav>                        
                         <nav>
-                            <h3>상품명</h3>
-                            <p>상품설명 출력</p>
+                            <h3>${productView.proName }</h3>
+                            <p>${productView.descript }</p>
                             <h5 class="rating star4"><a href="#">상품평보기</a></h5>
                         </nav>
                         <nav>
                             <div class="org_price">
-                                <del>30,000</del>
-                                <span>10%</span>
+                                <del>${productView.price }</del>
+                                <span>${productView.discount }%</span>
                             </div>
                             <div class="dis_price">
-                                <ins>27,000</ins>
+                                <ins>${(productView.price/100)*(100-productView.discount)  }</ins>
                             </div>
                         </nav>
                         <nav>
@@ -94,7 +95,7 @@
                         </div>
                         
                         <div class="total">
-                            <span>35,000</span>
+                            <span>${(productView.price/100)*(100-productView.discount) +productView.delivery }</span>
                             <em>총 상품금액</em>
                         </div>
 
@@ -111,7 +112,7 @@
                         <h1>상품정보</h1>
                     </nav>
                     <!-- 상품상세페이지 이미지 -->
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지1">
+                    <img src="../file/${productView.detail }" width=860px height=460px alt="상세페이지1">
                     <img src="https://via.placeholder.com/860x460" alt="상세페이지2">
                     <img src="https://via.placeholder.com/860x460" alt="상세페이지3">
                 </article>
