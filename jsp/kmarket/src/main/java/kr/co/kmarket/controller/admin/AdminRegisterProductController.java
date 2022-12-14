@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.co.kmarket.dao.AdminDAO;
 import kr.co.kmarket.service.AdminService;
 import kr.co.kmarket.vo.Cate1VO;
+import kr.co.kmarket.vo.Cate2VO;
 import kr.co.kmarket.vo.ProductVO;
 
 @WebServlet("/admin/registerProduct.do")
@@ -38,9 +40,16 @@ public class AdminRegisterProductController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		String cate1s =  req.getParameter("category1"); 
+		String cate2s =  req.getParameter("category2"); 
+		
+		System.out.println("cate1s" + cate1s);
+		System.out.println("cate2s" + cate2s);
+		
 		// 파일 경로 설정
 		ServletContext ctx = req.getServletContext();
-		String path = ctx.getRealPath("/file");
+		String path = ctx.getRealPath("/file/10/10");
+		//String path = ctx.getRealPath("/file/"+cate1s+"/"+cate2s);
 		MultipartRequest mr = service.uploadFile(req, path);
 
 		String thumb1Name = service.renameFile(mr.getFilesystemName("thumb1"), path);

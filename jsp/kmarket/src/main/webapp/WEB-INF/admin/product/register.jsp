@@ -32,6 +32,7 @@
     					$('select[name=category2]').append("<option value='cate0'>2차 분류 선택</option>");
     					for (let cate of data){
     						$('select[name=category2]').append("<option value='"+cate.cate2+"'>"+cate.c2Name+"</option>");
+    					
     					}	
     				} 
     			});
@@ -114,8 +115,8 @@
                     </p>
                 </nav>
                 <!-- 상품등록 컨텐츠 시작 -->
-                <article>
-                    <form action="/kmarket/admin/registerProduct.do" method="post" enctype="multipart/form-data">
+                <article name="fileCate">
+                    <form action="/kmarket/admin/registerProduct.do?&category1=${cate2.cate1 }&category2=${cate2.cate2}" method="post" enctype="multipart/form-data">
 
                         <!-- 상품분류 -->
                         <section>

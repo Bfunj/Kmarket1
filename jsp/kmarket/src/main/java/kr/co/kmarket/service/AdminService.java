@@ -34,6 +34,10 @@ public enum AdminService {
 		int maxSize = 1024 * 1024 * 10; // 최대 파일 업로드 허용량 10MB
 		return new MultipartRequest(req, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 	}
+	public MultipartRequest uploadFile2(HttpServletRequest req, String path) throws IOException {
+		int maxSize = 1024 * 1024 * 10; // 최대 파일 업로드 허용량 10MB
+		return new MultipartRequest(req, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+	}
 	// 파일명 수정
 	public String renameFile(String thumbName, String path) {
 
