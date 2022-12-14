@@ -20,7 +20,6 @@ public class RegisterController extends HttpServlet{
 	@Override
 	public void init() throws ServletException {
 	}
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -61,6 +60,6 @@ public class RegisterController extends HttpServlet{
 		service.InsertMember(mv);
 		
 		//리다이렉트
-		resp.sendRedirect("/kmarket/index.do");
+		resp.sendRedirect("/kmarket/member/login.do");
 	}
 }

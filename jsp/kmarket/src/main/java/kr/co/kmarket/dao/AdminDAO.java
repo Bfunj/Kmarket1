@@ -48,6 +48,7 @@ public class AdminDAO extends DBHelper{
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());
+			logger.error("cate1 error..");
 		}
 		return cate1s;
 	}
@@ -77,6 +78,7 @@ public class AdminDAO extends DBHelper{
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());
+			logger.error("cate2 error..");
 		}
 		return cate2s;
 	}
@@ -113,6 +115,70 @@ public class AdminDAO extends DBHelper{
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());
+	
 		}
 	}
+	
+	// 상품 불러오기
+	public List<ProductVO> SelectProduct(int code) {
+		
+		List<ProductVO> listProduct = new ArrayList<>();
+		
+		try {
+			logger.info("SelectProduct start...");
+			
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = null;
+			if(code == 0) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT);}
+			if(code == 1) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_HIT);}
+			if(code == 2) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_NOW);}
+			if(code == 3) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_DISCOUNT);}
+			if(code == 4) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_BEST);}
+			
+			while(rs.next()) {
+				ProductVO pv = new ProductVO();
+				
+				pv.setProNo(rs.getInt(1));
+				pv.setCate1(rs.getInt(2));
+				pv.setCate2(rs.getInt(3));
+				pv.setProName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getInt(8));
+				pv.setDiscount(rs.getInt(9));
+				pv.setPoint(rs.getInt(10));
+				pv.setStock(rs.getInt(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getInt(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReviw(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setRecipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
+				
+				listProduct.add(pv);
+			}
+			close();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}	
+		return listProduct;
+	}
+	
 }

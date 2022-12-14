@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="./_header.jsp"/>
+<jsp:include page="./cs_header.jsp"/>
  
         <section id="cs">
             <div class="main">
@@ -8,7 +8,7 @@
                 </h1>
                 <section class="notice">
                     <h1>공지사항
-                        <a href="./notice/list.html">전체보기</a>
+                        <a href="./notice/list.do">전체보기</a>
                     </h1>
                     <ul>
                         <li><a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a><span class="date">22.10.31</span></li>
@@ -20,7 +20,7 @@
                 </section>
                 <section class="faq">
                     <h1>자주 묻는 질문
-                        <a href="./faq/list.html">전체보기</a>
+                        <a href="./faq/list.do">전체보기</a>
                     </h1>
                     <ol>
                         <li><a href="#"><span>회원</span></a></li>
@@ -34,7 +34,7 @@
                 </section>
                 <section class="qna">
                     <h1>문의하기
-                        <a href="./qna/list.html">전체보기</a>
+                        <a href="./qna/list.do">전체보기</a>
                     </h1>
                     <ul>
                         <li><a href="#">[회원] 문의 글1</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>
@@ -73,29 +73,4 @@
                 </section>
             </div>
         </section>
-        <footer>
-            <ul>
-                <li><a href="#">회사소개</a></li>
-                <li><a href="#">서비스이용약관</a></li>
-                <li><a href="#">개인정보처리방침</a></li>
-                <li><a href="#">전자금융거래약관</a></li>
-            </ul>
-            <div>
-                <p><img src="/img/footer_logo.png" alt="로고"></p>
-                <p><strong>(주)KMARKET</strong>
-                    <br>부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br>
-                    대표이사 : 홍길동<br>
-                    사업자등록번호 : 220-81-83676 사업자정보확인<br>
-                    통신판매업신고 : 강남 10630호 Fax : 02-589-8842
-                </p>
-                <p><strong>(주)KMARKET</strong>
-                    <br>부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br>
-                    대표이사 : 홍길동<br>
-                    사업자등록번호 : 220-81-83676 사업자정보확인<br>
-                    통신판매업신고 : 강남 10630호 Fax : 02-589-8842
-                </p>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+       <jsp:include page="./cs_footer.jsp"/>
