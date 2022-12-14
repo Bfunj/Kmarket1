@@ -17,7 +17,7 @@
 								<td>
 									<input type="text" name="uid" placeholder="아이디를 입력"/>
 									<button type="button" id="btnUidCheck">중복확인</button>
-									<span class="resultUid">영문, 숫자로 4~12자까지 설정해 주세요.</span>
+									<span class="resultUid">&nbsp;&nbsp;영문, 숫자로 4~12자까지 설정해 주세요.</span>
 								</td>
 							</tr>
 							<tr>

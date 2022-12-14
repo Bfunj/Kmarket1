@@ -51,12 +51,38 @@ public class Sql {
 												+ "`email` 	= ? , "
 												+ "`hp` 	= ? , "
 												+ "`type` 	= 1 , " 
-												//타입 not null 이라 임의의 데이터 입력
+												// 타입 not null 이라 임의의 데이터 입력
 												+ "`zip` 	= ? , "
 												+ "`addr1` 	= ? ,"
 												+ "`addr2` 	= ? , "
 												+ "`regip` 	= ? , "
 												+ "`rdate` 	= NOW()";
+	
+	public static final String INSERT_Member_Seller = "INSERT INTO `km_member` SET "
+													 + " `uid`=?, "
+													 + " `pass`=SHA2(?, 256), "
+													 + " `name`=1, "
+													 // 네임 not null 이라 임의의 데이터 입력
+													 + " `hp`=1, "
+													 // 폰번호 not null 이라 임의의 데이터 입력
+													 + " `company`=?, "
+													 + " `ceo`=?, "
+													 + " `gender`=3, "
+													 // 젠더 not null 이라 임의의 데이터 입력
+													 + " `type`=1, "
+													 // 타입 not null 이라 임의의 데이터 입력
+													 + " `bizRegNum`=?, "
+													 + " `comRegNum`=?, "
+													 + " `tel`=?, "
+													 + " `fax`=?, "
+													 + " `email`=?, "
+													 + " `zip`=?, "
+													 + " `addr1`=?, "
+													 + " `addr2`=?, "
+													 + " `manager`=?, "
+													 + " `managerHp`=?, "
+													 + " `regip`=?, "
+													 + " `rdate`=NOW() ";
 	
 	public static final String SELECT_COUNT_UID  	= "select count(`uid`) from `km_member` where `uid`=?";
 	public static final String SELECT_PRODUCT  		= "SELECT * FROM `km_product` ORDER BY `score` DESC";
