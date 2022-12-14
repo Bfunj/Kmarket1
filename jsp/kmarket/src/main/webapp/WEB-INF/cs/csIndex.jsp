@@ -44,7 +44,7 @@
                         <li><a href="#">[회원] 문의 글5</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>
 
                     </ul>
-                    <a href="#" class="ask">문의글 작성 ></a>
+                    <a href="./qna/write.do" class="ask">문의글 작성 ></a>
                 </section>
                 <section class="tel">
                     <h1 class="tel">1:1 상담이 필요하신가요?</h1>
