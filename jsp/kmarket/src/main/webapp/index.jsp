@@ -186,7 +186,7 @@
                     	</c:otherwise>
                     </c:choose>          
                   </div>
-                  <h2>상품명</h2>
+                  <h2>${listProductBest.proName }</h2>
                   <div class="org_price">
                     <del>${listProductBest.price }</del>
                     <span>${listProductBest.discount }%</span>

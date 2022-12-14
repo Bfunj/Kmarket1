@@ -53,15 +53,26 @@
         <header>
             <div class="top">
                 <div>
-                    <a href="#">로그인</a>
-                    <a href="#">회원가입</a>
-                    <a href="#">마이페이지</a>
-                    <a href="#">장바구니</a>
+                    <c:choose>
+	          	<c:when test="${empty sessUser }">
+		            <a href="/kmarket/member/login.do">로그인</a>
+		            <a href="/kmarket/member/signup.do">회원가입</a>
+		            <a href="/kmarket/member/mypage.do" class="mypage">마이페이지</a>
+		      	</c:when>
+		      	<c:otherwise>
+		      		<span>${sessUser.name }</span>님 반갑습니다.
+		            <a href="/kmarket/member/logout.do">로그아웃</a>
+		            <a href="/kmarket/member/mypage.do">마이페이지</a>
+		            <a href="/kmarket/product/cart.do"
+		              ><i class="fa fa-shopping-cart" aria-hidden="true"></i
+		              >&nbsp;장바구니</a>
+				</c:otherwise>
+		      </c:choose>
                 </div>
             </div>
             <div class="logo">
                 <div>
-                    <a href="#"><img src="../img/product/header_logo.png" alt="로고"/></a>
+                    <a href="/kmarket/index.do"><img src="../img/product/header_logo.png" alt="로고"/></a>
                     <form action="#">
                         <input type="text" name="keyword"/>
                         <button><i class="fa fa-search"></i></button>
@@ -81,8 +92,8 @@
                         <li><a href="#">쿠폰존</a></li>
                         <li><a href="#">사용후기</a></li>
                         <li><a href="#">개인결제</a></li>
-                        <li><a href="#">고객센터</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="/kmarket/cs/qna/list.do">고객센터</a></li>
+                        <li><a href="/kmarket/cs/faq/list.do">FAQ</a></li>
                     </ul>
                 </div>
             </div>
