@@ -11,6 +11,9 @@ public class Sql {
 	//select terms
 	public static final String SELECT_TERMS = "SELECT * FROM `km_member_terms` ";
 	
+	//select member
+	public static final String Select_Member = "Select * from `km_member` where `uid` = ? and `pass` = SHA2(?, 256)";
+	
 	//insert admin product 
 	public static final String INSERT_ADMIN_PRODUCT = "INSERT INTO `km_product` SET "
 													+ "`cate1` = ?, "
@@ -56,7 +59,11 @@ public class Sql {
 												+ "`rdate` 	= NOW()";
 	
 	public static final String SELECT_COUNT_UID  	= "select count(`uid`) from `km_member` where `uid`=?";
-	public static final String SELECT_PRODUCT  		= "SELECT * FROM `km_product`";
+	public static final String SELECT_PRODUCT  		= "SELECT * FROM `km_product` ORDER BY `score` DESC";
+	public static final String SELECT_PRODUCT_HIT  	= "SELECT * FROM `km_product` ORDER BY `hit` DESC";
+	public static final String SELECT_PRODUCT_NOW  	= "SELECT * FROM `km_product` ORDER BY `rdate` DESC";
+	public static final String SELECT_PRODUCT_DISCOUNT  	= "SELECT * FROM `km_product` WHERE `discount` >'0' ORDER BY `discount` DESC";
+	public static final String SELECT_PRODUCT_BEST  	= "SELECT * FROM `km_product` ORDER BY `sold` DESC ";
 
 	
 }

@@ -120,8 +120,7 @@ public class AdminDAO extends DBHelper{
 	}
 	
 	// 상품 불러오기
-	
-	public List<ProductVO> SelectProduct() {
+	public List<ProductVO> SelectProduct(int code) {
 		
 		List<ProductVO> listProduct = new ArrayList<>();
 		
@@ -130,7 +129,12 @@ public class AdminDAO extends DBHelper{
 			
 			conn = getConnection();
 			Statement stmt = conn.createStatement();
-			ResultSet rs =stmt.executeQuery(Sql.SELECT_PRODUCT);
+			ResultSet rs = null;
+			if(code == 0) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT);}
+			if(code == 1) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_HIT);}
+			if(code == 2) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_NOW);}
+			if(code == 3) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_DISCOUNT);}
+			if(code == 4) {rs =stmt.executeQuery(Sql.SELECT_PRODUCT_BEST);}
 			
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
@@ -173,10 +177,8 @@ public class AdminDAO extends DBHelper{
 			close();
 		}catch(Exception e) {
 			logger.error(e.getMessage());
-		}
-		
+		}	
 		return listProduct;
 	}
 	
-
 }

@@ -101,7 +101,7 @@ public class MemberDAO extends DBHelper{
 	}
 
 	
-public int selectCountUid(String uid) {
+	public int selectCountUid(String uid) {
 		
 		int result = 0;
 		
@@ -125,5 +125,52 @@ public int selectCountUid(String uid) {
 		logger.debug("result : " + result);
 		
 		return result;
+	}
+	
+	public MemberVO Select_Member (String uid, String pass) {
+		
+		MemberVO mv = null;
+		
+		try {
+			logger.info("Select Member Start...");
+			
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Select_Member);
+			psmt.setString(1, uid);
+			psmt.setString(2, pass);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				mv = new MemberVO();
+				mv.setUid(rs.getString(1));
+				mv.setPass(rs.getString(2));
+				mv.setName(rs.getString(3));
+				mv.setGender(rs.getString(4));
+				mv.setEmail(rs.getString(5));
+				mv.setHp(rs.getString(6));
+				mv.setType(rs.getInt(7));
+				mv.setPoint(rs.getInt(8));
+				mv.setLevel(rs.getInt(9));
+				mv.setZip(rs.getString(10));
+				mv.setAddr1(rs.getString(11));
+				mv.setAddr2(rs.getString(12));
+				mv.setCompany(rs.getString(13));
+				mv.setCeo(rs.getString(14));
+				mv.setBizRegNum(rs.getString(15));
+				mv.setComRegNum(rs.getString(16));
+				mv.setTel(rs.getString(17));
+				mv.setManager(rs.getString(18));
+				mv.setManagerHp(rs.getString(19));
+				mv.setFax(rs.getString(20));
+				mv.setRegip(rs.getString(21));
+				mv.setWdate(rs.getString(22));
+				mv.setRdate(rs.getString(23));
+			}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return mv;
 	}
 }
