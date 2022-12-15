@@ -40,26 +40,21 @@ public class AdminRegisterProductController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String cate1s =  req.getParameter("category1"); 
-		String cate2s =  req.getParameter("category2"); 
-		
-		System.out.println("cate1s" + cate1s);
-		System.out.println("cate2s" + cate2s);
 		
 		// 파일 경로 설정
 		ServletContext ctx = req.getServletContext();
-		String path = ctx.getRealPath("/file/10/10");
-		//String path = ctx.getRealPath("/file/"+cate1s+"/"+cate2s);
+		String path = ctx.getRealPath("/file");
 		MultipartRequest mr = service.uploadFile(req, path);
-
-		String thumb1Name = service.renameFile(mr.getFilesystemName("thumb1"), path);
-		String thumb2Name = service.renameFile(mr.getFilesystemName("thumb2"), path);
-		String thumb3Name = service.renameFile(mr.getFilesystemName("thumb3"), path);
-		String detailName = service.renameFile(mr.getFilesystemName("detail"), path);
-		
-		//데이터 수신
 		String cate1 		= mr.getParameter("category1");
 		String cate2 		= mr.getParameter("category2");
+		
+		String thumb1Name = service.renameFile(mr.getFilesystemName("thumb1"), path, cate1, cate2);
+		String thumb2Name = service.renameFile(mr.getFilesystemName("thumb2"), path, cate1, cate2);
+		String thumb3Name = service.renameFile(mr.getFilesystemName("thumb3"), path, cate1, cate2);
+		String detailName = service.renameFile(mr.getFilesystemName("detail"), path, cate1, cate2);
+		
+		//데이터 수신
+	
 		String proName 		= mr.getParameter("proName");
 		String descript 	= mr.getParameter("descript");
 		String company 		= mr.getParameter("company");
