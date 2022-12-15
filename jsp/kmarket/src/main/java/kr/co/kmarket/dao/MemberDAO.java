@@ -206,4 +206,91 @@ public class MemberDAO extends DBHelper{
 		}
 		return mv;
 	}
+	
+	public MemberVO SelectMemberForChangeInfo(String uid) {
+		
+		MemberVO mv = null;
+		
+		try {
+			logger.info("Select Member For ChangeInfo Start..");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Select_Member_For_Change_Info);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				mv = new MemberVO();
+				mv.setUid(rs.getString(1));
+				mv.setPass(rs.getString(2));
+				mv.setName(rs.getString(3));
+				mv.setGender(rs.getString(4));
+				mv.setEmail(rs.getString(5));
+				mv.setHp(rs.getString(6));
+				mv.setType(rs.getInt(7));
+				mv.setPoint(rs.getInt(8));
+				mv.setLevel(rs.getInt(9));
+				mv.setZip(rs.getString(10));
+				mv.setAddr1(rs.getString(11));
+				mv.setAddr2(rs.getString(12));
+				mv.setCompany(rs.getString(13));
+				mv.setCeo(rs.getString(14));
+				mv.setBizRegNum(rs.getString(15));
+				mv.setComRegNum(rs.getString(16));
+				mv.setTel(rs.getString(17));
+				mv.setManager(rs.getString(18));
+				mv.setManagerHp(rs.getString(19));
+				mv.setFax(rs.getString(20));
+				mv.setRegip(rs.getString(21));
+				mv.setWdate(rs.getString(22));
+				mv.setRdate(rs.getString(23));
+			}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return mv;
+	}
+	
+	public int UpdateUserPassword(String uid, String pass) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("UpdateUserPassword Start... ");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_USER_PASSWORD);
+			psmt.setString(1, pass);
+			psmt.setString(2, uid);
+			result = psmt.executeUpdate();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
+	public void UpdateMemberInfo(MemberVO mv) {
+		
+		try {
+			logger.info("Update Member Info Start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Update_Member_Info);
+			psmt.setString(1, mv.getName());
+			psmt.setInt(2, mv.getGender());
+			psmt.setString(3, mv.getEmail());
+			psmt.setString(4, mv.getHp());
+			psmt.setString(5, mv.getZip());
+			psmt.setString(6, mv.getAddr1());
+			psmt.setString(7, mv.getAddr2());
+			psmt.setString(8, mv.getUid());
+			psmt.executeUpdate();
+			
+			close();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	
 }

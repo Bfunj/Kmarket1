@@ -39,8 +39,6 @@ public class Sql {
 													+ "`rdate`=NOW()"; 
 													//seller not null 이라 임의의 데이터 입력
 													//나중에 수정 해야함
-		
-		
 	
 	//insert member
 	public static final String Insert_Member =  "INSERT INTO `km_member` SET   "
@@ -90,11 +88,25 @@ public class Sql {
 	public static final String SELECT_PRODUCT_NOW  	= "SELECT * FROM `km_product` ORDER BY `rdate` DESC";
 	public static final String SELECT_PRODUCT_DISCOUNT  	= "SELECT * FROM `km_product` WHERE `discount` >'0' ORDER BY `discount` DESC";
 	public static final String SELECT_PRODUCT_BEST  	= "SELECT * FROM `km_product` ORDER BY `sold` DESC ";
+	
+	public static final String Select_Member_For_Change_Info = "select * from `km_member` where = `uid` = ? ";
 
 	public static final String SELECT_PRODUCT_VIEW = "SELECT a.*, b.c1Name, c.c2Name FROM `km_product` AS a "
 			+ " JOIN `km_product_cate1` AS b ON a.cate1 = b.cate1 "
 			+ " JOIN `km_product_cate2` AS c ON a.cate1 = c.cate1 AND a.cate2 = c.cate2 "
 			+ " WHERE `proNo` =?";
+	
+	public static final String UPDATE_USER_PASSWORD = "update `km_member` set `pass`=SHA2(?, 256) where `uid`=?";
+	
+	public static final String Update_Member_Info = "update `km_member` set "
+															+ "`name` 	= ?, "
+															+ "`gender` = ?, "
+															+ "`email` 	= ?, "
+															+ "`hp` 	= ?, "
+															+ "`zip` 	= ?, "
+															+ "`addr1` 	= ?, "
+															+ "`addr2` 	= ?"
+															+ "where `uid` = ? ";
 	
 }
 
