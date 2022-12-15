@@ -53,7 +53,7 @@
                 <!-- 상품 전체 정보 내용 -->                
                 <article class="info">
                     <div class="image">
-                        <img src="../file/${productView.thumb3 }" width=460px height=460px alt="상품이미지"/>
+                        <img src="../file/${productView.cate1 }/${productView.cate2 }/${productView.thumb3 }" width=460px height=460px alt="상품이미지"/>
                     </div>
                     <div class="summary">
                         <nav>
@@ -112,7 +112,7 @@
                         <h1>상품정보</h1>
                     </nav>
                     <!-- 상품상세페이지 이미지 -->
-                    <img src="../file/${productView.detail }" width=860px height=460px alt="상세페이지1">
+                    <img src="../file/${productView.cate1 }/${productView.cate2 }/${productView.detail }" width=860px height=460px alt="상세페이지1">
                     <img src="https://via.placeholder.com/860x460" alt="상세페이지2">
                     <img src="https://via.placeholder.com/860x460" alt="상세페이지3">
                 </article>

@@ -178,10 +178,10 @@
                     <i>${i }</i>
                     <c:choose>
                     	<c:when test="${i eq 1 }">
-                    		<img src="file/${listProductBest.thumb2 }" width=230px height=230px alt="item1" />
+                    		<img src="file/${listProductBest.cate1 }/${listProductBest.cate2 }/${listProductBest.thumb2 }" width=230px height=230px alt="item1" />
                     	</c:when>
                     	<c:otherwise>
-                    		 <img src="file/${listProductBest.thumb2 }" width=50px height=50px alt="item1" />
+                    		 <img src="file/${listProductBest.cate1 }/${listProductBest.cate2 }/${listProductBest.thumb2 }" width=50px height=50px alt="item1" />
                     	</c:otherwise>
                     </c:choose>          
                   </div>
@@ -246,7 +246,7 @@
 	            <article>
 	              <a href="/kmarket/product/view.do?&proNo=${listProductHit.proNo}&cate1=${listProductHit.cate1}&cate2=${listProductHit.cate2}">
 	                <div class="thumb">
-	                  <img src="file/${listProductHit.thumb2 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProductHit.cate1 }/${listProductHit.cate2 }/${listProductHit.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProductHit.proName }</h2>
 	                <p> ${listProductHit.descript }</p>
@@ -285,7 +285,7 @@
 	            <article>
 	              <a href="/kmarket/product/view.do?&proNo=${listProduct.proNo}&cate1=${listProduct.cate1}&cate2=${listProduct.cate2}">
 	                <div class="thumb">
-	                  <img src="file/${listProduct.thumb2 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProduct.cate1 }/${listProduct.cate2 }/${listProduct.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProduct.proName }</h2>
 	                <p> ${listProduct.descript }</p>
@@ -324,7 +324,7 @@
 	            <article>
 	              <a href="/kmarket/product/view.do?&proNo=${listProductNow.proNo}&cate1=${listProductNow.cate1}&cate2=${listProductNow.cate2}">
 	                <div class="thumb">
-	                  <img src="file/${listProductNow.thumb2 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProductNow.cate1 }/${listProductNow.cate2 }/${listProductNow.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProductNow.proName }</h2>
 	                <p> ${listProductNow.descript }</p>
@@ -364,7 +364,7 @@
 	            <article>
 	              <a href="/kmarket/product/view.do?&proNo=${listProductDiscount.proNo}&cate1=${listProductDiscount.cate1}&cate2=${listProductDiscount.cate2}">
 	                <div class="thumb">
-	                  <img src="file/${listProductDiscount.thumb2 }" width=230px height=230px alt="t1" />
+	                  <img src="file/${listProductDiscount.cate1 }/${listProductDiscount.cate2 }/${listProductDiscount.thumb2 }" width=230px height=230px alt="t1" />
 	                </div>
 	                <h2> ${listProductDiscount.proName }</h2>
 	                <p> ${listProductDiscount.descript }</p>

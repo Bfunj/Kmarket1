@@ -44,13 +44,13 @@ public enum AdminService {
 		// 파일명 수정
 		int idx = thumbName.lastIndexOf(".");
 		String ext = thumbName.substring(idx);
-			
+		
 		String now = UUID.randomUUID().toString();
 		String newName = now+ext; // random.txt 
 		
-		File oriFile = new File(path+"/"+cate1+"/"+cate2+"/"+thumbName);
-		File newFile = new File(path+"/"+cate1+"/"+cate2+"/"+newName);		
-		
+		File oriFile = new File(path+"/"+thumbName);
+		File newFile = new File(path+"/"+cate1+"/"+cate2+"/"+newName);	
+			
 		oriFile.renameTo(newFile);
 		
 		return newName;

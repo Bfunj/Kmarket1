@@ -47,11 +47,11 @@ public class AdminRegisterProductController extends HttpServlet{
 		MultipartRequest mr = service.uploadFile(req, path);
 		String cate1 		= mr.getParameter("category1");
 		String cate2 		= mr.getParameter("category2");
-		
-		String thumb1Name = service.renameFile(mr.getFilesystemName("thumb1"), path, cate1, cate2);
-		String thumb2Name = service.renameFile(mr.getFilesystemName("thumb2"), path, cate1, cate2);
-		String thumb3Name = service.renameFile(mr.getFilesystemName("thumb3"), path, cate1, cate2);
-		String detailName = service.renameFile(mr.getFilesystemName("detail"), path, cate1, cate2);
+	
+		String thumb1Name = service.renameFile(mr.getFilesystemName("thumb1"), path, cate1,cate2);
+		String thumb2Name = service.renameFile(mr.getFilesystemName("thumb2"),  path, cate1,cate2);
+		String thumb3Name = service.renameFile(mr.getFilesystemName("thumb3"),  path, cate1,cate2);
+		String detailName = service.renameFile(mr.getFilesystemName("detail"),  path, cate1,cate2);
 		
 		//데이터 수신
 	

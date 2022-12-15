@@ -45,7 +45,7 @@
     <div id="admin-wrapper">
         <header>
             <div>
-                <a href="../index.do" class="logo"><img src="/kmarket/img/admin/admin_logo.png" alt="admin_logo"/></a>
+                <a href="/kmarket/index.do" class="logo"><img src="/kmarket/img/admin/admin_logo.png" alt="admin_logo"/></a>
                 <p>
                     <span>홍길동님 반갑습니다.</span>
                     <a href="#">HOME |</a>
@@ -115,8 +115,8 @@
                     </p>
                 </nav>
                 <!-- 상품등록 컨텐츠 시작 -->
-                <article name="fileCate">
-                    <form action="/kmarket/admin/registerProduct.do?&category1=${cate2.cate1 }&category2=${cate2.cate2}" method="post" enctype="multipart/form-data">
+                <article >
+                    <form action="/kmarket/admin/registerProduct.do" method="post" enctype="multipart/form-data">
 
                         <!-- 상품분류 -->
                         <section>
