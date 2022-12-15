@@ -3,14 +3,12 @@
 <script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/kmarket/js/postcode.js"></script>
 <script src="/kmarket/js/sellerValidation.js"></script>
-
         <main id="member">
             <div class="registerSeller">
 				<nav>
 					<h1>판매자 회원가입</h1>
 				</nav>
-                
-				<form action="#" method="POST">
+				<form action="/kmarket/member/registerSeller.do" method="POST">
 					<section>
 						<table>
 							<caption>필수 정보입력</caption>
