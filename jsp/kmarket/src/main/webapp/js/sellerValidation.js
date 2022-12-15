@@ -282,7 +282,7 @@ $(function(){
 		}
 	});
 	
-	$('.register > form').submit(function(){
+	$('.registerSeller > form').submit(function(){
 					
 		if(!isUidOk){
 			alert('아이디를 확인 하십시요.');
