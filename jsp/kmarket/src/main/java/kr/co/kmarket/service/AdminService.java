@@ -39,7 +39,7 @@ public enum AdminService {
 		return new MultipartRequest(req, path, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 	}
 	// 파일명 수정
-	public String renameFile(String thumbName, String path) {
+	public String renameFile(String thumbName, String path, String cate1, String cate2) {
 
 		// 파일명 수정
 		int idx = thumbName.lastIndexOf(".");
@@ -48,8 +48,8 @@ public enum AdminService {
 		String now = UUID.randomUUID().toString();
 		String newName = now+ext; // random.txt 
 		
-		File oriFile = new File(path+"/"+thumbName);
-		File newFile = new File(path+"/"+newName);		
+		File oriFile = new File(path+"/"+cate1+"/"+cate2+"/"+thumbName);
+		File newFile = new File(path+"/"+cate1+"/"+cate2+"/"+newName);		
 		
 		oriFile.renameTo(newFile);
 		

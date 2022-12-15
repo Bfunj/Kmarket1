@@ -57,16 +57,6 @@
       <header>
         <div class="top">
           <div>
-<<<<<<< HEAD
-            <a href="./member/login.do">로그인</a>
-            <a href="./member/register.do">회원가입</a>
-            <a href="#">마이페이지</a>
-            <a href="/kmarket/product/cart.do"
-              ><i class="fa fa-shopping-cart" aria-hidden="true"></i
-              >&nbsp;장바구니</a
-            >
-=======
-
 	          <c:choose>
 	          	<c:when test="${empty sessUser }">
 		            <a href="/kmarket/member/login.do">로그인</a>
@@ -83,7 +73,6 @@
 				</c:otherwise>
 		      </c:choose>
 
->>>>>>> 5da3876482e3578b56a9bac175bb334ac58fd7f3
           </div>
         </div>
         <div class="logo">
