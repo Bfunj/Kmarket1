@@ -90,14 +90,15 @@ public class Sql {
 	public static final String SELECT_PRODUCT_BEST  	= "SELECT * FROM `km_product` ORDER BY `sold` DESC ";
 	
 	public static final String Select_Member_For_Change_Info = "select * from `km_member` where = `uid` = ? ";
-
+	public static final String SELECT_MEMBER_BY_SESSID = "SELECT * FROM `km_member` WHERE `sessId`=? AND `sessDate` > NOW()";
 	public static final String SELECT_PRODUCT_VIEW = "SELECT a.*, b.c1Name, c.c2Name FROM `km_product` AS a "
 			+ " JOIN `km_product_cate1` AS b ON a.cate1 = b.cate1 "
 			+ " JOIN `km_product_cate2` AS c ON a.cate1 = c.cate1 AND a.cate2 = c.cate2 "
 			+ " WHERE `proNo` =?";
 	
-	public static final String UPDATE_USER_PASSWORD = "update `km_member` set `pass`=SHA2(?, 256) where `uid`=?";
-	
+	public static final String UPDATE_MEMBER_PASSWORD = "update `km_member` set `pass`=SHA2(?, 256) where `uid`=?";
+	public static final String UPDATE_MEBER_FOR_SESSION = "update `km_member` set `sessId`=?, `sessDate` = DATE_ADD(NOW(), INTERVAL 3 DAY) where `uid`=?";
+	public static final String UPDATE_MEMBER_FOR_SESSION_OUT = "update `km_member` set `sessId`=NULL, `sessDate`=NULL where `uid`=?";
 	public static final String Update_Member_Info = "update `km_member` set "
 															+ "`name` 	= ?, "
 															+ "`gender` = ?, "

@@ -38,21 +38,37 @@ public class LoginController extends HttpServlet {
 		//데이터 수신
 		String uid  = req.getParameter("uid");
 		String pass = req.getParameter("pass");
+		String auto = req.getParameter("auto");
 		
 		//데이터베이스 처리
-		 MemberVO mv = MemberDAO.getInstance().Select_Member(uid, pass);
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberVO mv = dao.Select_Member(uid, pass);
 		 
 		 //로그인 처리
 		 if(mv != null) {
+			 
 			 //회원O
 			HttpSession session = req.getSession(); // 현재 클라이언트 세션 구함
 			session.setAttribute("sessUser", mv);
-			 
-			resp.sendRedirect("/kmarket/index.do");
+			
+		// 자동로그인
+		 if(auto != null) {
+			 String sessId = session.getId();
+				
+			// 쿠키생성
+			Cookie cookie = new Cookie("SESSID", sessId);
+			cookie.setPath("/");
+			cookie.setMaxAge(60*60*24*3);
+			resp.addCookie(cookie);
+			
+			dao.updateMemberForSession(uid, sessId);
+		 }
+		 	resp.sendRedirect("/kmarket/index.do");
 			 
 		 }else {
-			 //회원 아님
-			 resp.sendRedirect("/kmarket/member/login.do?succuss=100");
-		 }
+			 // 회원X
+			 resp.sendRedirect("/kmarket/member/login.do?success=100");
+		 
+	   }
 	}
 }

@@ -30,7 +30,6 @@ public class MemberVO {
 	public String etc4;
 	public String etc5;
 	
-	
 	public String getUid() {
 		return uid;
 	}
@@ -55,11 +54,6 @@ public class MemberVO {
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
-	
-	public void setGender(String gender) {
-		this.gender = Integer.parseInt(gender);
-	}
-	
 	public String getHp() {
 		return hp;
 	}
@@ -204,6 +198,5 @@ public class MemberVO {
 	public void setEtc5(String etc5) {
 		this.etc5 = etc5;
 	}
-	
 	
 }

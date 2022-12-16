@@ -43,7 +43,7 @@ public class MyPageInfoController extends HttpServlet{
 		MemberVO mv = new MemberVO();
 		mv.setUid(uid);
 		mv.setName(name);
-		mv.setGender(gender);
+		mv.setGender(Integer.parseInt(gender));
 		mv.setEmail(email);
 		mv.setHp(hp);
 		mv.setZip(zip);

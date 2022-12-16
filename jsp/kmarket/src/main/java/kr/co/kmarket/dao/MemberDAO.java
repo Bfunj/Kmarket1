@@ -160,6 +160,7 @@ public class MemberDAO extends DBHelper{
 		return result;
 	}
 	
+	
 	public MemberVO Select_Member (String uid, String pass) {
 		
 		MemberVO mv = null;
@@ -178,7 +179,7 @@ public class MemberDAO extends DBHelper{
 				mv.setUid(rs.getString(1));
 				mv.setPass(rs.getString(2));
 				mv.setName(rs.getString(3));
-				mv.setGender(rs.getString(4));
+				mv.setGender(rs.getInt(4));
 				mv.setEmail(rs.getString(5));
 				mv.setHp(rs.getString(6));
 				mv.setType(rs.getInt(7));
@@ -223,7 +224,7 @@ public class MemberDAO extends DBHelper{
 				mv.setUid(rs.getString(1));
 				mv.setPass(rs.getString(2));
 				mv.setName(rs.getString(3));
-				mv.setGender(rs.getString(4));
+				mv.setGender(rs.getInt(4));
 				mv.setEmail(rs.getString(5));
 				mv.setHp(rs.getString(6));
 				mv.setType(rs.getInt(7));
@@ -252,14 +253,61 @@ public class MemberDAO extends DBHelper{
 		return mv;
 	}
 	
-	public int UpdateUserPassword(String uid, String pass) {
+	public MemberVO selectMemberBySessId(String sessId) {
+			
+			MemberVO vo = null;
+			
+			try {
+				logger.info("selectMemberBySessId...");
+				
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql.SELECT_MEMBER_BY_SESSID);
+				psmt.setString(1, sessId);
+				
+				rs = psmt.executeQuery();
+				
+				if(rs.next()) {
+					vo = new MemberVO();
+					 vo.setUid(rs.getString(1));
+					 vo.setPass(rs.getString(2));
+					 vo.setName(rs.getString(3));
+					 vo.setGender(rs.getInt(4));
+					 vo.setHp(rs.getString(5));
+					 vo.setEmail(rs.getString(6));
+					 vo.setType(rs.getInt(7));
+					 vo.setPoint(rs.getInt(8));
+					 vo.setLevel(rs.getInt(9));
+					 vo.setZip(rs.getString(10));
+					 vo.setAddr1(rs.getString(11));
+					 vo.setAddr2(rs.getString(12));
+					 vo.setCompany(rs.getString(13));
+					 vo.setCeo(rs.getString(14));
+					 vo.setBizRegNum(rs.getString(15));
+					 vo.setComRegNum(rs.getString(16));
+					 vo.setTel(rs.getString(17));
+					 vo.setManager(rs.getString(18));
+					 vo.setManagerHp(rs.getString(19));
+					 vo.setFax(rs.getString(20));
+					 vo.setRegip(rs.getString(21));
+					 vo.setWdate(rs.getString(22));
+					 vo.setRdate(rs.getString(23));
+				}
+				close();
+				
+			}catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+			return vo;
+		}
+	
+	public int UpdateMemberPassword(String uid, String pass) {
 		
 		int result = 0;
 		
 		try {
-			logger.info("UpdateUserPassword Start... ");
+			logger.info("UpdateMemberPassword Start... ");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.UPDATE_USER_PASSWORD);
+			psmt = conn.prepareStatement(Sql.UPDATE_MEMBER_PASSWORD);
 			psmt.setString(1, pass);
 			psmt.setString(2, uid);
 			result = psmt.executeUpdate();
@@ -291,6 +339,31 @@ public class MemberDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}
 	}
+	public void updateMemberForSession(String uid, String sessId) {
+		try {
+			logger.info("updateMemberForSession...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_MEBER_FOR_SESSION);
+			psmt.setString(1, sessId);
+			psmt.setString(2, uid);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
+	public void updateMemberForSessionOut(String uid){
+		try {
+			logger.info("updateMemberForSessionOut...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_MEMBER_FOR_SESSION_OUT);
+			psmt.setString(1, uid);
+			psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 }
