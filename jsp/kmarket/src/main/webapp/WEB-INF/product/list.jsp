@@ -1,55 +1,38 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./header.jsp"></jsp:include>
 
         <!-- 메인 작업 -->
         <main id="product">
             <aside>
-                <ul class="category">
-                    <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
-                    <li>
-                        <a href="#" id="clothes"><i class="fas fa-tshirt"></i>의류</a>
-                        <ol class="cate1">
-                            <li><a href="#">남성의류</a></li>
-                            <li><a href="#">여성의류</a></li>
-                            <li><a href="#">잡화</a></li>
-                            <li><a href="#">뷰티</a></li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#" id="electric"><i class="fas fa-laptop"></i>가전·디지털</a>
-                        <ol class="cate2">
-                            <li><a href="#">노트북/PC</a></li>
-                            <li><a href="#">가전</a></li>
-                            <li><a href="#">휴대폰</a></li>
-                            <li><a href="#">기타</a></li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#" id="food"><i class="fas fa-utensils"></i>식품·생필품</a>
-                        <ol class="cate3">
-                            <li><a href="#">신선식품</a></li>
-                            <li><a href="#">가공식품</a></li>
-                            <li><a href="#">건강식품</a></li>
-                            <li><a href="#">생필품</a></li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#" id="deco"><i class="fas fa-home"></i>홈·문구·취미</a>
-                        <ol class="cate4">
-                            <li><a href="#">가구/DIY</a></li>
-                            <li><a href="#">침구·커튼</a></li>
-                            <li><a href="#">생활용품</a></li>
-                            <li><a href="#">사무용품</a></li>
-                        </ol>
-                    </li>
-                </ul>
+          <!-- 카테고리 -->
+          <ul class="category">
+            <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
+                  
+            <c:forEach var="cate1List" items="${cate1List}">
+            	 <li>
+              <a href="#">
+              	<i class="fas ">
+              	</i>${cate1List.c1Name}<iclass="fas fa-angle-right"></i>
+              </a>
+              <ol>
+              	 <c:forEach var="cate2List" items="${cate2List}">
+              	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>
+              	 	</c:if>          
+                </c:forEach>
+              </ol>
+            </li>
+            </c:forEach>
+          </ul>
+          <!-- 카테고리 완료 -->
             </aside>
 
             <section class="list">
                 <!-- 제목, 페이지 네비게이션 -->
                 <nav>
                     <h1>상품목록</h1>
-                    <p>HOME > <span>패션·의류·뷰티</span> > <strong>남성의류</strong></p>
+                    <p>HOME > <span>작업 진행 중</span> > <strong>11</strong></p>
                 </nav>
 
                 <!-- 정렬 메뉴 -->

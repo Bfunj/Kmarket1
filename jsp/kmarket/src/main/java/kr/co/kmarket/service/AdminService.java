@@ -19,12 +19,16 @@ public enum AdminService {
 	INSTANCE;
 	private AdminDAO dao = AdminDAO.getInstance();
 	
+	// cate data 불러오기
 	public List<Cate1VO> SelectAdminProduct1() {
 		return dao.SelectAdminProduct1();
 	}
 	
 	public List<Cate2VO> SelectAdminProduct2(String cate1) {
 		return dao.SelectAdminProduct2(cate1);
+	}
+	public List<Cate2VO> SelectAdminProduct2() {
+		return dao.SelectAdminProduct2();
 	}
 	public void INSERT_ADMIN_PRODUCT(ProductVO pv) {
 		dao.INSERT_ADMIN_PRODUCT(pv);
@@ -59,4 +63,8 @@ public enum AdminService {
 	public List<ProductVO> SelectProduct(int code) {
 		return dao.SelectProduct(code);
 	}
+	
+	
+	//카테고리 불러오기
+
 }

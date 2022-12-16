@@ -44,6 +44,7 @@ public class LoginController extends HttpServlet {
 		 
 		 //로그인 처리
 		 if(mv != null) {
+			 
 			 //회원O
 			HttpSession session = req.getSession(); // 현재 클라이언트 세션 구함
 			session.setAttribute("sessUser", mv);

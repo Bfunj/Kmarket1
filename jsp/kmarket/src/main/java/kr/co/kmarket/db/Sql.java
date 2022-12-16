@@ -7,6 +7,7 @@ public class Sql {
 	
 	//select cate2
 	public static final String SELECT_CATE2 = " SELECT * FROM `km_product_cate2` where `cate1`=? ";
+	public static final String SELECT_CATE2_ = " SELECT * FROM `km_product_cate2` ";
 	
 	//select terms
 	public static final String SELECT_TERMS = "SELECT * FROM `km_member_terms` ";
