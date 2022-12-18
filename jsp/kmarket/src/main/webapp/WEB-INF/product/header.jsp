@@ -9,40 +9,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         
-        $(function(){
-            $('#clothes').mouseover(function(){
-                $('.cate1').show();
-            });
-
-            $('#clothes').mouseout(function(){
-                $('.cate1').hide();
-            });
-
-            $('#electric').mouseover(function(){
-                $('.cate2').show();
-            });
-
-            $('#electric').mouseout(function(){
-                $('.cate2').hide();
-            });
-
-            $('#food').mouseover(function(){
-                $('.cate3').show();
-            });
-
-            $('#food').mouseout(function(){
-                $('.cate3').hide();
-            });
-
-            $('#deco').mouseover(function(){
-                $('.cate4').show();
-            });
-
-            $('#deco').mouseout(function(){
-                $('.cate4').hide();
-            });
-
-        });
 
     </script>
 

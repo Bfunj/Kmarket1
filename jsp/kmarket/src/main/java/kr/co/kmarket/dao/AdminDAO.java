@@ -83,6 +83,36 @@ public class AdminDAO extends DBHelper{
 		return cate2s;
 	}
 	
+	//admin category2 aside
+	public List<Cate2VO> SelectAdminProduct2() {
+		
+		List<Cate2VO> cate2s = new ArrayList<>();
+		
+		try {
+			logger.info("select cate2 start...");
+			
+			conn = getConnection();
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs =stmt.executeQuery(Sql.SELECT_CATE2_);
+			
+			
+			while(rs.next()) {
+				Cate2VO cate2 = new Cate2VO();
+				cate2.setCate1(rs.getInt(1));
+				cate2.setCate2(rs.getInt(2));
+				cate2.setC2Name(rs.getString(3));
+				
+				cate2s.add(cate2);
+			}
+			clone();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+			logger.error("cate2 error..");
+		}
+		return cate2s;
+	}
 	//admin insert product
 	public void INSERT_ADMIN_PRODUCT(ProductVO pv) {
 		
@@ -179,6 +209,27 @@ public class AdminDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}	
 		return listProduct;
+	}
+	
+	
+	public List<Cate1VO> SelectCate1() {
+		List<Cate1VO> cateList = new ArrayList<>();
+		
+		try {
+			
+logger.info("SelectProduct start...");
+			
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_CATE1);
+			
+			
+		}catch(Exception e) {
+			
+		}
+		
+		return cateList;
+		
 	}
 	
 }

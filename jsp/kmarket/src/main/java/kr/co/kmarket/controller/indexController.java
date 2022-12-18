@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.AdminService;
-
+import kr.co.kmarket.vo.Cate1VO;
+import kr.co.kmarket.vo.Cate2VO;
 import kr.co.kmarket.vo.ProductVO;
 
 @WebServlet("/index.do")
@@ -25,6 +26,8 @@ public class indexController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
+		// 상품별 데이터 불러오기
 		List<ProductVO> listProduct = service.SelectProduct(0);
 		List<ProductVO> listProductHit = service.SelectProduct(1);
 		List<ProductVO> listProductNow = service.SelectProduct(2);
@@ -35,6 +38,12 @@ public class indexController extends HttpServlet{
 		req.setAttribute("listProductNow", listProductNow);
 		req.setAttribute("listProductDiscount", listProductDiscount);
 		req.setAttribute("listProductBest", listProductBest);
+		
+		// 카테고리 불러오기
+		List<Cate1VO> cate1List = service.SelectAdminProduct1();
+		req.setAttribute("cate1List", cate1List);	
+		List<Cate2VO> cate2List = service.SelectAdminProduct2();
+		req.setAttribute("cate2List", cate2List);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(req, resp);

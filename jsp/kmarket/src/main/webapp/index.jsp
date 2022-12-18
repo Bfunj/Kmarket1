@@ -106,62 +106,28 @@
       <main>
         <!-- 카테고리/베스트 상품 영역 -->
         <aside>
+        
           <!-- 카테고리 -->
           <ul class="category">
             <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
-            <li>
-              <a href="#"
-                ><i class="fas fa-tshirt"></i>패션·의류·뷰티<i
-                  class="fas fa-angle-right"
-                ></i
-              ></a>
+                  
+            <c:forEach var="cate1List" items="${cate1List}">
+            	 <li>
+              <a href="#">
+              	<i class="fas ">
+              	</i>${cate1List.c1Name}<iclass="fas fa-angle-right"></i>
+              </a>
               <ol>
-                <li><a href="#">남성의류</a></li>
-                <li><a href="#">여성의류</a></li>
-                <li><a href="#">잡화</a></li>
-                <li><a href="#">뷰티</a></li>
+              	 <c:forEach var="cate2List" items="${cate2List}">
+              	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>
+              	 	</c:if>          
+                </c:forEach>
               </ol>
             </li>
-            <li>
-              <a href="#"
-                ><i class="fas fa-laptop"></i>가전·디지털<i
-                  class="fas fa-angle-right"
-                ></i
-              ></a>
-              <ol>
-                <li><a href="#">노트북/PC</a></li>
-                <li><a href="#">가전</a></li>
-                <li><a href="#">휴대폰</a></li>
-                <li><a href="#">기타</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#"
-                ><i class="fas fa-utensils"></i>식품·생필품<i
-                  class="fas fa-angle-right"
-                ></i
-              ></a>
-              <ol>
-                <li><a href="#">신선식품</a></li>
-                <li><a href="#">가공식품</a></li>
-                <li><a href="#">건강식품</a></li>
-                <li><a href="#">생필품</a></li>
-              </ol>
-            </li>
-            <li>
-              <a href="#"
-                ><i class="fas fa-home"></i>홈·문구·취미<i
-                  class="fas fa-angle-right"
-                ></i
-              ></a>
-              <ol>
-                <li><a href="#">가구/DIY</a></li>
-                <li><a href="#">침구·커튼</a></li>
-                <li><a href="#">생활용품</a></li>
-                <li><a href="#">사무용품</a></li>
-              </ol>
-            </li>
+            </c:forEach>
           </ul>
+          <!-- 카테고리 완료 -->
 
           <!-- 베스트상품 배너 -->
           <article class="best">
