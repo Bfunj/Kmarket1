@@ -38,7 +38,7 @@ public class FindPwChangeController extends HttpServlet  {
 		String uid = req.getParameter("uid");
 		String pass = req.getParameter("pass");
 		
-		int result = MemberDAO.getInstance().UpdateUserPassword(uid, pass);
+		int result = MemberDAO.getInstance().UpdateMemberPassword(uid, pass);
 		
 		JsonObject json = new JsonObject();
 		json.addProperty("result", result);

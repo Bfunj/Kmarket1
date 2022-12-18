@@ -12,10 +12,22 @@ public enum MemberService {
 	public void InsertMember(MemberVO mv) {
 		dao.InsertMember(mv);
 	}
+	public MemberVO selectMember(String uid, String pass) {
+		return dao.Select_Member(uid, pass);
+	}
+	public MemberVO selectMemberBySessId(String sessId) {
+		return dao.selectMemberBySessId(sessId);
+	}
 	public void InsertMemberSeller(MemberVO vo) {
 		dao.InsertMemberSeller(vo);
 	}
 	public TermsVO SelectTerms() {
 		return dao.SelectTerms();
+	}
+	public void updateMemberForSession(String uid, String sessId) {
+		dao.updateMemberForSession(uid, sessId);
+	}
+	public void updateMemberForSessionOut(String uid) {
+		dao.updateMemberForSessionOut(uid);
 	}
 }

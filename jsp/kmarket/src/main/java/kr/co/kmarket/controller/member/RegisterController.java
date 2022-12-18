@@ -48,7 +48,7 @@ public class RegisterController extends HttpServlet{
 		mv.setUid(uid);
 		mv.setPass(pass1);
 		mv.setName(name);
-		mv.setGender(gender);
+		mv.setGender(Integer.parseInt(gender));
 		mv.setEmail(email);
 		mv.setHp(hp);
 		mv.setZip(zip);
