@@ -20,6 +20,9 @@ public class CartController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		String proName = req.getParameter("proName");
+		String descript = req.getParameter("descript");
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/cart.jsp");
 		dispatcher.forward(req, resp);
 	}

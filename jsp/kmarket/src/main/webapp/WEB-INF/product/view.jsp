@@ -1,6 +1,44 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./header.jsp"></jsp:include>
+<script>
+
+	$(function(){
+		$('input[class=cart]').click(function(){
+			alert('장바구니에 추가했습니다.');
+			
+			let proName = 	$('input[name=proName]').val();
+			let descript = 	$('input[name=descript]').val();
+			let count = 	$('input[name=num]').val();
+			let price = 	$('input[name=price]').val();
+			let discount = 	$('input[name=discount]').val();
+			let delivery = $('input[name=delivery]').val();
+			//포인트는 어디서?
+			
+			
+			let jsonData = {
+					'proName' : proName,
+					'descript' : descript,
+					'count' : count,
+					'price' : price,
+					'discount' : discount,
+					'delivery' : delivery
+			};
+			
+			$.ajax({
+				url : '/kmarket/product/cart.do' ,
+				method : 'GET' ,
+				data : jsonData ,
+				dataType : 'json',
+				success : function(data){
+					
+				}
+			});
+		});
+	});
+	
+
+</script>
         <main id="product">
             <aside>
                 <ul class="category">
@@ -61,12 +99,16 @@
                             <h2>상품번호&nbsp;:&nbsp;<span>10010118412</span></h2>
                         </nav>                        
                         <nav>
+                        	<input type="hidden" name="proName" value="${productView.proName}">
                             <h3>${productView.proName }</h3>
                             <p>${productView.descript }</p>
+                            <input type="hidden" name="descript" value="${productView.descript}">
                             <h5 class="rating star4"><a href="#">상품평보기</a></h5>
                         </nav>
                         <nav>
                             <div class="org_price">
+                            <input type="hidden" name="price" value=${productView.price }>
+                            <input type="hidden" name="discount" value=${productView.discount }>
                                 <del>${productView.price }</del>
                                 <span>${productView.discount }%</span>
                             </div>
@@ -75,9 +117,18 @@
                             </div>
                         </nav>
                         <nav>
-                            <span class="delivery">무료배송</span>
-                            <span class="arrival">모레(금) 7/8 도착예정</span>
-                            <span class="desc">본 상품은 국내배송만 가능합니다.</span>
+                        <c:choose>
+                        	<c:when test="${productView.delivery eq 0}">
+                        		<span class="delivery">무료배송</span>
+                        		<span class="arrival">모레(금) 7/8 도착예정</span>
+                            	<span class="desc">본 상품은 국내배송만 가능합니다.</span>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<input type="text" name="delivery" value="${productView.delivery }" style="border: none;">
+                        		<span class="arrival">모레(금) 7/8 도착예정</span>
+                            	<span class="desc">본 상품은 국내배송만 가능합니다.</span>
+                        	</c:otherwise>
+                        </c:choose>
                         </nav>
                         <nav>
                             <span class="card cardfree"><i>아이콘</i>무이자할부</span>&nbsp;&nbsp;
@@ -100,7 +151,7 @@
                         </div>
 
                         <div class="button">
-                            <input type="button" class="cart"  value="장바구니"/>
+                            <input type="button" class="cart" id="cart"  value="장바구니"/>
                             <input type="button" class="order" value="구매하기"/>
                         </div>
                     </div>
