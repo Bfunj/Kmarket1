@@ -12,6 +12,22 @@ public class CartVO {
 	private int total;
 	private String rdate;
 	
+	//추가 
+	private String proName;
+	private String descript;
+	
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+	public String getDescript() {
+		return descript;
+	}
+	public void setDescript(String descript) {
+		this.descript = descript;
+	}
 	public int getCartNo() {
 		return cartNo;
 	}
