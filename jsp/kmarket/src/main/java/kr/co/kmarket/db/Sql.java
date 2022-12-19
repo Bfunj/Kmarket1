@@ -83,6 +83,20 @@ public class Sql {
 													 + " `regip`=?, "
 													 + " `rdate`=NOW() ";
 	
+	public static final String Select_Cart = "SELECT a.*,b.descript,b.proName FROM `km_product_cart` AS a JOIN `km_product` AS b\r\n"
+												+ "USING(`proNo`) WHERE `uid` = ? ";
+	
+	public static final String Insert_Product_Cart = "INSERT INTO `km_product_cart` SET "
+													+ "`uid` = ?  ,"
+													+ "`proNo` = ? , "
+													+ "`count` = ? , "
+													+ "`price` = ? , "
+													+ "`discount` = ? , "
+													+ "`point` = 1 , "
+													+ "`delivery` = ? , "
+													+ "`total` = 1 , " //total 값 계산하기
+													+ "`rdate` = NOW()";
+	
 	public static final String SELECT_COUNT_UID  	= "select count(`uid`) from `km_member` where `uid`=?";
 	public static final String SELECT_PRODUCT  		= "SELECT * FROM `km_product` ORDER BY `score` DESC";
 	public static final String SELECT_PRODUCT_HIT  	= "SELECT * FROM `km_product` ORDER BY `hit` DESC";
@@ -93,9 +107,9 @@ public class Sql {
 	public static final String Select_Member_For_Change_Info = "select * from `km_member` where = `uid` = ? ";
 	public static final String SELECT_MEMBER_BY_SESSID = "SELECT * FROM `km_member` WHERE `sessId`=? AND `sessDate` > NOW()";
 	public static final String SELECT_PRODUCT_VIEW = "SELECT a.*, b.c1Name, c.c2Name FROM `km_product` AS a "
-			+ " JOIN `km_product_cate1` AS b ON a.cate1 = b.cate1 "
-			+ " JOIN `km_product_cate2` AS c ON a.cate1 = c.cate1 AND a.cate2 = c.cate2 "
-			+ " WHERE `proNo` =?";
+				+ " JOIN `km_product_cate1` AS b ON a.cate1 = b.cate1 "
+				+ " JOIN `km_product_cate2` AS c ON a.cate1 = c.cate1 AND a.cate2 = c.cate2 "
+				+ " WHERE `proNo` =?";
 	
 	public static final String UPDATE_MEMBER_PASSWORD = "update `km_member` set `pass`=SHA2(?, 256) where `uid`=?";
 	public static final String UPDATE_MEBER_FOR_SESSION = "update `km_member` set `sessId`=?, `sessDate` = DATE_ADD(NOW(), INTERVAL 3 DAY) where `uid`=?";

@@ -1,5 +1,6 @@
 package kr.co.kmarket.controller.product;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonObject;
+
+import kr.co.kmarket.dao.ProductDAO;
 import kr.co.kmarket.service.ProductService;
+import kr.co.kmarket.vo.CartVO;
 import kr.co.kmarket.vo.ProductVO;
 
 @WebServlet("/product/view.do")
@@ -37,5 +42,29 @@ public class ViewController extends HttpServlet  {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String uid = req.getParameter("uid");
+		String proNo = req.getParameter("proNo");
+		String count = req.getParameter("count");
+		String price = req.getParameter("price");
+		String discount = req.getParameter("discount");
+		String delivery = req.getParameter("delivery");
+		
+		CartVO cart = new CartVO();
+		cart.setUid(uid);
+		cart.setProNo(proNo);
+		cart.setCount(count);
+		cart.setPrice(price);
+		cart.setDiscount(discount);
+		cart.setDelivery(delivery);
+				
+		int result = ProductDAO.getInstance().InsertProductCart(cart);
+		
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+				
 	}
 }

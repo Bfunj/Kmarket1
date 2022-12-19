@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
+import kr.co.kmarket.vo.CartVO;
 import kr.co.kmarket.vo.Cate1VO;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -24,8 +25,6 @@ public class ProductDAO extends DBHelper{
 	private ProductDAO() {}
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	
 	
 	public ProductVO SelectProductView(String proNo) {
 		
@@ -77,7 +76,6 @@ public class ProductDAO extends DBHelper{
 				pv.setEtc5(rs.getString(32));
 				pv.setC1Name(rs.getString(33));
 				pv.setC2Name(rs.getString(34));
-				
 						
 			}
 			close();
@@ -85,6 +83,29 @@ public class ProductDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}	
 		return pv;
+	}
+	
+	public int InsertProductCart(CartVO cart) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("Insert Product Cart Start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Insert_Product_Cart);
+			psmt.setString(1, cart.getUid());
+			psmt.setInt(2, cart.getProNo());
+			psmt.setInt(3, cart.getCount());
+			psmt.setInt(4, cart.getPrice());
+			psmt.setInt(5, cart.getDiscount());
+			psmt.setInt(6, cart.getDelivery());
+			result = psmt.executeUpdate();
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
 	}
 }
 

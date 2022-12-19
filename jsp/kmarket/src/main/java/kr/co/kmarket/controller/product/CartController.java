@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.kmarket.dao.ProductDAO;
+import kr.co.kmarket.vo.CartVO;
+
 @WebServlet("/product/cart.do")
 public class CartController extends HttpServlet  {
 	private static final long serialVersionUID = 1L;
@@ -20,14 +23,13 @@ public class CartController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String proName = req.getParameter("proName");
-		String descript = req.getParameter("descript");
-		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/cart.jsp");
 		dispatcher.forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 	}
 }

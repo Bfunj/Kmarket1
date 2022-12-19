@@ -5,35 +5,47 @@
 
 	$(function(){
 		$('input[class=cart]').click(function(){
-			alert('장바구니에 추가했습니다.');
 			
-			let proName = 	$('input[name=proName]').val();
-			let descript = 	$('input[name=descript]').val();
-			let count = 	$('input[name=num]').val();
-			let price = 	$('input[name=price]').val();
-			let discount = 	$('input[name=discount]').val();
-			let delivery = $('input[name=delivery]').val();
-			//포인트는 어디서?
 			
+			
+			let uid = $('input[name=uid]').val();
+			let proNo = $('input[name=proNo]').val();
+			let count = $('input[name=num]').val();
+			let price = $('input[name=ori_price]').val();
+			let discount = $('input[name=discount]').val();
+			let delivery =  $('input[name=delivery]').val();
 			
 			let jsonData = {
-					'proName' : proName,
-					'descript' : descript,
+					'uid' : uid,
+					'proNo' : proNo,
 					'count' : count,
 					'price' : price,
 					'discount' : discount,
 					'delivery' : delivery
 			};
 			
-			$.ajax({
-				url : '/kmarket/product/cart.do' ,
-				method : 'GET' ,
-				data : jsonData ,
-				dataType : 'json',
-				success : function(data){
-					
-				}
-			});
+			//로그인 유무 확인
+			if(uid == ''){
+				alert('로그인 후 이용가능합니다.');
+				location.href= '/kmarket/member/login.do';
+				
+			}else{
+				
+				$.ajax({
+					url : '/kmarket/product/view.do' ,
+					method : 'POST' ,
+					data : jsonData ,
+					dataType : 'json',
+					success : function(data){
+						if(data.result > 0){
+							alert('장바구니에 추가되었습니다.');
+							location.href = '/Kmarket/product/cart.do';
+						}
+					}
+				});
+				
+			}
+			
 		});
 	});
 	
@@ -99,16 +111,12 @@
                             <h2>상품번호&nbsp;:&nbsp;<span>10010118412</span></h2>
                         </nav>                        
                         <nav>
-                        	<input type="hidden" name="proName" value="${productView.proName}">
                             <h3>${productView.proName }</h3>
                             <p>${productView.descript }</p>
-                            <input type="hidden" name="descript" value="${productView.descript}">
                             <h5 class="rating star4"><a href="#">상품평보기</a></h5>
                         </nav>
                         <nav>
                             <div class="org_price">
-                            <input type="hidden" name="price" value=${productView.price }>
-                            <input type="hidden" name="discount" value=${productView.discount }>
                                 <del>${productView.price }</del>
                                 <span>${productView.discount }%</span>
                             </div>
@@ -151,6 +159,11 @@
                         </div>
 
                         <div class="button">
+                        	<input type="text" name="uid" value="${sessUser.uid }">
+                        	<input type="text" name="proNo" value="${productView.proNo }">
+                        	<input type="text" name="ori_price" value="${productView.price }">
+                        	<input type="text" name="discount" value="${productView.discount }">
+                        	<input type="text" name="delivery" value="${productView.delivery }">
                             <input type="button" class="cart" id="cart"  value="장바구니"/>
                             <input type="button" class="order" value="구매하기"/>
                         </div>
