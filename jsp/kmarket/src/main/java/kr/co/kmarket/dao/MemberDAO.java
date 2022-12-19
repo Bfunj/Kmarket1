@@ -74,8 +74,7 @@ public class MemberDAO extends DBHelper{
 			psmt.setString(15, vo.getRegip());
 			psmt.executeUpdate();
 			
-			psmt.close();
-			conn.close();
+			close();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -126,6 +125,7 @@ public class MemberDAO extends DBHelper{
 				vo.setFinance(rs.getString(4));
 				vo.setTax(rs.getString(5));
 			}
+			close();
 		}catch(Exception e){
 			logger.error(e.getMessage());
 		}
@@ -311,7 +311,7 @@ public class MemberDAO extends DBHelper{
 			psmt.setString(1, pass);
 			psmt.setString(2, uid);
 			result = psmt.executeUpdate();
-			
+			close();
 		}catch(Exception e) {
 			logger.error(e.getMessage());
 		}

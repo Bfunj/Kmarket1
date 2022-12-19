@@ -2,6 +2,7 @@ package kr.co.kmarket.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.naming.InitialContext;
@@ -28,21 +29,23 @@ public class DBHelper {
 	
 	public void close() {
 		try {
-			if(rs != null) {
-				rs.close();
-			}
 			
-			if(stmt != null) {
-				stmt.close();
-			}
-			
-			if(psmt != null) {
-				psmt.close();
-			}
-			
-			if(conn != null) {
-				conn.close();
-			}
+			if (psmt != null) {
+			      try { psmt.close(); } catch (SQLException e) { ; }
+			      psmt = null;
+				 }
+			if (rs != null) {
+		      try { rs.close(); } catch (SQLException e) { ; }
+		      rs = null;
+			 }
+		    if (stmt != null) {
+		      try { stmt.close(); } catch (SQLException e) { ; }
+		      stmt = null;
+		    }
+		    if (conn != null) {
+		      try { conn.close(); } catch (SQLException e) { ; }
+		      conn = null;
+		    }
 			
 		}catch (Exception e) {
 			e.printStackTrace();
