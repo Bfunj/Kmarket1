@@ -7,9 +7,9 @@
             <aside>
           <!-- 카테고리 -->
           <ul class="category">
-            <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
-                  
+            <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>  
             <c:forEach var="cate1List" items="${cate1List}">
+
             	 <li>
               <a href="#">
               	<i class="fas ">
@@ -18,12 +18,13 @@
               <ol>
               	 <c:forEach var="cate2List" items="${cate2List}">
               	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
-              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>            	 		
               	 	</c:if>          
                 </c:forEach>
               </ol>
             </li>
             </c:forEach>
+            
           </ul>
           <!-- 카테고리 완료 -->
             </aside>
@@ -32,7 +33,11 @@
                 <!-- 제목, 페이지 네비게이션 -->
                 <nav>
                     <h1>상품목록</h1>
-                    <p>HOME > <span>작업 진행 중</span> > <strong>11</strong></p>
+                    <c:forEach var="cate1Name" items="${cate1Name}">
+                     <c:forEach var="cate2Name" items="${cate2Name}">
+                    	<p>HOME > <span> ${cate1Name.c1Name}</span> > <strong>   ${cate2Name.c2Name}      </strong></p>
+               		</c:forEach>
+               		</c:forEach>
                 </nav>
 
                 <!-- 정렬 메뉴 -->
@@ -46,28 +51,32 @@
                 </ul>
 
                 <table>
+                	
+                
+                      <c:forEach var="ListProduct" items="${ListProduct}">
                     <tr>
-                        <td><a href="./view.do" class="thumb"><img src="https://via.placeholder.com/120x120" alt="상품이미지"/></a></td>
+                        <td><a href="/kmarket/product/view.do?&proNo=${ListProduct.proNo }&cate1=${ListProduct.cate1}&cate2=${ListProduct.cate2}" class="thumb"><img src="../file/${ListProduct.cate1 }/${ListProduct.cate2 }/${ListProduct.thumb1 }" width=120px height=120px alt="item1"/></a></td>
                         <td>
-                          <h3 class="name">상품명</h3>
-                          <a href="./view.do" class="desc">상품설명</a>
+                          <h3 class="name">${ListProduct.proName}</h3>
+                          <a href="/kmarket/product/view.do?&proNo=${ListProduct.proNo }&cate1=${ListProduct.cate1}&cate2=${ListProduct.cate2}" class="desc">${ListProduct.descript}</a>
                         </td>
                         <td>
                           <ul>
-                            <li><ins class="dis-price">27,000원</ins></li>
+                            <li><ins class="dis-price">${(ListProduct.price/100)*(100-ListProduct.discount)  }원</ins></li>
                             <li>
-                              <del class="org-price">30,000원</del>
-                              <span class="discount">10%</span>
+                              <del class="org-price">${ListProduct.price }원</del>
+                              <span class="discount">${ListProduct.discount }%</span>
                             </li>
                             <li><span class="free-delivery">무료배송</span></li>
                           </ul>
                         </td>
                         <td>
-                          <h4 class="seller"><i class="fas fa-home"></i>&nbsp;판매자</h4>
-                          <h5 class="badge power">판매자등급</h5>
+                          <h4 class="seller"><i class="fas fa-home"></i>&nbsp;${ListProduct.seller }</h4>
+                          <h5 class="badge power">${ListProduct.score }</h5>
                           <h6 class="rating star4">상품평</h6>
                         </td>
                       </tr>
+                      </c:forEach>
                 </table>
 
             <!-- 상품목록 페이지번호 -->
