@@ -3,7 +3,7 @@ package kr.co.kmarket.vo;
 public class CartVO {
 	private int cartNo;
 	private String uid;
-	private int prodNo;
+	private int proNo;
 	private int count;
 	private int price;
 	private int discount;
@@ -40,30 +40,51 @@ public class CartVO {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public int getProdNo() {
-		return prodNo;
+	
+	public int getProNo() {
+		return proNo;
 	}
-	public void setProdNo(int prodNo) {
-		this.prodNo = prodNo;
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
 	}
+	
+	public void setProNo(String proNo) {
+		this.proNo = Integer.parseInt(proNo);
+	}
+	
 	public int getCount() {
 		return count;
 	}
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
+	public void setCount(String count) {
+		this.count = Integer.parseInt(count);
+	}
+	
 	public int getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	public void setPrice(String price) {
+		this.price = Integer.parseInt(price);
+	}
+	
 	public int getDiscount() {
 		return discount;
 	}
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
+	
+	public void setDiscount(String discount) {
+		this.discount = Integer.parseInt(discount);
+	}
+	
 	public int getPoint() {
 		return point;
 	}
@@ -76,6 +97,11 @@ public class CartVO {
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
 	}
+	
+	public void setDelivery(String delivery) {
+		this.delivery = Integer.parseInt(delivery);
+	}
+	
 	public int getTotal() {
 		return total;
 	}
