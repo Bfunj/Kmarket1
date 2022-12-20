@@ -26,6 +26,9 @@ public class ListController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		String cate1 = req.getParameter("cate1");
+		String cate2 = req.getParameter("cate2");
+		
 		// aside-카테고리 목록 불러오기
 		List<Cate1VO> cate1List = service.SelectAdminProduct1();
 		req.setAttribute("cate1List", cate1List);
@@ -33,9 +36,7 @@ public class ListController extends HttpServlet  {
 		List<Cate2VO> cate2List = service.SelectAdminProduct2();
 		req.setAttribute("cate2List", cate2List);
 		
-		String cate1 = req.getParameter("cate1");
-		String cate2 = req.getParameter("cate2");
-		
+
 		List<Cate1VO> cate1Name = service.SelectCate1Name(cate1);
 		List<Cate2VO> cate2Name = service.SelectCate2Name(cate1, cate2);
 	

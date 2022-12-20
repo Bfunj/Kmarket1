@@ -105,6 +105,7 @@ public class Sql {
 	public static final String SELECT_PRODUCT_NOW  	= "SELECT * FROM `km_product` ORDER BY `rdate` DESC";
 	public static final String SELECT_PRODUCT_DISCOUNT  	= "SELECT * FROM `km_product` WHERE `discount` >'0' ORDER BY `discount` DESC";
 	public static final String SELECT_PRODUCT_BEST  	= "SELECT * FROM `km_product` ORDER BY `sold` DESC ";
+	public static final String SELECT_PRODUCT_LIST_CATE ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ";
 	
 	public static final String Select_Member_For_Change_Info = "select * from `km_member` where = `uid` = ? ";
 	public static final String SELECT_MEMBER_BY_SESSID = "SELECT * FROM `km_member` WHERE `sessId`=? AND `sessDate` > NOW()";

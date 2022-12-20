@@ -34,7 +34,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="#">
+                    <a href="/kmarket/cs/csIndex.do">
                         <img src="/kmarket/img/cs/logo.png" alt="로고">고객센터
                     </a>
                 </div>
