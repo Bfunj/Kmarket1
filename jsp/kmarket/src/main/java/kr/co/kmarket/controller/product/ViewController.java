@@ -98,7 +98,7 @@ public class ViewController extends HttpServlet  {
 		
 		if(check > 0) {
 			//장바구니에 동일한 상품이 있다면
-			int result = ProductDAO.getInstance().UpdateProductCartCount(uid, proNo);
+			int result = ProductDAO.getInstance().UpdateProductCartCount(count, uid, proNo);
 			
 			JsonObject json = new JsonObject();
 			json.addProperty("result", result);
