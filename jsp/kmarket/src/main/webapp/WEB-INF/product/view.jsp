@@ -39,7 +39,7 @@
 					success : function(data){
 						if(data.result > 0){
 							alert('장바구니에 추가되었습니다.');
-							location.href = '/kmarket/product/cart.do';
+							location.href = '/kmarket/product/cart.do?uid='+uid;
 						}
 					}
 				});
@@ -158,11 +158,11 @@
                         </div>
 
                         <div class="button">
-                        	<input type="text" name="uid" value="${sessUser.uid }">
-                        	<input type="text" name="proNo" value="${productView.proNo }">
-                        	<input type="text" name="ori_price" value="${productView.price }">
-                        	<input type="text" name="discount" value="${productView.discount }">
-                        	<input type="text" name="delivery" value="${productView.delivery }">
+                        	<input type="hidden" name="uid" value="${sessUser.uid }">
+                        	<input type="hidden" name="proNo" value="${productView.proNo }">
+                        	<input type="hidden" name="ori_price" value="${productView.price }">
+                        	<input type="hidden" name="discount" value="${productView.discount }">
+                        	<input type="hidden" name="delivery" value="${productView.delivery }">
                             <input type="button" class="cart" id="cart"  value="장바구니"/>
                             <input type="button" class="order" value="구매하기"/>
                         </div>

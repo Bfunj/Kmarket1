@@ -17,6 +17,7 @@ import kr.co.kmarket.vo.CartVO;
 import kr.co.kmarket.service.AdminService;
 import kr.co.kmarket.vo.Cate1VO;
 import kr.co.kmarket.vo.Cate2VO;
+import kr.co.kmarket.vo.ProductVO;
 
 
 @WebServlet("/product/cart.do")
@@ -31,17 +32,15 @@ public class CartController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-
 		List<Cate1VO> cate1List = service.SelectAdminProduct1();
 		req.setAttribute("cate1List", cate1List);
 		
 		List<Cate2VO> cate2List = service.SelectAdminProduct2();
 		req.setAttribute("cate2List", cate2List);
 		
-		
-		String proName = req.getParameter("proName");
-		String descript = req.getParameter("descript");
-		
+		String uid = req.getParameter("uid");
+		List<CartVO> carts = ProductDAO.getInstance().SelectProductCarts(uid);
+		req.setAttribute("carts", carts);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/product/cart.jsp");
 		dispatcher.forward(req, resp);
@@ -49,7 +48,6 @@ public class CartController extends HttpServlet  {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		
 	}
 }

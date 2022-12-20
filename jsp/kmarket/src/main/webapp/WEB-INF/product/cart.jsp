@@ -32,7 +32,8 @@
                     <p>HOME > <span>패션·의류·뷰티</span> > <strong>장바구니</strong></p>
                 </nav>
 
-                <form action="#">
+                <form action="/kmarket/product/cart.do">
+                <input type="hidden" name="uid" value=${sessUser.uid }>
                     <table border="0">
                         <tr>
                             <th><input type="checkbox" name="all" ></th>
@@ -47,24 +48,26 @@
                         <tr class="empty">
                             <td colspan="7">장바구니에 상품이 없습니다.</td>
                         </tr>
+                        <c:forEach var="cart" items="${carts}">
                         <tr>
                             <td><input type="checkbox" name="check" ></td>
                             <td>
                                 <article>
-                                    <a href="#"><img src="https://via.placeholder.com/80x80" alt=""></a>
+                                    <a href="#"><img src="" alt="썸네일"></a>
                                     <div>
-                                        <h2><a href="#">상품명</a></h2>
-                                        <p>상품설명</p>
+                                        <h2><a href="">${cart.proName }</a></h2>
+                                        <p>${cart.descript }</p>
                                     </div>
                                 </article>
                             </td>
-                            <td>1</td>
-                            <td>27,000</td>
-                            <td>5%</td>
-                            <td>270</td>
-                            <td>무료배송</td>
-                            <td>27,000</td>
+                            <td>${cart.count }</td>
+                            <td>${cart.price }</td>
+                            <td>${cart.discount }</td>
+                            <td>${cart.point }</td>
+                            <td>${cart.delivery }</td>
+                            <td>${cart.total }</td>
                         </tr>
+                        </c:forEach>
                     </table>
                     <input type="button" name="del" value="선택삭제">
 
