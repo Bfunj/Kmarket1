@@ -183,11 +183,10 @@ public class AdminDAO extends DBHelper{
 				
 				cate2s.add(cate2);
 			}
-			clone();
+			close();
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());
-			logger.error("cate2 error..");
 		}
 		return cate2s;
 	}
@@ -212,7 +211,7 @@ public class AdminDAO extends DBHelper{
 				cate2.setC2Name(rs.getString(3));
 				cate2s.add(cate2);
 			}
-			clone();
+			close();
 			
 		}catch(Exception e) {
 			logger.error("cate2 select error..");

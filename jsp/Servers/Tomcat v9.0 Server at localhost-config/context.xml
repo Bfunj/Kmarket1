@@ -37,6 +37,6 @@
     	maxTotal="8"
     	maxActive="50"
     	maxIdle="40"
-    	maxWaitMillis="6000"
+    	maxWaitMillis="2000"
     />
 </Context>

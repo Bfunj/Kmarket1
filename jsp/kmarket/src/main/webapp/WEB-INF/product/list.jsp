@@ -18,7 +18,7 @@
               <ol>
               	 <c:forEach var="cate2List" items="${cate2List}">
               	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
-              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}&cate=list_1">${cate2List.c2Name }</a></li>            	 		
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}&cate=list_1&pg=1">${cate2List.c2Name }</a></li>            	 		
               	 	</c:if>          
                 </c:forEach>
               </ol>
@@ -63,7 +63,6 @@
                         </td>
                         <td>
                           <ul>
-                            <li><ins class="dis-price">${(ListProduct.price/100)*(100-ListProduct.discount)  }원</ins></li>
                           
                            <c:if test="${ListProduct.discount ne 0 }">
 	                            <li>
@@ -71,12 +70,13 @@
 	                              <span class="discount">${ListProduct.discount }%</span>
 	                            </li>
                             </c:if>
+                              <li><ins class="dis-price">${(ListProduct.price/100)*(100-ListProduct.discount)  }원</ins></li>
                              <c:choose>
 	                            <c:when test="${ListProduct.delivery eq 0 }">
 	                            	<li><span class="free-delivery">무료배송</span></li>
 	                            </c:when>
 	                            <c:otherwise>
-	                            	<li><span class="delivery">배송비 : ${ListProduct.delivery}</span></li>
+	                            	<li><span class="delivery">+ 배송비 : ${ListProduct.delivery}</span></li>
 	                            </c:otherwise>
 	                          </c:choose>
                          
