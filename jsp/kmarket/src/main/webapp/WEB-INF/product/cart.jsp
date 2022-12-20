@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./header.jsp"></jsp:include>      
  
 	<main id="product">
@@ -53,7 +54,7 @@
                             <td><input type="checkbox" name="check" ></td>
                             <td>
                                 <article>
-                                    <a href="#"><img src="" alt="썸네일"></a>
+                                    <a href="#" ><img src="../file/"width=100px height=100px alt="썸네일"></a>
                                     <div>
                                         <h2><a href="">${cart.proName }</a></h2>
                                         <p>${cart.descript }</p>
@@ -61,11 +62,11 @@
                                 </article>
                             </td>
                             <td>${cart.count }</td>
-                            <td>${cart.price }</td>
+                            <td><fmt:formatNumber value="${cart.price }" pattern="#,###" /></td>
                             <td>${cart.discount }</td>
                             <td>${cart.point }</td>
-                            <td>${cart.delivery }</td>
-                            <td>${cart.total }</td>
+                            <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
+                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###" /></td>
                         </tr>
                         </c:forEach>
                     </table>
