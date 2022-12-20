@@ -76,14 +76,28 @@ public class ViewController extends HttpServlet  {
 		cart.setPrice(price);
 		cart.setDiscount(discount);
 		cart.setDelivery(delivery);
-				
-		int result = ProductDAO.getInstance().InsertProductCart(cart);
 		
-		JsonObject json = new JsonObject();
-		json.addProperty("result", result);
+		int check = ProductDAO.getInstance().SelectProductCart(uid, proNo);
 		
-		PrintWriter writer = resp.getWriter();
-		writer.print(json.toString());
-				
+		if(check > 0) {
+			//장바구니에 동일한 상품이 있다면
+			int result = ProductDAO.getInstance().UpdateProductCartCount(uid, proNo);
+			
+			JsonObject json = new JsonObject();
+			json.addProperty("result", result);
+			
+			PrintWriter writer = resp.getWriter();
+			writer.print(json.toString());
+			
+		}else {
+			//없으면 
+			int result = ProductDAO.getInstance().InsertProductCart(cart);
+			
+			JsonObject json = new JsonObject();
+			json.addProperty("result", result);
+			
+			PrintWriter writer = resp.getWriter();
+			writer.print(json.toString());
+		}
 	}
 }

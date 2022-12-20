@@ -85,8 +85,8 @@ public class Sql {
 													 + " `regip`=?, "
 													 + " `rdate`=NOW() ";
 	
-	public static final String Select_Cart = "SELECT a.*,b.descript,b.proName FROM `km_product_cart` AS a JOIN `km_product` AS b\r\n"
-												+ "USING(`proNo`) WHERE `uid` = ? ";
+	public static final String Select_Product_Carts = "SELECT b.proName,b.descript,a.*,b.thumb1 FROM `km_product_cart` AS a JOIN "
+												+ "`km_product` AS b on a.proNo = b.proNo WHERE `uid` = ? ";
 	
 	public static final String Insert_Product_Cart = "INSERT INTO `km_product_cart` SET "
 													+ "`uid` = ?  ,"
@@ -96,8 +96,14 @@ public class Sql {
 													+ "`discount` = ? , "
 													+ "`point` = 1 , "
 													+ "`delivery` = ? , "
-													+ "`total` = 1 , " //total 값 계산하기
+													+ "`total` = ((price * COUNT ) - (price * discount)) + delivery , " //total 값 계산하기
 													+ "`rdate` = NOW()";
+	
+	public static final String Select_Product_Cart = "SELECT COUNT('proNo') FROM `km_product_cart` WHERE `uid` = ? and `proNo` = ? ";
+	
+	public static final String Update_Product_Cart_Count = "UPDATE `km_product_cart` SET `count` = `count` + 1 , "
+			+ "`total` = ((price * COUNT ) - (price * discount)) + delivery "
+			+ "WHERE uid= ? AND `proNo`= ? ";
 	
 	public static final String SELECT_COUNT_UID  	= "select count(`uid`) from `km_member` where `uid`=?";
 	public static final String SELECT_PRODUCT  		= "SELECT * FROM `km_product` ORDER BY `score` DESC";

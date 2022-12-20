@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,6 +102,87 @@ public class ProductDAO extends DBHelper{
 			psmt.setInt(6, cart.getDelivery());
 			result = psmt.executeUpdate();
 			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
+	//상품 존재 여부 확인하기
+	public int SelectProductCart(String uid, String proNo) {
+		
+		int check = 0;
+		
+		try {
+			logger.info("Select Procut Cart Start..");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Select_Product_Cart);
+			psmt.setString(1, uid);
+			psmt.setString(2, proNo);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				check = rs.getInt(1);
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}return check;
+	}
+	
+	//장바구니 출력하기
+	public List<CartVO> SelectProductCarts(String uid) {
+		
+		List<CartVO> carts = new ArrayList<>();
+		
+		try {
+			logger.info("Select Product Carts Start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Select_Product_Carts);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				CartVO cart = new CartVO();
+				cart.setProName(rs.getString(1));
+				cart.setDescript(rs.getString(2));
+				cart.setCartNo(rs.getInt(3));
+				cart.setUid(rs.getString(4));
+				cart.setProNo(rs.getInt(5));
+				cart.setCount(rs.getInt(6));
+				cart.setPrice(rs.getInt(7));
+				cart.setDiscount(rs.getInt(8));
+				cart.setPoint(rs.getInt(9));
+				cart.setDelivery(rs.getInt(10));
+				cart.setTotal(rs.getInt(11));
+				cart.setRdate(rs.getString(12));
+				cart.setThumb1(rs.getString(13));
+				carts.add(cart);
+			}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return carts;
+	}
+	
+	//중복 상품 업데이트
+	public int UpdateProductCartCount(String uid, String proNo) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("Update Product Cart Count");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Update_Product_Cart_Count);
+			psmt.setString(1, uid);
+			psmt.setString(2, proNo);
+			result = psmt.executeUpdate();
+			clone();
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());

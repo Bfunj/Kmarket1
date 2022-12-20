@@ -66,7 +66,7 @@
 		      		<span>${sessUser.name }</span>님 반갑습니다.
 		            <a href="/kmarket/member/logout.do">로그아웃</a>
 		            <a href="/kmarket/member/mypage.do">마이페이지</a>
-		            <a href="/kmarket/product/cart.do"
+		            <a href="/kmarket/product/cart.do?uid=${sessUser.uid }"
 		              ><i class="fa fa-shopping-cart" aria-hidden="true"></i
 		              >&nbsp;장바구니</a>
 				</c:otherwise>

@@ -15,6 +15,15 @@ public class CartVO {
 	//추가 
 	private String proName;
 	private String descript;
+	private String thumb1;
+	
+	public void setThumb1(String thumb1) {
+		this.thumb1 = thumb1;
+	}
+	
+	public String getThumb1() {
+		return thumb1;
+	}
 	
 	public String getProName() {
 		return proName;
