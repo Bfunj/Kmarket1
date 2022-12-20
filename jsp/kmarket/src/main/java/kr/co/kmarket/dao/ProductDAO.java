@@ -160,6 +160,8 @@ public class ProductDAO extends DBHelper{
 				cart.setTotal(rs.getInt(11));
 				cart.setRdate(rs.getString(12));
 				cart.setThumb1(rs.getString(13));
+				cart.setCate1(rs.getInt(14));
+				cart.setCate2(rs.getInt(15));
 				carts.add(cart);
 			}
 			close();
@@ -171,7 +173,7 @@ public class ProductDAO extends DBHelper{
 	}
 	
 	//중복 상품 업데이트
-	public int UpdateProductCartCount(String uid, String proNo) {
+	public int UpdateProductCartCount(String count, String uid, String proNo) {
 		
 		int result = 0;
 		
@@ -179,8 +181,9 @@ public class ProductDAO extends DBHelper{
 			logger.info("Update Product Cart Count");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.Update_Product_Cart_Count);
-			psmt.setString(1, uid);
-			psmt.setString(2, proNo);
+			psmt.setString(1, count);
+			psmt.setString(2, uid);
+			psmt.setString(3, proNo);
 			result = psmt.executeUpdate();
 			clone();
 			

@@ -1,6 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./header.jsp"></jsp:include>      
+<script>
+
+	$(document).ready(function() {
+		$('input[name=all]').click(function() {
+			if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
+			else $("input[name=check]").prop("checked", false);
+		});
+	
+		$("input[name=check]").click(function() {
+			var total = $("input[name=check]").length;
+			var checked = $("input[name=check]:checked").length;
+	
+			if(total != checked) $('input[name=all]').prop("checked", false);
+			else $('input[name=all]').prop("checked", true); 
+		});
+	});
+
+
+</script>
  
 	<main id="product">
             <aside>
@@ -50,12 +69,12 @@
                         </tr>
                         <c:forEach var="cart" items="${carts}">
                         <tr>
-                            <td><input type="checkbox" name="check" ></td>
+                            <td><input type="checkbox" name="check" value="${cart.cartNo }" ></td>
                             <td>
                                 <article>
-                                    <a href="#"><img src="" alt="썸네일"></a>
+                                    <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
                                     <div>
-                                        <h2><a href="">${cart.proName }</a></h2>
+                                        <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a></h2>
                                         <p>${cart.descript }</p>
                                     </div>
                                 </article>
