@@ -18,7 +18,7 @@
               <ol>
               	 <c:forEach var="cate2List" items="${cate2List}">
               	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
-              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>            	 		
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}&cate=list_1">${cate2List.c2Name }</a></li>            	 		
               	 	</c:if>          
                 </c:forEach>
               </ol>
@@ -42,12 +42,13 @@
 
                 <!-- 정렬 메뉴 -->
                 <ul class="sort">
-                    <li><a href="#" class="on">판매많은순</a></li>
-                    <li><a href="#">낮은가격순</a></li>
-                    <li><a href="#">높은가격순</a></li>
-                    <li><a href="#">평점높은순</a></li>
-                    <li><a href="#">후기많은순</a></li>
-                    <li><a href="#">최근등록순</a></li>
+                    <li ><a href="./list.do?cate1=${cate1 }&cate2=${cate2 }&cate=list_1" class="${cate eq 'list_1' ? 'on' : 'off'}">판매많은순</a></li>
+                    <li ><a href="./list.do?cate1=${cate1 }&cate2=${cate2 }&cate=list_2" class="${cate eq 'list_2' ? 'on' : 'off'}">낮은가격순</a></li>
+                    <li ><a href="./list.do?cate1=${cate1 }&cate2=${cate2 }&cate=list_3" class="${cate eq 'list_3' ? 'on' : 'off'}">높은가격순</a></li>
+                    <li ><a href="./list.do?cate1=${cate1 }&cate2=${cate2 }&cate=list_4" class="${cate eq 'list_4' ? 'on' : 'off'}">평점높은순</a></li>
+                    <li ><a href="./list.do?cate1=${cate1 }&cate2=${cate2 }&cate=list_5" class="${cate eq 'list_5' ? 'on' : 'off'}">후기많은순</a></li>
+                    <li ><a href="./list.do?cate1=${cate1 }&cate2=${cate2 }&cate=list_6" class="${cate eq 'list_6' ? 'on' : 'off'}">최근등록순</a></li>
+                    
                 </ul>
 
                 <table>
@@ -63,36 +64,52 @@
                         <td>
                           <ul>
                             <li><ins class="dis-price">${(ListProduct.price/100)*(100-ListProduct.discount)  }원</ins></li>
-                            <li>
-                              <del class="org-price">${ListProduct.price }원</del>
-                              <span class="discount">${ListProduct.discount }%</span>
-                            </li>
-                            <li><span class="free-delivery">무료배송</span></li>
+                          
+                           <c:if test="${ListProduct.discount ne 0 }">
+	                            <li>
+	                              <del class="org-price">${ListProduct.price }원</del>
+	                              <span class="discount">${ListProduct.discount }%</span>
+	                            </li>
+                            </c:if>
+                             <c:choose>
+	                            <c:when test="${ListProduct.delivery eq 0 }">
+	                            	<li><span class="free-delivery">무료배송</span></li>
+	                            </c:when>
+	                            <c:otherwise>
+	                            	<li><span class="delivery">배송비 : ${ListProduct.delivery}</span></li>
+	                            </c:otherwise>
+	                          </c:choose>
+                         
                           </ul>
                         </td>
                         <td>
                           <h4 class="seller"><i class="fas fa-home"></i>&nbsp;${ListProduct.seller }</h4>
                           <h5 class="badge power">${ListProduct.score }</h5>
-                          <h6 class="rating star4">상품평</h6>
+     					<h6 class="rating star${ListProduct.score}">상품평</h6>
+                          
                         </td>
                       </tr>
                       </c:forEach>
                 </table>
 
             <!-- 상품목록 페이지번호 -->
-              <div class="paging">
-                <span class="prev">
-                  <a href="#"><&nbsp;이전</a>
-                </span>
-                <span class="num">
-                  <a href="#" class="on">1</a>
-                  <a href="#">2</a>
-                  <a href="#">3</a>
-                </span>
-                <span class="next">
-                  <a href="#">다음&nbsp;></a>
-                </span>
-              </div>
+         <div class="paging">
+		 	<c:if test="${PageGroupStart > 1 }">
+				<span class="prev">
+		        	<a href="/kmarket/product/list.do?pg=${PageGroupStart-1}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" ><&nbsp;이전</a>
+		        </span>
+			</c:if>	
+		    <c:forEach var="num" begin="${pageGroupStart }" end="${pageGroupEnd }" step="1"> 
+				<span class="num">
+            		<a href="/kmarket/product/list.do?pg=${num}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" class="${num eq currentPage ? 'on':'off' }">${num}</a>
+		        </span>
+			</c:forEach>    
+		    <c:if test="${PageGroupEnd < lastPageNum }">
+				<span class="next">
+		        	<a href="/kmarket/product/list.do?pg=${PageGroupEnd+1}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" >이전</a>
+		        </span>
+			</c:if>
+         </div>
 
             </section>
         </main>

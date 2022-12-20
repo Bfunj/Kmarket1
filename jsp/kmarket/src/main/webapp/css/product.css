@@ -508,8 +508,11 @@ main > aside > .category ol > li > a:hover {
         font-size: 12px;
         text-align: center;
     }
+    #product > section > .paging > .num > .on {
+        background : #c4c4c4;
+    }
 
-    #product > section > .paging > .next > a {
+    #product > section > .paging > .next > a{
         color: #777;
         font-size: 11px;
         letter-spacing: -1px;

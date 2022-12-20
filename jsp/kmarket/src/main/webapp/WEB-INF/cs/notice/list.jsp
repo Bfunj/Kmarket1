@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../cs_header.jsp"/>
         <section id="cs">
             <div class="notice">
@@ -6,11 +7,13 @@
                 <section class="list">
                     <aside><h2>공지사항</h2>
                         <ul>
-                            <li class="on"><a href="#">전체</a></li>
-                            <li><a href="#">고객서비스</a></li>
-                            <li><a href="#">안전거래</a></li>
-                            <li><a href="#">위해상품</a></li>
-                            <li><a href="#">이벤트당첨</a></li>
+                           
+               	<li class="${cate eq 'notice_1' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_1">전체</a></li>
+               	<li class="${cate eq 'notice_2' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_2">고객서비스</a></li>
+               	<li class="${cate eq 'notice_3' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_3">안전거래</a></li>
+               	<li class="${cate eq 'notice_4' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_4">위해상품</a></li>
+               	<li class="${cate eq 'notice_5' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_5">이벤트당첨</a></li>
+
                         </ul>
                     </aside>
                     <article>

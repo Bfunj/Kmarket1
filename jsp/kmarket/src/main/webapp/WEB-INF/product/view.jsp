@@ -94,7 +94,7 @@
             <section class="view">
                 <nav>
                     <h1>상품목록</h1>
-                    <p>HOME > <span>${productView.c1Name }</span> > <strong>${productView.c2Name }</strong></p>
+                  	<p>HOME > <span>${productView.c1Name }</span> > <strong>${productView.c2Name }</strong></p>
                 </nav>
 
                 <!-- 상품 전체 정보 내용 -->                
@@ -176,8 +176,7 @@
                     </nav>
                     <!-- 상품상세페이지 이미지 -->
                     <img src="../file/${productView.cate1 }/${productView.cate2 }/${productView.detail }" width=860px height=auto alt="상세페이지1">
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지2">
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지3">
+                   
                 </article>
 
 

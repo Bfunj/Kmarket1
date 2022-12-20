@@ -40,17 +40,16 @@ public class ViewController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<Cate1VO> cate1List = a_service.SelectAdminProduct1();
-		req.setAttribute("cate1List", cate1List);
-		
-		List<Cate2VO> cate2List = a_service.SelectAdminProduct2();
-		req.setAttribute("cate2List", cate2List);
-			
 		String proNo = req.getParameter("proNo");
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
-		
 		ProductVO productView = service.SelectProductView(proNo);
+		List<Cate1VO> cate1List = a_service.SelectAdminProduct1();
+		List<Cate2VO> cate2List = a_service.SelectAdminProduct2();
+		
+		
+		req.setAttribute("cate1List", cate1List);
+		req.setAttribute("cate2List", cate2List);
 		req.setAttribute("productView", productView );
 		req.setAttribute("cate1", cate1 );
 		req.setAttribute("cate2", cate2 );

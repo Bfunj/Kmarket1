@@ -81,6 +81,7 @@ public class ProductDAO extends DBHelper{
 			close();
 		}catch(Exception e) {
 			logger.error(e.getMessage());
+			logger.error("SelectProductView error!!!");
 		}	
 		return pv;
 	}
