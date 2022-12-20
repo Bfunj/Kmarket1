@@ -39,7 +39,7 @@
 					success : function(data){
 						if(data.result > 0){
 							alert('장바구니에 추가되었습니다.');
-							location.href = '/Kmarket/product/cart.do';
+							location.href = '/kmarket/product/cart.do';
 						}
 					}
 				});
