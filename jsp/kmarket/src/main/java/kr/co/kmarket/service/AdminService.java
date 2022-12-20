@@ -23,8 +23,8 @@ public enum AdminService {
 	public List<Cate1VO> SelectAdminProduct1() {
 		return dao.SelectAdminProduct1();
 	}
-	public List<ProductVO> SelectProductList(String cate1, String cate2) {
-		return dao.SelectProductList(cate1, cate2);
+	public List<ProductVO> SelectProductList(String cate1, String cate2, String cate, int start) {
+		return dao.SelectProductList(cate1, cate2, cate, start);
 	}
 	
 	public List<Cate2VO> SelectAdminProduct2(String cate1) {
@@ -74,7 +74,55 @@ public enum AdminService {
 		return dao.SelectProduct(code);
 	}
 	
+	// 페이지 list 넘버
+	public int getLastPageNum(int total) {
+		
+		int lastPageNum = 0;
+		
+		if(total % 10 == 0){
+			lastPageNum = total / 10;
+		}else{
+			lastPageNum = total / 10 + 1;
+		}
+		
+		return lastPageNum;
+	}
 	
-	//카테고리 불러오기
+	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+		int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
+		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
+		int pageGroupEnd = currentPageGroup * 10;
+		
+		if(pageGroupEnd > lastPageNum){
+			pageGroupEnd = lastPageNum;
+		}
+		
+		int[] result = {pageGroupStart, pageGroupEnd};
+		
+		return result;
+	}
+	
+	public int getPageStartNum(int total, int currentPage) {
+		int start = (currentPage - 1) * 10;
+		return total - start;
+	}
+	
+	public int getCurrentPage(String pg) {
+		int currentPage = 1;
+		
+		if(pg != null){
+			currentPage = Integer.parseInt(pg);	
+		}
+		
+		return currentPage;
+	}
+	
+	public int getStartNum(int currentPage) {
+		return (currentPage - 1) * 10;
+	}
+	
+	public int selectCountTotal(String cate1, String cate2) {
+		return dao.selectCountTotal(cate1, cate2);
+	}
 
 }

@@ -8,7 +8,7 @@
                 </h1>
                 <section class="notice">
                     <h1>공지사항
-                        <a href="./notice/list.do">전체보기</a>
+                        <a href="./notice/list.do?cate=notice_1">전체보기</a>
                     </h1>
                     <ul>
                         <li><a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a><span class="date">22.10.31</span></li>
@@ -20,7 +20,7 @@
                 </section>
                 <section class="faq">
                     <h1>자주 묻는 질문
-                        <a href="./faq/list.do">전체보기</a>
+                        <a href="./faq/list.do?cate=faq_1">전체보기</a>
                     </h1>
                     <ol>
                         <li><a href="#"><span>회원</span></a></li>
@@ -34,7 +34,7 @@
                 </section>
                 <section class="qna">
                     <h1>문의하기
-                        <a href="./qna/list.do">전체보기</a>
+                        <a href="./qna/list.do?cate=qna_1">전체보기</a>
                     </h1>
                     <ul>
                         <li><a href="#">[회원] 문의 글1</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>

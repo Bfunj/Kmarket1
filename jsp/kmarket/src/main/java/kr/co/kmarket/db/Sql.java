@@ -17,6 +17,8 @@ public class Sql {
 	//select member
 	public static final String Select_Member = "Select * from `km_member` where `uid` = ? and `pass` = SHA2(?, 256)";
 	
+
+
 	//insert admin product 
 	public static final String INSERT_ADMIN_PRODUCT = "INSERT INTO `km_product` SET "
 													+ "`cate1` = ?, "
@@ -111,7 +113,16 @@ public class Sql {
 	public static final String SELECT_PRODUCT_NOW  	= "SELECT * FROM `km_product` ORDER BY `rdate` DESC";
 	public static final String SELECT_PRODUCT_DISCOUNT  	= "SELECT * FROM `km_product` WHERE `discount` >'0' ORDER BY `discount` DESC";
 	public static final String SELECT_PRODUCT_BEST  	= "SELECT * FROM `km_product` ORDER BY `sold` DESC ";
-	public static final String SELECT_PRODUCT_LIST_CATE ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ";
+	
+	// select 상품 갯수
+	public static final String SELECT_PRODUCT_COUNT_TOTAL = "SELECT COUNT(`proNo`) FROM `km_product` where `cate1`=? and `cate2`=? ";	
+	
+	public static final String SELECT_PRODUCT_LIST_CATE_SOLD ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `sold` desc LIMIT ?, 10";
+	public static final String SELECT_PRODUCT_LIST_CATE_PRICE_A ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `price` ASC LIMIT ?, 10";
+	public static final String SELECT_PRODUCT_LIST_CATE_PRICE_D ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `price` DESC LIMIT ?, 10";
+	public static final String SELECT_PRODUCT_LIST_CATE_SCORE ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `score` DESC LIMIT ?, 10";
+	public static final String SELECT_PRODUCT_LIST_CATE_REVIEW ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `review` DESC LIMIT ?, 10";
+	public static final String SELECT_PRODUCT_LIST_CATE_RDATE ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `rdate` desc LIMIT ?, 10";
 	
 	public static final String Select_Member_For_Change_Info = "select * from `km_member` where = `uid` = ? ";
 	public static final String SELECT_MEMBER_BY_SESSID = "SELECT * FROM `km_member` WHERE `sessId`=? AND `sessDate` > NOW()";

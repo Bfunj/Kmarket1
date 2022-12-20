@@ -120,7 +120,7 @@
               <ol>
               	 <c:forEach var="cate2List" items="${cate2List}">
               	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
-              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}&cate=list_1&pg=1">${cate2List.c2Name }</a></li>
               	 	</c:if>          
                 </c:forEach>
               </ol>
@@ -176,27 +176,27 @@
             <ul>
               <li>
                 <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item1"
+                  ><img src="file/main_01.jfif" alt="item1"
                 /></a>
               </li>
               <li>
                 <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item2"
+                  ><img src="file/main_02.jfif" alt="item2"
                 /></a>
               </li>
               <li>
                 <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item3"
+                  ><img src="file/main_03.jfif" alt="item3"
                 /></a>
               </li>
               <li>
                 <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item4"
+                  ><img src="file/main_04.jfif" alt="item4"
                 /></a>
               </li>
               <li>
                 <a href="#"
-                  ><img src="https://via.placeholder.com/985x447" alt="item5"
+                  ><img src="file/main_05.jfif" alt="item5"
                 /></a>
               </li>
             </ul>

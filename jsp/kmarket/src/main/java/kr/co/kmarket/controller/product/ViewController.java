@@ -2,7 +2,7 @@ package kr.co.kmarket.controller.product;
 import java.io.IOException;
 
 import java.io.PrintWriter;
-
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -40,17 +40,34 @@ public class ViewController extends HttpServlet  {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<Cate1VO> cate1List = a_service.SelectAdminProduct1();
-		req.setAttribute("cate1List", cate1List);
+		// 택배 도착 날짜
+		LocalDate now = LocalDate.now();
+		LocalDate arriveday = null;
+		int dayOfWeekValue = now.getDayOfWeek().getValue();
+		if( dayOfWeekValue < 4) {
+			arriveday = LocalDate.now().plusDays(2);
+		}else if(dayOfWeekValue < 6) arriveday = LocalDate.now().plusDays(4);
+		else arriveday = LocalDate.now().plusDays(3);
+		int monthValue = arriveday.getMonthValue();
+		int dayOfMonth = arriveday.getDayOfMonth();
+		int arrivedayOfWeekValue = arriveday.getDayOfWeek().getValue();
 		
-		List<Cate2VO> cate2List = a_service.SelectAdminProduct2();
-		req.setAttribute("cate2List", cate2List);
-			
+		String[] Week = {"0","월","화","수","목","금","토","일"};
+		
+		req.setAttribute("monthValue", monthValue);
+		req.setAttribute("dayOfMonth", dayOfMonth);
+		req.setAttribute("arriveWeek", Week[arrivedayOfWeekValue]);
+		
 		String proNo = req.getParameter("proNo");
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
-		
 		ProductVO productView = service.SelectProductView(proNo);
+		List<Cate1VO> cate1List = a_service.SelectAdminProduct1();
+		List<Cate2VO> cate2List = a_service.SelectAdminProduct2();
+		
+		
+		req.setAttribute("cate1List", cate1List);
+		req.setAttribute("cate2List", cate2List);
 		req.setAttribute("productView", productView );
 		req.setAttribute("cate1", cate1 );
 		req.setAttribute("cate2", cate2 );

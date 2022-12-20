@@ -94,7 +94,7 @@
             <section class="view">
                 <nav>
                     <h1>상품목록</h1>
-                    <p>HOME > <span>${productView.c1Name }</span> > <strong>${productView.c2Name }</strong></p>
+                  	<p>HOME > <span>${productView.c1Name }</span> > <strong>${productView.c2Name }</strong></p>
                 </nav>
 
                 <!-- 상품 전체 정보 내용 -->                
@@ -110,7 +110,8 @@
                         <nav>
                             <h3>${productView.proName }</h3>
                             <p>${productView.descript }</p>
-                            <h5 class="rating star4"><a href="#">상품평보기</a></h5>
+                            <h5 class="rating star${productView.score}"><a href="#">상품평보기</a></h5>
+                           
                         </nav>
                         <nav>
                             <div class="org_price">
@@ -124,16 +125,14 @@
                         <nav>
                         <c:choose>
                         	<c:when test="${productView.delivery eq 0}">
-                        		<span class="delivery">무료배송</span>
-                        		<span class="arrival">모레(금) 7/8 도착예정</span>
-                            	<span class="desc">본 상품은 국내배송만 가능합니다.</span>
+                        		<span class="delivery">무료배송</span>           		
                         	</c:when>
                         	<c:otherwise>
                         		<input type="text" name="delivery" value="${productView.delivery }" style="border: none;">
-                        		<span class="arrival">모레(금) 7/8 도착예정</span>
-                            	<span class="desc">본 상품은 국내배송만 가능합니다.</span>
                         	</c:otherwise>
                         </c:choose>
+                        	<span class="arrival"> ${monthValue }/${dayOfMonth } (${arriveWeek  })도착예정</span>
+                        	<span class="desc">본 상품은 국내배송만 가능합니다.</span>
                         </nav>
                         <nav>
                             <span class="card cardfree"><i>아이콘</i>무이자할부</span>&nbsp;&nbsp;
@@ -176,8 +175,7 @@
                     </nav>
                     <!-- 상품상세페이지 이미지 -->
                     <img src="../file/${productView.cate1 }/${productView.cate2 }/${productView.detail }" width=860px height=auto alt="상세페이지1">
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지2">
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지3">
+                   
                 </article>
 
 

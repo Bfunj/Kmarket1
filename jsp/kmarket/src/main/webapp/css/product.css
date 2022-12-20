@@ -508,8 +508,11 @@ main > aside > .category ol > li > a:hover {
         font-size: 12px;
         text-align: center;
     }
+    #product > section > .paging > .num > .on {
+        background : #c4c4c4;
+    }
 
-    #product > section > .paging > .next > a {
+    #product > section > .paging > .next > a{
         color: #777;
         font-size: 11px;
         letter-spacing: -1px;
@@ -582,8 +585,20 @@ main > aside > .category ol > li > a:hover {
     }
 
     /* 별점 조절 */
+    #product > section > .info > .summary > nav > .star5 {
+        background-position: 0px -200px;
+    }
     #product > section > .info > .summary > nav > .star4 {
         background-position: 0px -160px;
+    }
+    #product > section > .info > .summary > nav > .star3 {
+        background-position: 0px -120px;
+    }
+    #product > section > .info > .summary > nav > .star2 {
+        background-position: 0px -80px;
+    }
+    #product > section > .info > .summary > nav > .star1 {
+        background-position: 0px -40px;
     }
 
     #product > section > .info > .summary > nav > .org_price > del {

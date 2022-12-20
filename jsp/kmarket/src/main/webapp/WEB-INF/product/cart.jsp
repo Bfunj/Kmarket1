@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./header.jsp"></jsp:include>      
 <script>
 
@@ -35,7 +36,7 @@
               <ol>
               	 <c:forEach var="cate2List" items="${cate2List}">
               	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
-              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>            	 		
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}&cate=list_1&pg=1">${cate2List.c2Name }</a></li>            	 		
               	 	</c:if>          
                 </c:forEach>
               </ol>
@@ -48,7 +49,7 @@
             <section class="cart">
                 <nav>
                     <h1>장바구니</h1>
-                    <p>HOME > <span>패션·의류·뷰티</span> > <strong>장바구니</strong></p>
+                    <p>HOME > <strong>장바구니</strong></p>
                 </nav>
 
                 <form action="/kmarket/product/cart.do">
@@ -72,7 +73,9 @@
                             <td><input type="checkbox" name="check" value="${cart.cartNo }" ></td>
                             <td>
                                 <article>
+
                                     <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
+
                                     <div>
                                         <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a></h2>
                                         <p>${cart.descript }</p>
@@ -80,11 +83,11 @@
                                 </article>
                             </td>
                             <td>${cart.count }</td>
-                            <td>${cart.price }</td>
+                            <td><fmt:formatNumber value="${cart.price }" pattern="#,###" /></td>
                             <td>${cart.discount }</td>
                             <td>${cart.point }</td>
-                            <td>${cart.delivery }</td>
-                            <td>${cart.total }</td>
+                            <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
+                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###" /></td>
                         </tr>
                         </c:forEach>
                     </table>
