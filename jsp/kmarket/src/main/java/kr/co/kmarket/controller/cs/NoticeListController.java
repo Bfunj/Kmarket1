@@ -18,6 +18,9 @@ public class NoticeListController extends HttpServlet{
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String cate = req.getParameter("cate");
+		req.setAttribute("cate", cate);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/notice/list.jsp");
 		dispatcher.forward(req, resp);
 	}

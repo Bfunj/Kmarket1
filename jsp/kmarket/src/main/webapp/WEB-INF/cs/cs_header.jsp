@@ -7,6 +7,8 @@
     <title>Kmarket 고객센터</title>
     <link rel="stylesheet" href="/kmarket/css/cs.css">
     <link rel="shortcut icon" type="image/x-icon" href="/kmarket/img/common/favicon.ico" />
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+ 
 </head>
 <body>
     <div class="wrapper">

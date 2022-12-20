@@ -101,15 +101,22 @@ public class AdminDAO extends DBHelper{
 		}
 	// view select product
 	
-	public List<ProductVO> SelectProductList(String cate1, String cate2) {
+	public List<ProductVO> SelectProductList(String cate1, String cate2, String cate, int start) {
 		List<ProductVO> productView = new ArrayList<>();
 		try {
 			logger.info("select productView start...");
 			
 			conn = getConnection();
-			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_CATE);
+			PreparedStatement psmt = null;
+			if(cate.equals("list_1")) { psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_CATE_SOLD);}
+			else if(cate.equals("list_2")) { psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_CATE_PRICE_A);}
+			else if(cate.equals("list_3")) { psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_CATE_PRICE_D);}
+			else if(cate.equals("list_4")) { psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_CATE_SCORE);}
+			else if(cate.equals("list_5")) { psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_CATE_REVIEW);}
+			else { psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_CATE_RDATE);}
 			psmt.setString(1, cate1);
 			psmt.setString(2, cate2);
+			psmt.setInt(3, start);
 			ResultSet rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
@@ -317,19 +324,36 @@ public class AdminDAO extends DBHelper{
 		
 		try {
 			
-logger.info("SelectProduct start...");
+			logger.info("SelectProduct start...");
 			
 			conn = getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(Sql.SELECT_CATE1);
-			
-			
-		}catch(Exception e) {
-			
+	
+			}catch(Exception e) {
+			logger.error(e.getMessage());
 		}
-		
-		return cateList;
-		
+		return cateList;	
+	}
+	
+	public int selectCountTotal(String cate1, String cate2) {
+		int total =0;	
+		try{
+			logger.info("selectCountTotal start...");
+			conn = getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_COUNT_TOTAL);
+			psmt.setString(1,cate1);
+			psmt.setString(2,cate2);
+			ResultSet rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return total;
 	}
 	
 }

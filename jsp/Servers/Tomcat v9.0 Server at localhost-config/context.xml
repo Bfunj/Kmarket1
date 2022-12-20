@@ -36,7 +36,7 @@
     	password="user1111"
     	maxTotal="8"
     	maxActive="50"
-    	maxIdle="20"
+    	maxIdle="40"
     	maxWaitMillis="6000"
     />
 </Context>
