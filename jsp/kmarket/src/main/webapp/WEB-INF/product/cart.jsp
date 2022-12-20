@@ -17,7 +17,7 @@
               <ol>
               	 <c:forEach var="cate2List" items="${cate2List}">
               	 	<c:if test="${cate1List.cate1 eq cate2List.cate1 }">
-              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}">${cate2List.c2Name }</a></li>            	 		
+              	 		<li><a href="/kmarket/product/list.do?&cate1=${cate2List.cate1}&cate2=${cate2List.cate2}&cate=list_1&pg=1">${cate2List.c2Name }</a></li>            	 		
               	 	</c:if>          
                 </c:forEach>
               </ol>
@@ -30,7 +30,7 @@
             <section class="cart">
                 <nav>
                     <h1>장바구니</h1>
-                    <p>HOME > <span>패션·의류·뷰티</span> > <strong>장바구니</strong></p>
+                    <p>HOME > <strong>장바구니</strong></p>
                 </nav>
 
                 <form action="/kmarket/product/cart.do">

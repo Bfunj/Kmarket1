@@ -2,7 +2,7 @@ package kr.co.kmarket.controller.product;
 import java.io.IOException;
 
 import java.io.PrintWriter;
-
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -39,6 +39,24 @@ public class ViewController extends HttpServlet  {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// 택배 도착 날짜
+		LocalDate now = LocalDate.now();
+		LocalDate arriveday = null;
+		int dayOfWeekValue = now.getDayOfWeek().getValue();
+		if( dayOfWeekValue < 4) {
+			arriveday = LocalDate.now().plusDays(2);
+		}else if(dayOfWeekValue < 6) arriveday = LocalDate.now().plusDays(4);
+		else arriveday = LocalDate.now().plusDays(3);
+		int monthValue = arriveday.getMonthValue();
+		int dayOfMonth = arriveday.getDayOfMonth();
+		int arrivedayOfWeekValue = arriveday.getDayOfWeek().getValue();
+		
+		String[] Week = {"0","월","화","수","목","금","토","일"};
+		
+		req.setAttribute("monthValue", monthValue);
+		req.setAttribute("dayOfMonth", dayOfMonth);
+		req.setAttribute("arriveWeek", Week[arrivedayOfWeekValue]);
 		
 		String proNo = req.getParameter("proNo");
 		String cate1 = req.getParameter("cate1");
