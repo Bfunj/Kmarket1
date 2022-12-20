@@ -23,6 +23,9 @@ public enum AdminService {
 	public List<Cate1VO> SelectAdminProduct1() {
 		return dao.SelectAdminProduct1();
 	}
+	public List<ProductVO> SelectProductList(String cate1, String cate2) {
+		return dao.SelectProductList(cate1, cate2);
+	}
 	
 	public List<Cate2VO> SelectAdminProduct2(String cate1) {
 		return dao.SelectAdminProduct2(cate1);
@@ -33,6 +36,13 @@ public enum AdminService {
 	public void INSERT_ADMIN_PRODUCT(ProductVO pv) {
 		dao.INSERT_ADMIN_PRODUCT(pv);
 	}
+	public List<Cate1VO> SelectCate1Name(String cate1) {
+		return 	dao.SelectCate1Name(cate1);
+	}
+	public List<Cate2VO> SelectCate2Name(String cate1, String cate2) {
+		return 	dao.SelectCate2Name(cate1, cate2);
+	}
+	
 	// 경로 설정
 	public MultipartRequest uploadFile(HttpServletRequest req, String path) throws IOException {
 		int maxSize = 1024 * 1024 * 10; // 최대 파일 업로드 허용량 10MB
