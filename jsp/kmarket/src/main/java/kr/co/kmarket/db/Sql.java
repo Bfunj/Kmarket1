@@ -153,6 +153,7 @@ public class Sql {
 	public static final String SELECT_ARTICLE_QNA = "SELECT *FROM `board_article` WHERE `cate` like 'qna%';";
 	
 	public static final String Delete_Cart = "DELETE FROM `km_product_cart` WHERE `cartNo` = ? ";
+	public static final String CART_PRICE = "SELECT `total` FROM `km_product_cart`  WHERE `cartNo` = ? ";
 }
 
 
