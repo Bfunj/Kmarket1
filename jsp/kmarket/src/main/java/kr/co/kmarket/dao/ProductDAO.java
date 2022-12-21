@@ -193,5 +193,24 @@ public class ProductDAO extends DBHelper{
 		}
 		return result;
 	}
+	
+	public int DeleteCart(String cartNo) {
+			
+			int result = 0;
+			
+			try {
+				logger.info("Delete Cart Start...");
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql.Delete_Cart);
+				psmt.setString(1, cartNo);
+				result = psmt.executeUpdate();
+				close();
+				
+			}catch(Exception e) {
+				logger.error(e.getMessage());
+			}
+			
+			return result;
+	}
 }
 

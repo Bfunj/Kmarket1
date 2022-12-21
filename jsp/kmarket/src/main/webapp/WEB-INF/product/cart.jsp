@@ -4,21 +4,69 @@
 <jsp:include page="./header.jsp"></jsp:include>      
 <script>
 
-	$(document).ready(function() {
-		$('input[name=all]').click(function() {
-			if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
-			else $("input[name=check]").prop("checked", false);
+		//체크박스 이벤트
+		$(document).ready(function() {
+			$('input[name=all]').click(function() {
+				if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
+				else $("input[name=check]").prop("checked", false);
+			});
+		
+			$("input[name=check]").click(function() {
+				var total = $("input[name=check]").length;
+				var checked = $("input[name=check]:checked").length;
+		
+				if(total != checked) $('input[name=all]').prop("checked", false);
+				else $('input[name=all]').prop("checked", true); 
+			});
+			
+			//체크박스 삭제
+			$("input[name=del]").click(function(){
+				//alert('클릭확인');
+				
+				let checked = $('input[name=check]:checked').length;
+				let arr = [];
+				
+				$('input[name=check]:checked').each(function(){
+					arr.push($(this).val());
+				});
+				
+				
+				console.log("here1 : " + arr);
+				
+				if(checked == 0){
+					alert('선택된 상품이 없습니다.');
+					
+				}else if(confirm('선택한 상품을 삭제하겠습니까?')){
+					
+					console.log("here2");	
+					
+					$.ajax({
+						url : '/kmarket/product/DeleteCart.do',
+						type : 'POST',					
+						data : {'arr' : arr},
+						traditional: true,
+						dataType : 'json',
+						success : function(data){
+							if(data.result > 0){
+								$('input[name=check]:checked').parents('tr').remove();
+								location.reload();
+							}
+						}
+					});
+				}
+			});
+			
+			//계산 필드
+			var total = 0;
+			
+			$('input[name=total]').each(function(){
+				
+				total += Number($(this).val());
+				
+			});
+			
+			$('input[name=total-price]').val(total);
 		});
-	
-		$("input[name=check]").click(function() {
-			var total = $("input[name=check]").length;
-			var checked = $("input[name=check]:checked").length;
-	
-			if(total != checked) $('input[name=all]').prop("checked", false);
-			else $('input[name=all]').prop("checked", true); 
-		});
-	});
-
 
 </script>
  
@@ -87,7 +135,10 @@
                             <td>${cart.discount }</td>
                             <td>${cart.point }</td>
                             <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
-                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###" /></td>
+                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###" />
+                            	<input type=hidden name="total" id="total" value="${cart.total }">
+                            </td>
+                            
                         </tr>
                         </c:forEach>
                     </table>
@@ -103,7 +154,7 @@
                               </tr>
                               <tr>
                                 <td>상품금액</td>
-                                <td>27,000</td>
+                                <td><input type="text" name="total-price" value=""></td>
                               </tr>
                               <tr>
                                 <td>할인금액</td>

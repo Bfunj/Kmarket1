@@ -98,13 +98,13 @@ public class Sql {
 													+ "`discount` = ? , "
 													+ "`point` = 1 , "
 													+ "`delivery` = ? , "
-													+ "`total` = ((price * count ) - (price * discount * count)) + delivery , " //total 값 계산하기
+													+ "`total` = (price - (price * discount * 0.01)) * count + delivery , " //total 값 계산하기
 													+ "`rdate` = NOW()";
 	
 	public static final String Select_Product_Cart = "SELECT COUNT('proNo') FROM `km_product_cart` WHERE `uid` = ? and `proNo` = ? ";
 	
 	public static final String Update_Product_Cart_Count = "UPDATE `km_product_cart` SET `count` = `count` + ? , "
-														+ "`total` = ((price * count ) - (price * discount)) + delivery "
+														+ "`total` = (price - (price * discount * 0.01)) * count + delivery "
 														+ "WHERE uid= ? AND `proNo`= ? ";
 	
 	public static final String SELECT_COUNT_UID  	= "select count(`uid`) from `km_member` where `uid`=?";
@@ -152,6 +152,7 @@ public class Sql {
 	public static final String SELECT_ARTICLE_NOTICE = "SELECT *FROM `board_article` WHERE `cate` like 'notice%';";
 	public static final String SELECT_ARTICLE_QNA = "SELECT *FROM `board_article` WHERE `cate` like 'qna%';";
 	
+	public static final String Delete_Cart = "DELETE FROM `km_product_cart` WHERE `cartNo` = ? ";
 }
 
 
