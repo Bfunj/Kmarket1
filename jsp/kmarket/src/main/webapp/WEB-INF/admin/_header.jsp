@@ -1,64 +1,87 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
-<html lang= "en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Kmarket::대한민국 1등 온라인 쇼핑몰</title>
-		<link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico" />
-    	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
-    	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
-    	<link rel="stylesheet" href="/kmarket/css/common.css" />
-    	 <link rel="stylesheet" href="/kmarket/css/admin.css"/>
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    	<script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
-    	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>케이마켓::관리자</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>    
+    <script src="/kmarket/js/gnb.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/kmarket/css/admin.css">
+    <link rel="stylesheet" href="/kmarket/css/admin2.css">
 </head>
 <body>
-	<header>
-		<div class="top">
-		<div>
-			<a href="#">로그인</a>
-			<a href="#">회원가입</a>
-			<a href="#">회원가입</a>
-			<a href="#">마이페이지</a>
-			<a href="#">
-			<i class="fa fa-shopping-cart" aria-hidden="true">
-				::before
-				</i>&nbsp;장바구니
-				</a>
-			</div>
-		</div>
-		<div class="logo">
-			<div>
-				<a href="#"> <img src="./img/header long.png" alt="로고"></a>	
-				<form action="#">
-				<input type="text" name="search"/>
-	            <button><i class="fa fa-search" aria-hidden="true">
-	            	::before</i></button>
-	            </form>
-	        </div> 
-	       </div>  
-	      	<div class="menu">
-	      		<div>
-	      			<ul>
-	      				 <li><a href="#">히트상품</a></li>
-	                     <li><a href="#">추천상품</a></li>
-	                     <li><a href="#">최신상품</a></li>
-	                     <li><a href="#">인기상품</a></li>
-	                     <li><a href="#">할인상품</a></li>
-	                </ul>
-	                <ul>
-	                     <li><a href="#">공지사항</a></li>
-	                     <li><a href="#">자주묻는질문</a></li>
-	                     <li><a href="#">문의하기</a></li>
-	                     <li><a href="#">고객센터</a></li>
-	                </ul>
-	             </div>
-	           </div>
-       </header>
-        
-	
+    <div id="admin-wrapper">
+        <header>
+            <div>
+                <a href="/kmarket/admin/index.do" class="logo"><img src="/kmarket/img/admin/admin_logo.png" alt="admin_logo"/></a>
+                <p>
+                    <span>${sessUser.ceo }님 반갑습니다.</span>
+		      		
+			      	<a href="/kmarket/index.do">HOME |</a>
+		            <a href="/kmarket/member/logout.do">로그아웃 |</a>
+		   			<a href="/kmarket/cs/csIndex.do">고객센터</a>
+                </p>
+		
+            </div>
+        </header>
+        <main>
+            <aside>
+                <!-- Global Navigation Bar -->
+                <ul id="gnb">
+                    <li>
+                        <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>환경설정</a>
+                        <ol>
+                            <li><a href="#">기본환경설정</a></li>
+                            <li><a href="#">배너관리</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-store" aria-hidden="true"></i>상점관리</a>
+                        <ol>
+                            <li><a href="#">판매자현황</a></li>
+                            <li><a href="#">재고관리</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-users" aria-hidden="true"></i>회원관리</a>
+                        <ol>
+                            <li><a href="#">회원현황</a></li>
+                            <li><a href="#">포인트관리</a></li>
+                            <li><a href="#">비회원관리</a></li>
+                            <li><a href="#">접속자집계</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
+                        <ol>
+                            <li><a href="/kmarket/admin/product/list.do?level=${sessUser.level }">상품현황</a></li>
+                            <li><a href="/kmarket/admin/product/register.do">상품등록</a></li>
+                            <li><a href="#">재고관리</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-credit-card" aria-hidden="true"></i>주문관리</a>
+                        <ol>
+                            <li><a href="#">주문현황</a></li>
+                            <li><a href="#">매출현황</a></li>
+                            <li><a href="#">결제관리</a></li>
+                            <li><a href="#">배송관리</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
+                        <ol>
+                            <li><a href="#">게시판현황</a></li>
+                            <li><a href="#">고객문의</a></li>
+                        </ol>
+                    </li>
+                </ul>
+            </aside>
 
     

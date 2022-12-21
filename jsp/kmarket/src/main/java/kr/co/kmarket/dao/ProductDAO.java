@@ -186,7 +186,7 @@ public class ProductDAO extends DBHelper{
 			psmt.setString(2, uid);
 			psmt.setString(3, proNo);
 			result = psmt.executeUpdate();
-			clone();
+			close();
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());
