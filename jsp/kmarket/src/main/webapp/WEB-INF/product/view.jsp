@@ -152,7 +152,7 @@
                         </div>
                         
                         <div class="total">
-                            <span>${(productView.price/100)*(100-productView.discount) +productView.delivery }</span>
+                            <span>${(productView.price/100)*(100-productView.discount)}</span>
                             <em>총 상품금액</em>
                         </div>
 
