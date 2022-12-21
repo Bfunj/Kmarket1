@@ -328,7 +328,8 @@ public class AdminDAO extends DBHelper{
 			conn = getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(Sql.SELECT_CATE1);
-	
+			
+			close();
 			}catch(Exception e) {
 			logger.error(e.getMessage());
 		}

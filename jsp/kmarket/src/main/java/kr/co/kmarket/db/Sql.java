@@ -145,6 +145,12 @@ public class Sql {
 															+ "`addr1` 	= ?, "
 															+ "`addr2` 	= ?"
 															+ "where `uid` = ? ";
+		
+	
+	
+	// article 쿼리문
+	public static final String SELECT_ARTICLE_NOTICE = "SELECT *FROM `board_article` WHERE `cate` like 'notice%';";
+	public static final String SELECT_ARTICLE_QNA = "SELECT *FROM `board_article` WHERE `cate` like 'qna%';";
 	
 }
 
