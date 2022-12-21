@@ -6,12 +6,16 @@
 
 		//체크박스 이벤트
 		$(document).ready(function() {
+			
 			$('input[name=all]').click(function() {
 				if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
 				else $("input[name=check]").prop("checked", false);
 			});
 		
 			$("input[name=check]").click(function() {
+				
+				
+				
 				var total = $("input[name=check]").length;
 				var checked = $("input[name=check]:checked").length;
 		
@@ -57,15 +61,36 @@
 			});
 			
 			//계산 필드
-			var total = 0;
 			
-			$('input[name=total]').each(function(){
+			$('input[class=checkprice]').click(function() {
+				var total = 0;
+				let checked = $('input[name=check]:checked').length;
+				let arr = [];
 				
-				total += Number($(this).val());
+				$('input[name=check]:checked').each(function(){
+					arr.push($(this).val());
+				});
+				console.log("checkNo : " + arr);
+				if(checked >0){
+				$.ajax({
+					url : '/kmarket/product/CartPrice.do',
+					type : 'POST',					
+					data : {'arr' : arr},
+					traditional: true,
+					dataType : 'json',
+					success : function(data){
+						console.log("data : "+data.price);
+						$('input[name=totalPrice]').val(data.price);
+					}
+				});
+				}else $('input[name=totalPrice]').val("0");
 				
-			});
+				
+			  });
+		    
+		     
 			
-			$('input[name=total-price]').val(total);
+			
 		});
 
 </script>
@@ -104,7 +129,7 @@
                 <input type="hidden" name="uid" value=${sessUser.uid }>
                     <table border="0">
                         <tr>
-                            <th><input type="checkbox" name="all" ></th>
+                            <th><input type="checkbox" name="all" class="checkprice"></th>
                             <th>상품명</th>
                             <th>총수량</th>
                             <th>판매가</th>
@@ -118,7 +143,7 @@
                         </tr>
                         <c:forEach var="cart" items="${carts}">
                         <tr>
-                            <td><input type="checkbox" name="check" value="${cart.cartNo }" ></td>
+                            <td><input type="checkbox" name="check" class="checkprice" value="${cart.cartNo }" ></td>
                             <td>
                                 <article>
 
@@ -136,7 +161,7 @@
                             <td>${cart.point }</td>
                             <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
                             <td><fmt:formatNumber value="${cart.total }" pattern="#,###" />
-                            	<input type=hidden name="total" id="total" value="${cart.total }">
+                           
                             </td>
                             
                         </tr>
@@ -154,7 +179,7 @@
                               </tr>
                               <tr>
                                 <td>상품금액</td>
-                                <td><input type="text" name="total-price" value=""></td>
+                                <td><input type="text" name="totalPrice" value=""></td>
                               </tr>
                               <tr>
                                 <td>할인금액</td>

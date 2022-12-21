@@ -212,5 +212,29 @@ public class ProductDAO extends DBHelper{
 			
 			return result;
 	}
+	
+	public int CartPrice(String cartNo) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("Cart Price Start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.CART_PRICE);
+			psmt.setString(1, cartNo);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return result;
+}
 }
 
