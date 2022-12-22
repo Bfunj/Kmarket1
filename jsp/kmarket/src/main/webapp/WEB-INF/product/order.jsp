@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./header.jsp"></jsp:include>
         <main id="product">
             <aside>
@@ -62,27 +64,35 @@
                             <th>배송비</th>
                             <th>소계</th>
                         </tr>
+                        <c:choose>
+                        <c:when test="${empty carts}">
                         <tr class="empty">
                             <td colspan="7">장바구니에 상품이 없습니다.</td>
                         </tr>
+                        </c:when>
+                        <c:otherwise>
+                        <c:forEach var="cart" items="${carts }">
                         <tr>
                             <td><input type="checkbox" name="check" ></td>
-                            <td>
+                           <td>
                                 <article>
-                                    <a href="#"><img src="https://via.placeholder.com/80x80" alt=""></a>
+                                    <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
                                     <div>
-                                        <h2><a href="#">상품명</a></h2>
-                                        <p>어쩌구</p>
+                                        <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a></h2>
+                                        <p>${cart.descript }</p>
                                     </div>
                                 </article>
                             </td>
-                            <td>1</td>
-                            <td>27,000</td>
-                            <td>5%</td>
-                            <td>270</td>
-                            <td>무료배송</td>
-                            <td>27,000</td>
+                            <td>${cart.count }</td>
+                            <td>${cart.price }</td>
+                            <td>${cart.discount}</td>
+                            <td>${cart.point }</td>
+                            <td>${cart.delivery }</td>
+                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###원" />
                         </tr>
+                        </c:forEach>
+                        </c:otherwise>
+                        </c:choose>
                     </table>
 
                     <!-- 최종결제정보 -->

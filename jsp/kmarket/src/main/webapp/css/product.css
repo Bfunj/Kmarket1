@@ -1061,7 +1061,6 @@ main > aside > .category ol > li > a:hover {
     }
 
     #product > .cart > form > table .empty {
-        display: none;
     }
 
     #product > .cart > form > table .empty td {
@@ -1080,7 +1079,6 @@ main > aside > .category ol > li > a:hover {
     }
 
     #product > .cart > form > table td:last-child::after{
-        content: "원";
     }
 
     #product > .cart > form > table td {
@@ -1230,7 +1228,6 @@ main > aside > .category ol > li > a:hover {
     }
     
     #product > .order > form > table .empty {
-        display: none;
     }
     
     #product > .order > form > table .empty td {
@@ -1249,7 +1246,6 @@ main > aside > .category ol > li > a:hover {
     }
     
     #product > .order > form > table td:last-child::after{
-        content: "원";
     }
     
     #product > .order > form > table td {

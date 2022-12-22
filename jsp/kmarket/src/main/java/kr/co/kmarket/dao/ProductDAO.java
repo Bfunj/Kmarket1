@@ -1,5 +1,6 @@
 package kr.co.kmarket.dao;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -213,9 +214,9 @@ public class ProductDAO extends DBHelper{
 			return result;
 	}
 	
-	public int CartPrice(String cartNo) {
+	public List<CartVO> CartPrice(String cartNo) {
 		
-		int result = 0;
+		List<CartVO> carts = new ArrayList<>(); 
 		
 		try {
 			logger.info("Cart Price Start...");
@@ -225,7 +226,17 @@ public class ProductDAO extends DBHelper{
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				result = rs.getInt(1);
+				CartVO cart = new CartVO();
+				cart.setCartNo(rs.getInt(1));
+				cart.setUid(rs.getString(2));
+				cart.setProNo(rs.getInt(3));
+				cart.setCount(rs.getInt(4));
+				cart.setPrice(rs.getInt(5));
+				cart.setDiscount(rs.getInt(6));
+				cart.setPoint(rs.getInt(7));
+				cart.setDelivery(rs.getInt(8));
+				cart.setTotal(rs.getInt(9));
+				carts.add(cart);
 			}
 			
 			close();
@@ -234,7 +245,42 @@ public class ProductDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}
 		
-		return result;
-}
+		return carts;
+	}
+	
+	public CartVO SelectProductOrder(String cartNo) {
+		CartVO cart = null;
+		try {
+			logger.info("Select Product Order Start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Select_Product_Order);
+			psmt.setString(1, cartNo);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				cart = new CartVO();
+				cart.setCartNo(rs.getInt(1));
+				cart.setUid(rs.getString(2));
+				cart.setProNo(rs.getInt(3));
+				cart.setCount(rs.getInt(4));
+				cart.setPrice(rs.getInt(5));
+				cart.setDiscount(rs.getInt(6));
+				cart.setPoint(rs.getInt(7));
+				cart.setDelivery(rs.getInt(8));
+				cart.setTotal(rs.getInt(9));
+				cart.setProName(rs.getString(11));
+				cart.setDescript(rs.getString(12));
+				cart.setThumb1(rs.getString(13));
+				cart.setCate1(rs.getInt(14));
+				cart.setCate2(rs.getInt(15));
+				
+			}
+			close();	
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return cart;
+	}
 }
 
