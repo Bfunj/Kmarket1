@@ -2,6 +2,83 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./header.jsp"></jsp:include>
+<script>
+	
+	//포인트 작업
+	$(document).ready(function(){
+		$('.btnPoint').click(function(){
+			//alert('클릭!');
+			
+			let userPoint = ${sessUser.point}
+			let point = $('input[name=point]').val();
+			
+			if(point < 3000){
+				alert('포인트는 3000점 이상 사용가능합니다.');
+			}else if(userPoint < point){
+				alert("현재 보유중인 포인트는 " + userPoint + " 입니다. " + "\n할인 받을 포인트를 확인해주세요." );
+			}
+			
+			$('td[class=product_pointDiscount]').empty("");
+			$('td[class=product_pointDiscount]').append(point);
+			
+		});
+		
+		//계산 필드
+		$('.checkprice').prop('checked',true);
+		
+			var total = 0;
+			let checked = $('input[name=check]:checked').length;
+			let arr = [];
+			
+			$('input[name=check]:checked').each(function(){
+				arr.push($(this).val());
+			});
+			console.log("checkNo : " + arr);
+			
+			if(checked > 0){
+			$.ajax({
+				url : '/kmarket/product/CartPrice.do',
+				type : 'POST',					
+				data : {'arr' : arr},
+				traditional: true,
+				dataType : 'json',
+				success : function(data){
+					console.log("data : "+data.price);
+					$('td[class=product_price]').empty("");
+					$('td[class=product_price]').append(data.price.toLocaleString());
+					$('td[class=product_delivery]').empty("");
+					$('td[class=product_delivery]').append(data.delivery.toLocaleString());
+					$('td[class=product_discount]').empty("");
+					$('td[class=product_discount]').append(data.discount.toLocaleString());
+					$('td[class=product_num]').empty("");
+					$('td[class=product_num]').append(data.count.toLocaleString());
+					$('td[class=product_point]').empty("");
+					$('td[class=product_point]').append(data.point.toLocaleString());
+					$('td[class=product_total]').empty("");
+					$('td[class=product_total]').append(data.total.toLocaleString());
+				}
+			});
+			
+			}else {
+				$('td[class=product_price]').empty("");
+				$('td[class=product_price]').append("0");
+				$('td[class=product_delivery]').empty("");
+				$('td[class=product_delivery]').append("0");
+				$('td[class=product_discount]').empty("");
+				$('td[class=product_discount]').append("0");
+				$('td[class=product_num]').empty("");
+				$('td[class=product_num]').append("0");
+				$('td[class=product_point]').empty("");
+				$('td[class=product_point]').append("0");
+				$('td[class=product_total]').empty("");
+				$('td[class=product_total]').append("0");
+			}
+		
+	});
+
+
+
+</script>
         <main id="product">
             <aside>
                 <ul class="category">
@@ -55,7 +132,7 @@
                     <!-- 주문 상품 목록 -->
                     <table border="0">
                         <tr>
-                            <th><input type="checkbox" name="all" ></th>
+                            <th><input type="checkbox" name="all" class="checkprice" ></th>
                             <th>상품명</th>
                             <th>총수량</th>
                             <th>판매가</th>
@@ -73,7 +150,7 @@
                         <c:otherwise>
                         <c:forEach var="cart" items="${carts }">
                         <tr>
-                            <td><input type="checkbox" name="check" ></td>
+                            <td><input type="checkbox" name="check" class="checkprice" value="${cart.cartNo }"></td>
                            <td>
                                 <article>
                                     <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
@@ -101,30 +178,30 @@
                         <table border="0">
                             <tr>
                                 <td>상품수</td>
-                                <td>1</td>
-                                </tr>
-                                <tr>
+                                <td class="product_num">0</td>
+                              </tr>
+                              <tr>
                                 <td>상품금액</td>
-                                <td>27,000</td>
-                                </tr>
-                                <tr>
+                                <td class="product_price">0</td>
+                              </tr>
+                              <tr>
                                 <td>할인금액</td>
-                                <td>-1,000</td>
-                                </tr>
-                                <tr>
+                                <td class="product_discount">0</td>
+                              </tr>
+                              <tr>
                                 <td>배송비</td>
-                                <td>0</td>
-                                </tr>              
-                                <tr>
-                                <td>포인트</td>
-                                <td>260</td>
-                                </tr>
-                                <tr>
+                                <td class="product_delivery">0</td>
+                              </tr>              
+                              <tr>
+                                <td>할인 포인트</td>
+                                <td class="product_pointDiscount">0</td>
+                              </tr>
+                              <tr>
                                 <td>전체주문금액</td>
-                                <td>26,000</td>
-                                </tr>
+                                <td class="product_total">0</td>
+                              </tr>
                         </table>
-                        <input type="submit" name="order" id="order" value="주문하기">
+                        <input type="submit" name="order" id="order" value="결제하기">
                     </div>
 
                     <!-- 배송 정보 -->
@@ -160,14 +237,14 @@
                         <div>
                             <p>
                                 현재 포인트 : 
-                                <span> 7200 </span>점
+                                <span class="userPoint"> ${sessUser.point } </span>점
                             </p>
                             <label>
                                 <input type="text" name="point">점
-                                <input type="button" name="btn btnpoint" value="적용">
+                                <input type="button" name="btn btnpoint" class="btnPoint" value="적용">
                             </label>
                             <span>
-                                포인트 어쩌구 5wewrdffdffsfdsf
+                                포인트는 최소 3000점 이상 사용가능합니다.
                             </span>
                         </div>
                     </article>
