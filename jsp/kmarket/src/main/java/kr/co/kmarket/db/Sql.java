@@ -71,6 +71,7 @@ public class Sql {
 													 + " `company`=?, "
 													 + " `ceo`=?, "
 													 + " `gender`=3, "
+													 + " `level`=3, "
 													 // 젠더 not null 이라 임의의 데이터 입력
 													 + " `type`=1, "
 													 // 타입 not null 이라 임의의 데이터 입력
