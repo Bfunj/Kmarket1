@@ -60,23 +60,23 @@
                     <input type="button" value="선택삭제" />
 
 
-                    <div class="paging">
-                        <span class="prev">
-                            <a href="#"><&nbsp;이전</a>
-                        </span>
-                        <span class="num">
-                            <a href="#" class="on">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">6</a>
-                            <a href="#">7</a>
-                        </span>
-                        <span class="next">
-                            <a href="#">다음&nbsp;></a>
-                        </span>
-                    </div>
+        <div class="paging">
+	<c:if test="${PageGroupStart > 1 }">
+	<span class="prev">
+		<a href="/kmarket/admin/product/list.do?uid=baekhj&pg=${PageGroupStart-1}" ><&nbsp;이전</a>
+	</span>
+	</c:if>	
+	<c:forEach var="num" begin="${pageGroupStart }" end="${pageGroupEnd }" step="1"> 
+		<span class="num">
+            		<a href="/kmarket/admin/product/list.do?uid=baekhj&pg=${PageGroupStart-1}" class="${num eq currentPage ? 'on':'off' }">${num}</a>
+		  </span>
+	</c:forEach>    
+	<c:if test="${PageGroupEnd < lastPageNum }">
+		<span class="next">
+			<a href="/kmarket/admin/product/list.do?uid=baekhj&pg=${PageGroupStart-1}" >이전</a>
+		 </span>
+	</c:if>
+</div>
                     
                     
                     

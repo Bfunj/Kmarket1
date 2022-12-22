@@ -39,7 +39,6 @@ public class ListController extends HttpServlet  {
 		List<Cate1VO> cate1Name = service.SelectCate1Name(cate1);
 		List<Cate2VO> cate2Name = service.SelectCate2Name(cate1, cate2);
 		
-
 		// list 페이지 번호
 		int currentPage = service.getCurrentPage(pg); // 현재 페이지 번호 
 		int total = service.selectCountTotal(cate1, cate2);
@@ -47,7 +46,6 @@ public class ListController extends HttpServlet  {
 		int[] result = service.getPageGroupNum(currentPage, lastPageNum); // 페이지 그룹번호
 		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작번호
 		int start = service.getStartNum(currentPage); // 시작 인덱스
-		
 		
 		//list 불러오기
 		List<ProductVO> ListProduct = service.SelectProductList(cate1, cate2, cate, start);

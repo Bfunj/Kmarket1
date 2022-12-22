@@ -15,6 +15,9 @@ public enum MemberService {
 	public MemberVO selectMember(String uid, String pass) {
 		return dao.Select_Member(uid, pass);
 	}
+	public MemberVO Select_Member_admin(String uid) {
+		return dao.Select_Member_admin(uid);
+	}
 	public MemberVO selectMemberBySessId(String sessId) {
 		return dao.selectMemberBySessId(sessId);
 	}
