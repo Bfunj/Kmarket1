@@ -153,7 +153,13 @@ public class Sql {
 	public static final String SELECT_ARTICLE_QNA = "SELECT *FROM `board_article` WHERE `cate` like 'qna%';";
 	
 	public static final String Delete_Cart = "DELETE FROM `km_product_cart` WHERE `cartNo` = ? ";
-	public static final String CART_PRICE = "SELECT `total` FROM `km_product_cart`  WHERE `cartNo` = ? ";
+	
+	public static final String CART_PRICE = "SELECT * FROM `km_product_cart`  WHERE `cartNo` = ? ";
+	
+	public static final String Select_Product_Order = "SELECT a.*,b.proName,b.descript,b.thumb1,b.cate1,b.cate2 FROM `km_product_cart` AS a "
+													+ "JOIN `km_product` AS b "
+													+ "ON a.proNo = b.proNo WHERE cartNo = ? ";
+	
 }
 
 
