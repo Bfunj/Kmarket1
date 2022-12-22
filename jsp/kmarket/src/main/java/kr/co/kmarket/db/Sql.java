@@ -152,7 +152,16 @@ public class Sql {
 	// article 쿼리문
 	public static final String SELECT_ARTICLE_NOTICE = "SELECT *FROM `board_article` WHERE `cate` like 'notice%';";
 	public static final String SELECT_ARTICLE_QNA = "SELECT *FROM `board_article` WHERE `cate` like 'qna%';";
-	
+	public static final String SELECT_ARTICLES = "SELECT * FROM `board_article` WHERE `parent`=0 AND `cate`=? ORDER BY `no` DESC LIMIT ?,10";
+	public static final String INSERT_ARTICLE = "INSERT INTO `board_article` SET "
+											  + " `cate`=?, "
+											  + " `title`=?, "
+											  + " `content`=?, "
+											  + " `uid`=?, "
+											  + " `regip`=?, "
+											  + " `rdate`=NOW()";
+	public static final String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `board_article`";
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `board_article` where `parent`=0 AND cate=?";	
 	public static final String Delete_Cart = "DELETE FROM `km_product_cart` WHERE `cartNo` = ? ";
 	public static final String CART_PRICE = "SELECT `total` FROM `km_product_cart`  WHERE `cartNo` = ? ";
 }

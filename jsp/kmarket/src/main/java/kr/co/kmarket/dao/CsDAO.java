@@ -24,6 +24,79 @@ public class CsDAO  extends DBHelper {
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	public int insertArticle(ArticleVO article) {
+		int parent = 0;
+		try{
+			logger.info("insertArticle start...");
+			conn = getConnection();
+			
+			// 트랜젝션 시작
+			conn.setAutoCommit(false);
+			
+			stmt = conn.createStatement();
+			psmt = conn.prepareStatement(Sql.INSERT_ARTICLE);
+			
+			psmt.setString(1, article.getCate());
+			psmt.setString(2, article.getTitle());
+			psmt.setString(3, article.getContent());
+			psmt.setString(4, article.getUid());
+			psmt.setString(5, article.getRegip());
+			
+			psmt.executeUpdate(); // INSERT
+			rs = stmt.executeQuery(Sql.SELECT_MAX_NO); // SELECT
+			
+			// 작업확정
+			conn.commit(); 
+			
+			if(rs.next()){
+				parent = rs.getInt(1);				
+			}
+			
+			close();
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		
+		return parent;
+	}
+	
+	public List<ArticleVO> selectArticles(String cate, int start) {
+		
+		List<ArticleVO> articles = new ArrayList<>();	
+		
+		try{
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
+			psmt.setString(1, cate);
+			psmt.setInt(2, start);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()){
+				ArticleVO article = new ArticleVO();
+				article.setNo(rs.getInt(1));
+				article.setParent(rs.getInt(2));
+				article.setComment(rs.getInt(3));
+				article.setCate(rs.getString(4));
+				article.setTitle(rs.getString(5));
+				article.setContent(rs.getString(6));
+				article.setFile(rs.getInt(7));
+				article.setHit(rs.getInt(8));
+				article.setUid(rs.getString(9));
+				article.setRegip(rs.getString(10));
+				article.setRdate(rs.getString(11));
+				
+				articles.add(article);
+			}
+			close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return articles;
+	}
+	
 	public List<ArticleVO> SelectArticleNotice() {
 		List<ArticleVO> ArticleNotice = new ArrayList<>();
 		try {
@@ -85,4 +158,23 @@ public class CsDAO  extends DBHelper {
 		}
 		return ArticleQna;
 	}
+	
+	public int selectCountTotal(String cate) {
+		int total = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL);
+			psmt.setString(1, cate);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+	
 }
