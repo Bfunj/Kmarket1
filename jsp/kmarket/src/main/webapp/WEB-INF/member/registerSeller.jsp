@@ -66,7 +66,7 @@
 								<th><span class="essential">*</span>통신판매업신고 번호</th>
 								<td>
 									<input type="text" name="online_reg" placeholder="통신판매업신고 입력" required /> 
-									<span class="resultOnline">&nbsp;&nbsp;- 표시 포함, 예) 강남-12345, 제 1-01-23-4567호, 2017-경기성남-0011</span>
+									<span class="resultOnline">&nbsp;&nbsp;- 표시 포함, 예) 강남-12345</span>
 								</td>
 							</tr>
 							<tr>

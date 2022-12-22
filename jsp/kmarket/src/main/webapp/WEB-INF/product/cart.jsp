@@ -92,6 +92,7 @@
 						$('td[class=product_total]').append(data.total.toLocaleString());
 					}
 				});
+
 				
 				}else {
 					$('td[class=product_price]').empty("");
@@ -229,6 +230,7 @@
                             <tr>
                                 <td>상품수</td>
                                 <td class="product_num">0</td>
+
                               </tr>
                               <tr>
                                 <td>상품금액</td>
@@ -237,6 +239,7 @@
                               <tr>
                                 <td>할인금액</td>
                                 <td class="product_discount">0</td>
+
                               </tr>
                               <tr>
                                 <td>배송비</td>
@@ -249,6 +252,7 @@
                               <tr>
                                 <td>전체주문금액</td>
                                 <td class="product_total">0</td>
+
                               </tr>
                         </table>
                         <input type="submit" name="order" id="order" value="주문하기">

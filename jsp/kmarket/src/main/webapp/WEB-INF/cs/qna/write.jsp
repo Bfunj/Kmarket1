@@ -29,17 +29,18 @@
                         </ul>
                     </aside>
                     <article>
-                      <form action="#">
+                      <form action="/kmarket/cs/qna/write.do" method="post">
+                      <input type="hidden" name="uid" value="${sessUser.uid}"/>
                         <table>
                             <tbody>
                                 <tr>
                                     <td>문의유형</td>
                                     <td>
-                                        <select name="type" ><option value="0">선택</option>
-                                            <option>가입</option>
-                                            <option>탈퇴</option>
-                                            <option>회원정보</option>
-                                            <option>로그인</option>
+                                        <select name="cate" ><option value="0">선택</option>
+                                            <option value="qna_1">가입</option>
+                                            <option value="qna_2">탈퇴</option>
+                                            <option value="qna_3">회원정보</option>
+                                            <option value="qna_4">로그인</option>
                                         </select>
                                     </td>
                                 </tr>
