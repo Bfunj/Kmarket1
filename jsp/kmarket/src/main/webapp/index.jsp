@@ -63,7 +63,11 @@
 		            <a href="/kmarket/member/mypage.do" class="mypage">마이페이지</a>
 		      	</c:when>
 		      	<c:otherwise>
+			      	
 		      		<span>${sessUser.name }</span>님 반갑습니다.
+		      		<c:if test="${sessUser.level >= 3}">
+			      		 <a href="/kmarket/admin/index.do">관리자 </a>
+			      	</c:if>
 		            <a href="/kmarket/member/logout.do">로그아웃</a>
 		            <a href="/kmarket/member/mypage.do">마이페이지</a>
 		            <a href="/kmarket/product/cart.do?uid=${sessUser.uid }"
@@ -98,7 +102,7 @@
               <li><a href="./cs/notice/list.do">공지사항</a></li>
               <li><a href="./cs/faq/list.do">자주묻는질문</a></li>
               <li><a href="./cs/qna/write.do">문의하기</a></li>
-              <li><a href="./cs/qna/list.do">고객센터</a></li>
+              <li><a href="./cs/csIndex.do">고객센터</a></li>
             </ul>
           </div>
         </div>

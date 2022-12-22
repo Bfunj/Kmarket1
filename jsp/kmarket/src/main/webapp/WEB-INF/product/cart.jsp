@@ -4,21 +4,94 @@
 <jsp:include page="./header.jsp"></jsp:include>      
 <script>
 
-	$(document).ready(function() {
-		$('input[name=all]').click(function() {
-			if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
-			else $("input[name=check]").prop("checked", false);
+		//체크박스 이벤트
+		$(document).ready(function() {
+			
+			$('input[name=all]').click(function() {
+				if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
+				else $("input[name=check]").prop("checked", false);
+			});
+		
+			$("input[name=check]").click(function() {
+				
+				
+				
+				var total = $("input[name=check]").length;
+				var checked = $("input[name=check]:checked").length;
+		
+				if(total != checked) $('input[name=all]').prop("checked", false);
+				else $('input[name=all]').prop("checked", true); 
+			});
+			
+			//체크박스 삭제
+			$("input[name=del]").click(function(){
+				//alert('클릭확인');
+				
+				let checked = $('input[name=check]:checked').length;
+				let arr = [];
+				
+				$('input[name=check]:checked').each(function(){
+					arr.push($(this).val());
+				});
+				
+				
+				console.log("here1 : " + arr);
+				
+				if(checked == 0){
+					alert('선택된 상품이 없습니다.');
+					
+				}else if(confirm('선택한 상품을 삭제하겠습니까?')){
+					
+					console.log("here2");	
+					
+					$.ajax({
+						url : '/kmarket/product/DeleteCart.do',
+						type : 'POST',					
+						data : {'arr' : arr},
+						traditional: true,
+						dataType : 'json',
+						success : function(data){
+							if(data.result > 0){
+								$('input[name=check]:checked').parents('tr').remove();
+								location.reload();
+							}
+						}
+					});
+				}
+			});
+			
+			//계산 필드
+			
+			$('input[class=checkprice]').click(function() {
+				var total = 0;
+				let checked = $('input[name=check]:checked').length;
+				let arr = [];
+				
+				$('input[name=check]:checked').each(function(){
+					arr.push($(this).val());
+				});
+				console.log("checkNo : " + arr);
+				if(checked >0){
+				$.ajax({
+					url : '/kmarket/product/CartPrice.do',
+					type : 'POST',					
+					data : {'arr' : arr},
+					traditional: true,
+					dataType : 'json',
+					success : function(data){
+						console.log("data : "+data.price);
+						$('input[name=totalPrice]').val(data.price);
+					}
+				});
+				}else $('input[name=totalPrice]').val("0");
+				
+				
+			  });
+		    
+		     
+			
+			
 		});
-	
-		$("input[name=check]").click(function() {
-			var total = $("input[name=check]").length;
-			var checked = $("input[name=check]:checked").length;
-	
-			if(total != checked) $('input[name=all]').prop("checked", false);
-			else $('input[name=all]').prop("checked", true); 
-		});
-	});
-
 
 </script>
  
@@ -56,7 +129,7 @@
                 <input type="hidden" name="uid" value=${sessUser.uid }>
                     <table border="0">
                         <tr>
-                            <th><input type="checkbox" name="all" ></th>
+                            <th><input type="checkbox" name="all" class="checkprice"></th>
                             <th>상품명</th>
                             <th>총수량</th>
                             <th>판매가</th>
@@ -70,7 +143,7 @@
                         </tr>
                         <c:forEach var="cart" items="${carts}">
                         <tr>
-                            <td><input type="checkbox" name="check" value="${cart.cartNo }" ></td>
+                            <td><input type="checkbox" name="check" class="checkprice" value="${cart.cartNo }" ></td>
                             <td>
                                 <article>
 
@@ -87,7 +160,10 @@
                             <td>${cart.discount }</td>
                             <td>${cart.point }</td>
                             <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
-                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###" /></td>
+                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###" />
+                           
+                            </td>
+                            
                         </tr>
                         </c:forEach>
                     </table>
@@ -103,7 +179,7 @@
                               </tr>
                               <tr>
                                 <td>상품금액</td>
-                                <td>27,000</td>
+                                <td><input type="text" name="totalPrice" value=""></td>
                               </tr>
                               <tr>
                                 <td>할인금액</td>

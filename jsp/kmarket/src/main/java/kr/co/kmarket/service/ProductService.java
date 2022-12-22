@@ -11,5 +11,8 @@ public enum ProductService {
 	public ProductVO SelectProductView(String proNo) {
 		return dao.SelectProductView(proNo); 
 	}
+	public int CartPrice(String cartNo) {
+		return dao.CartPrice(cartNo);
+	}
 	
 }

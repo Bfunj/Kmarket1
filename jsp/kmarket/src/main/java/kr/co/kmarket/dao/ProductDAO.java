@@ -186,12 +186,55 @@ public class ProductDAO extends DBHelper{
 			psmt.setString(2, uid);
 			psmt.setString(3, proNo);
 			result = psmt.executeUpdate();
-			clone();
+			close();
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());
 		}
 		return result;
 	}
+	
+	public int DeleteCart(String cartNo) {
+			
+			int result = 0;
+			
+			try {
+				logger.info("Delete Cart Start...");
+				conn = getConnection();
+				psmt = conn.prepareStatement(Sql.Delete_Cart);
+				psmt.setString(1, cartNo);
+				result = psmt.executeUpdate();
+				close();
+				
+			}catch(Exception e) {
+				logger.error(e.getMessage());
+			}
+			
+			return result;
+	}
+	
+	public int CartPrice(String cartNo) {
+		
+		int result = 0;
+		
+		try {
+			logger.info("Cart Price Start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.CART_PRICE);
+			psmt.setString(1, cartNo);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return result;
+}
 }
 
