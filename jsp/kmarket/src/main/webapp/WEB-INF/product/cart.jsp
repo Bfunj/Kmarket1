@@ -80,10 +80,14 @@
 					dataType : 'json',
 					success : function(data){
 						console.log("data : "+data.price);
-						$('input[name=totalPrice]').val(data.price);
+						$('td[class=product_price]').empty("");
+						$('td[class=product_price]').append(data.price.toLocaleString());
 					}
 				});
-				}else $('input[name=totalPrice]').val("0");
+				}else {
+					$('td[class=product_price]').empty("");
+					$('td[class=product_price]').append("0");
+				}
 				
 				
 			  });
@@ -175,27 +179,27 @@
                         <table border="0">
                             <tr>
                                 <td>상품수</td>
-                                <td>1</td>
+                                <td class="product_num">1</td>
                               </tr>
                               <tr>
                                 <td>상품금액</td>
-                                <td><input type="text" name="totalPrice" value=""></td>
+                                <td class="product_price">0</td>
                               </tr>
                               <tr>
                                 <td>할인금액</td>
-                                <td>-1,000</td>
+                                <td class="product_discount">-1,000</td>
                               </tr>
                               <tr>
                                 <td>배송비</td>
-                                <td>0</td>
+                                <td class="product_delivery">0</td>
                               </tr>              
                               <tr>
                                 <td>포인트</td>
-                                <td>260</td>
+                                <td class="product_point">260</td>
                               </tr>
                               <tr>
                                 <td>전체주문금액</td>
-                                <td>26,000</td>
+                                <td class="product_total">26,000</td>
                               </tr>
                         </table>
                         <input type="submit" name="order" id="order" value="주문하기">
