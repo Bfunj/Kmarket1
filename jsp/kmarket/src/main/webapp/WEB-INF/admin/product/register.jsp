@@ -54,9 +54,7 @@
                                             <option value="">1차 분류 선택</option>
                                             <c:forEach var="cate" items="${cate1s }">
                                              <option name="cate1" value="${cate.cate1 }">${cate.c1Name }</option>
-                                            </c:forEach>
-                                          
-                                                    
+                                            </c:forEach>    
                                         </select>
                                     </td>
                                 </tr>

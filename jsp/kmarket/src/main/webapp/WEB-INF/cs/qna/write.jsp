@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../cs_header.jsp"/>
 <script>
      $(function(){
@@ -45,7 +44,7 @@
                 <section class="write">
                     <aside><h2>문의하기</h2>
                            <ul>
-                           
+                            
                              <li class="${cate eq 'qna_1' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_1">회원</a></li>
                              <li class="${cate eq 'qna_2' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_2">쿠폰/이벤트주문/결제</a></li>
                              <li class="${cate eq 'qna_3' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_3">주문/결제배송</a></li>

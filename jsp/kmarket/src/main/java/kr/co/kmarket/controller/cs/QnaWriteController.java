@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.CsService;
-import kr.co.kmarket.vo.ArticleVO;
+
 import kr.co.kmarket.vo.Cate1VO;
 
 @WebServlet("/cs/qna/write.do")

@@ -1,32 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../cs_header.jsp"/>
-<script>
-     $(function(){
-            $('.select > li').mouseover(function(){
-                $(this).css('background','#fff7f2');
-            });
-            $('.list li').mouseout(function(){
-                $(this).css('background','white');
-            });
-        
-            });
-</script>
-
         <section id="cs">
             <div class="qna">
                 <nav><div><p>홈<span>></span>문의하기</p></div></nav>
                 <section class="list">
                     <aside><h2>문의하기</h2>
-            <ul>
-                           
-                             <li class="${cate eq 'qna_1' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_1">회원</a></li>
-                             <li class="${cate eq 'qna_2' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_2">쿠폰/이벤트주문/결제</a></li>
-                             <li class="${cate eq 'qna_3' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_3">주문/결제배송</a></li>
-                             <li class="${cate eq 'qna_4' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_4">배송취소/반품/교환</a></li>
-                             <li class="${cate eq 'qna_5' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_5">취소/반품/교환여행/숙박/항공</a></li>
-                             <li class="${cate eq 'qna_6' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_6">여행/숙박/항공안전거래</a></li>
-                             <li class="${cate eq 'qna_7' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_7">안전거래</a></li>
-                        </ul>
+           			 <ul>
+                          <li class="${cate1 eq '10' ? 'on' : 'off'}"><a href="./list.do?&cate1=10">회원</a></li>
+                          <li class="${cate1 eq '11' ? 'on' : 'off'}"><a href="./list.do?&cate1=11">쿠폰/이벤트주문/결제</a></li>
+                          <li class="${cate1 eq '12' ? 'on' : 'off'}"><a href="./list.do?&cate1=12">주문/결제배송</a></li>
+                          <li class="${cate1 eq '13' ? 'on' : 'off'}"><a href="./list.do?&cate1=13">배송취소/반품/교환</a></li>
+                          <li class="${cate1 eq '14' ? 'on' : 'off'}"><a href="./list.do?&cate1=14">취소/반품/교환여행/숙박/항공</a></li>
+                          <li class="${cate1 eq '15' ? 'on' : 'off'}"><a href="./list.do?&cate1=15">여행/숙박/항공안전거래</a></li>
+                          <li class="${cate1 eq '16' ? 'on' : 'off'}"><a href="./list.do?&cate1=16">안전거래</a></li>
+                      </ul>
+
                     </aside>
                     <article>
                         <nav><h1>회원</h1>
@@ -34,16 +23,12 @@
                         </nav>
                         <table>
                             <tbody>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
+                                <tr><td><a href="./view.do">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
+                                <tr><td><a href="./view.do">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
+                                <tr><td><a href="./view.do">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
+                                <tr><td><a href="./view.do">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
+                                <tr><td><a href="./view.do">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
+                                <tr><td><a href="./view.do">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
                             </tbody>
                         </table>
                        
