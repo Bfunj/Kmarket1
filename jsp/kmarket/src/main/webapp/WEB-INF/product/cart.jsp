@@ -213,6 +213,7 @@
                             <td><fmt:formatNumber value="${cart.price }" pattern="#,###" /></td>
                             <td><fmt:formatNumber value="${(cart.discount)*(cart.price)/100}" pattern="#,###원" /></td>
                             <td>${cart.point }</td>
+                            
                             <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
                             <td><fmt:formatNumber value="${cart.total }" pattern="#,###원" />
                             </td>

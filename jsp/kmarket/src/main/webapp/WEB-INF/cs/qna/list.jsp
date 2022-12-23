@@ -1,22 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../cs_header.jsp"/>
-<script>
-     $(function(){
-            $('.select > li').mouseover(function(){
-                $(this).css('background','#fff7f2');
-            });
-            $('.list li').mouseout(function(){
-                $(this).css('background','white');
-            });
-        
-            });
-</script>
-
         <section id="cs">
             <div class="qna">
                 <nav><div><p>홈<span>></span>문의하기</p></div></nav>
                 <section class="list">
                     <aside><h2>문의하기</h2>
+
             			<ul>
                              <li class="${cate eq 'qna_1' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_1">회원</a></li>
                              <li class="${cate eq 'qna_2' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_2">쿠폰/이벤트주문/결제</a></li>
@@ -26,6 +16,7 @@
                              <li class="${cate eq 'qna_6' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_6">여행/숙박/항공안전거래</a></li>
                              <li class="${cate eq 'qna_7' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_7">안전거래</a></li>
                         </ul>
+
                     </aside>
                     <article>
                         <nav><h1>${cate}</h1>
@@ -33,6 +24,7 @@
                         </nav>
                         <table>
                             <tbody>
+
                             	<c:forEach var="article" items="${articles}">
 	                                <tr>
 	                                	<td>
@@ -42,6 +34,7 @@
 	                                	<td>2022.11.21</td>
 	                                </tr>
                               	</c:forEach>
+
                             </tbody>
                         </table>
                        

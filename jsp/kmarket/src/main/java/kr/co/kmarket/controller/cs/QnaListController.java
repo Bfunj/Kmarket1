@@ -25,6 +25,7 @@ public class QnaListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+
 		String cate1 = req.getParameter("category1");
 		String cate2 = req.getParameter("category2");
 		String pg = req.getParameter("pg");
@@ -52,6 +53,7 @@ public class QnaListController extends HttpServlet{
 		req.setAttribute("pageStartNum", pageStartNum+1);
 		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
+
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/qna/list.jsp");
 		dispatcher.forward(req, resp);

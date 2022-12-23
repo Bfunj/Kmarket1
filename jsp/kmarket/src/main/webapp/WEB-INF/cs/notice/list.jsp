@@ -6,14 +6,12 @@
                 <nav><div><p>홈<span>></span>공지사항</p></div></nav>
                 <section class="list">
                     <aside><h2>공지사항</h2>
-                        <ul>
-                           
-               	<li class="${cate eq 'notice_1' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_1">전체</a></li>
-               	<li class="${cate eq 'notice_2' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_2">고객서비스</a></li>
-               	<li class="${cate eq 'notice_3' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_3">안전거래</a></li>
-               	<li class="${cate eq 'notice_4' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_4">위해상품</a></li>
-               	<li class="${cate eq 'notice_5' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_5">이벤트당첨</a></li>
-
+                        <ul>              
+			               	<li class="${cate eq 'notice_1' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_1">전체</a></li>
+			               	<li class="${cate eq 'notice_2' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_2">고객서비스</a></li>
+			               	<li class="${cate eq 'notice_3' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_3">안전거래</a></li>
+			               	<li class="${cate eq 'notice_4' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_4">위해상품</a></li>
+			               	<li class="${cate eq 'notice_5' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_5">이벤트당첨</a></li>
                         </ul>
                     </aside>
                     <article>
