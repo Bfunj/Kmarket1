@@ -17,8 +17,7 @@
                 <nav><div><p>홈<span>></span>문의하기</p></div></nav>
                 <section class="list">
                     <aside><h2>문의하기</h2>
-            <ul>
-                           
+            			<ul>
                              <li class="${cate eq 'qna_1' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_1">회원</a></li>
                              <li class="${cate eq 'qna_2' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_2">쿠폰/이벤트주문/결제</a></li>
                              <li class="${cate eq 'qna_3' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_3">주문/결제배송</a></li>
@@ -29,30 +28,33 @@
                         </ul>
                     </aside>
                     <article>
-                        <nav><h1>회원</h1>
-                            <h2>회원관련 문의 내용입니다.</h2>
+                        <nav><h1>${cate}</h1>
+                            <h2>${cate} 문의 내용입니다.</h2>
                         </nav>
                         <table>
                             <tbody>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
-                                <tr><td><a href="./view.html">[가입]가입 문의내용</a></td><td>chh***</td><td>2022.11.21</td></tr>
+                            	<c:forEach var="article" items="${articles}">
+	                                <tr>
+	                                	<td>
+	                                		<a href="./view.html">[가입]가입 문의내용</a>
+	                                	</td>
+	                                	<td>${sessUser.uid.substring(0,3)}***</td>
+	                                	<td>2022.11.21</td>
+	                                </tr>
+                              	</c:forEach>
                             </tbody>
                         </table>
                        
                         <div class="page">
-                            <a href="#" class="prev">이전</a>
-                            <a href="#" class="num on">1</a>
-                            <a href="#" class="num">2</a>
-                            <a href="#" class="num">3</a>
-                            <a href="#" class="next">다음</a>
+                           	<c:if test="${pageGroupStart gt 1}">
+                        		 <a href="/kmarket/cs/qna/list.do?pg=${pageGroupStart-1}" class="prev">이전</a>
+                        	</c:if>
+                            <c:forEach var="i" begin="${pageGroupStart}" end="${pageGroupEnd}">
+                            	<a href="/kmarket/cs/qna/list.do?pg=${i}" class="num ${currentPage eq i? 'current':'off'}">${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageGroupStart lt lastPageNum}">
+                            	<a href="/kmarket/cs/qna/list.do?pg=${pageGroupStart+1}" class="next">다음</a>
+                            </c:if>
                         </div>
                         <a href="./write.do" class="btnWrite">문의하기</a>
                     </article>

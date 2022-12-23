@@ -25,11 +25,12 @@ public class QnaListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String cate = req.getParameter("cate");
+		String cate1 = req.getParameter("category1");
+		String cate2 = req.getParameter("category2");
 		String pg = req.getParameter("pg");
 		
 		int currentPage = service.getCurrentPage(pg);
-		int total = service.selectCountTotal(cate);
+		int total = service.selectCountTotal(cate1);
 		int lastPageNum = service.getLastPageNum(total);
 		int limitStart = service.getLimitStart(currentPage);
 		int [] result = service.getPageGroupNum(currentPage, lastPageNum);
@@ -38,10 +39,11 @@ public class QnaListController extends HttpServlet{
 		
 		
 		// 페이지 글 가져오기
-		List<ArticleVO> articles = service.selectArticles(cate, start);
+		List<ArticleVO> articles = service.selectQnaArticles(cate1, cate2, start);
 		
 
-		req.setAttribute("cate", cate);
+		req.setAttribute("cate1", cate1);
+		req.setAttribute("cate2", cate2);
 		req.setAttribute("articles", articles);
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("total", total);

@@ -35,7 +35,31 @@ public class QnaWriteController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		req.setCharacterEncoding("UTF-8");
 		
+		String cate1 = req.getParameter("category1");
+		String cate2 = req.getParameter("category2");
+		String title = req.getParameter("title");
+		String content = req.getParameter("content");
+		String uid = req.getParameter("uid");
+		String regip = req.getRemoteAddr();
+		
+		
+		ArticleVO vo =  new ArticleVO();
+		vo.setCate1(cate1);
+		vo.setCate2(cate2);
+		vo.setTitle(title);
+		vo.setContent(content);
+		vo.setUid(uid);
+		vo.setRegip(regip);
+		
+		
+		service.insertQnaArticle(vo);
+		
+				
+		// 리다이렉트
+		resp.sendRedirect("/kmarket/cs/qna/list.do");
 
 
 	}
