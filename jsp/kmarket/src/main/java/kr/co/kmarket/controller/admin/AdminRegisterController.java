@@ -28,6 +28,7 @@ public class AdminRegisterController extends HttpServlet{
 		
 		//cate1
 		List<Cate1VO> cate1s = service.SelectAdminProduct1();
+		
 		req.setAttribute("cate1s", cate1s);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/product/register.jsp");

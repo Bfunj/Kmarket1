@@ -74,6 +74,10 @@ public enum AdminService {
 		return dao.SelectProduct(code);
 	}
 	
+	public List<ProductVO> SelectProductAdmin(String seller, int start) {
+		return dao.SelectProductAdmin(seller, start);
+	}
+	
 	// 페이지 list 넘버
 	public int getLastPageNum(int total) {
 		
@@ -123,6 +127,9 @@ public enum AdminService {
 	
 	public int selectCountTotal(String cate1, String cate2) {
 		return dao.selectCountTotal(cate1, cate2);
+	}
+	public int selectCountTotal(String seller) {
+		return dao.selectCountTotal(seller);
 	}
 
 }

@@ -16,6 +16,7 @@ public class Sql {
 	
 	//select member
 	public static final String Select_Member = "Select * from `km_member` where `uid` = ? and `pass` = SHA2(?, 256)";
+	public static final String Select_Member_admin = "Select * from `km_member` where `uid` = ? " ;
 	
 
 
@@ -115,8 +116,15 @@ public class Sql {
 	public static final String SELECT_PRODUCT_DISCOUNT  	= "SELECT * FROM `km_product` WHERE `discount` >'0' ORDER BY `discount` DESC";
 	public static final String SELECT_PRODUCT_BEST  	= "SELECT * FROM `km_product` ORDER BY `sold` DESC ";
 	
+	// select product admin
+	public static final String SELECT_PRODUCT_ADMIN  	= " SELECT * FROM `km_product` where `seller`=? ORDER BY `rdate` DESC LIMIT ?, 10 ";
+	public static final String SELECT_PRODUCT_ADMIN2  	= " SELECT * FROM `km_product` ORDER BY `rdate` DESC LIMIT ?, 10 ";
+
+	
 	// select 상품 갯수
 	public static final String SELECT_PRODUCT_COUNT_TOTAL = "SELECT COUNT(`proNo`) FROM `km_product` where `cate1`=? and `cate2`=? ";	
+	public static final String SELECT_PRODUCT_COUNT_TOTAL_ADMIN = "SELECT COUNT(`proNo`) FROM `km_product` where `seller`=? ";	
+	public static final String SELECT_PRODUCT_COUNT_TOTAL_ADMIN2 = "SELECT COUNT(`proNo`) FROM `km_product`  ";	
 	
 	public static final String SELECT_PRODUCT_LIST_CATE_SOLD ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `sold` desc LIMIT ?, 10";
 	public static final String SELECT_PRODUCT_LIST_CATE_PRICE_A ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `price` ASC LIMIT ?, 10";

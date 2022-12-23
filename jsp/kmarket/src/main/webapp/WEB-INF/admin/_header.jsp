@@ -60,7 +60,7 @@
                     <li>
                         <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="/kmarket/admin/product/list.do?level=${sessUser.level }">상품현황</a></li>
+                            <li><a href="/kmarket/admin/product/list.do?uid=${sessUser.uid }">상품현황</a></li>
                             <li><a href="/kmarket/admin/product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>

@@ -318,6 +318,72 @@ public class AdminDAO extends DBHelper{
 	}
 	
 	
+	public List<ProductVO> SelectProductAdmin(String seller, int start) {
+		
+		List<ProductVO> listProduct = new ArrayList<>();
+		String master="master";
+		try {
+			logger.info("SELECT_PRODUCT_ADMIN start...");
+			
+			conn = getConnection();
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			if(master.equals(seller)) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_ADMIN2);
+				psmt.setInt(1,start);	
+			}else {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_ADMIN);
+				psmt.setString(1,seller);
+				psmt.setInt(2,start);
+
+			}
+			rs =psmt.executeQuery();	
+			while(rs.next()) {
+				ProductVO pv = new ProductVO();
+				
+				pv.setProNo(rs.getInt(1));
+				pv.setCate1(rs.getInt(2));
+				pv.setCate2(rs.getInt(3));
+				pv.setProName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getInt(8));
+				pv.setDiscount(rs.getInt(9));
+				pv.setPoint(rs.getInt(10));
+				pv.setStock(rs.getInt(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getInt(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReviw(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setRecipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
+				
+				listProduct.add(pv);
+			}
+			close();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}	
+		return listProduct;
+	}
+	
+	
 	public List<Cate1VO> SelectCate1() {
 		List<Cate1VO> cateList = new ArrayList<>();
 		
@@ -352,6 +418,36 @@ public class AdminDAO extends DBHelper{
 			close();
 		}catch(Exception e) {
 			e.printStackTrace();
+		}
+		return total;
+	}
+	
+	public int selectCountTotal(String seller) {
+		int total =0;
+		String master="master";
+		
+		try{
+			logger.info("selectCountTotal start...");
+			conn = getConnection();
+			PreparedStatement psmt = null;
+			Statement stmt =null;
+			ResultSet rs = null;
+			
+			if(master.equals(seller)) {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(Sql.SELECT_PRODUCT_COUNT_TOTAL_ADMIN2);
+			}else {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_COUNT_TOTAL_ADMIN);
+				psmt.setString(1,seller);
+				rs = psmt.executeQuery();
+			}
+	
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
 		}
 		return total;
 	}
