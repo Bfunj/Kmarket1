@@ -6,20 +6,50 @@
 	
 	//포인트 작업
 	$(document).ready(function(){
+		
+		$('input[name=all]').click(function() {
+			if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
+			else $("input[name=check]").prop("checked", false);
+		});
+	
+		$("input[name=check]").click(function() {
+			
+			var total = $("input[name=check]").length;
+			var checked = $("input[name=check]:checked").length;
+	
+			if(total != checked) $('input[name=all]').prop("checked", false);
+			else $('input[name=all]').prop("checked", true); 
+		});
+		
+		
+		
+		
 		$('.btnPoint').click(function(){
 			//alert('클릭!');
 			
 			let userPoint = ${sessUser.point}
 			let point = $('input[name=point]').val();
-			
+			let Price = $('input[name=totalPrice]').val();
+			let totalPrice = $('input[name=totalPrice]').val();
+			 
+			totalPrice = Price - point;
 			if(point < 3000){
 				alert('포인트는 3000점 이상 사용가능합니다.');
-			}else if(userPoint < point){
+			}
+			if(userPoint < point){
 				alert("현재 보유중인 포인트는 " + userPoint + " 입니다. " + "\n할인 받을 포인트를 확인해주세요." );
 			}
-			
-			$('td[class=product_pointDiscount]').empty("");
-			$('td[class=product_pointDiscount]').append(point);
+			if(userPoint > point && point >= 3000){
+				
+				$('td[class=product_pointDiscount]').empty("");
+				$('td[class=product_pointDiscount]').append(point);
+				$('td[class=product_total]').empty("");
+				$('td[class=product_total]').append(totalPrice.toLocaleString());
+				$('input[name=totalPrice]').empty("");
+				$('td[class=product_total]').append("<input type='hidden' name='totalPrice' id='totalPrice' value='"+Price+"'>");
+	
+				
+			}
 			
 		});
 		
@@ -56,6 +86,8 @@
 					$('td[class=product_point]').append(data.point.toLocaleString());
 					$('td[class=product_total]').empty("");
 					$('td[class=product_total]').append(data.total.toLocaleString());
+					$('td[class=product_total]').append("<input type='hidden' name='totalPrice' id='totalPrice' value='"+data.total+"'>");
+					
 				}
 			});
 			
