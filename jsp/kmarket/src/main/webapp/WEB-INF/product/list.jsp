@@ -94,9 +94,9 @@
 
             <!-- 상품목록 페이지번호 -->
          <div class="paging">
-		 	<c:if test="${PageGroupStart > 1 }">
+		 	<c:if test="${pageGroupStart > 1 }">
 				<span class="prev">
-		        	<a href="/kmarket/product/list.do?pg=${PageGroupStart-1}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" ><&nbsp;이전</a>
+		        	<a href="/kmarket/product/list.do?pg=${pageGroupStart-1}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" ><&nbsp;이전</a>
 		        </span>
 			</c:if>	
 		    <c:forEach var="num" begin="${pageGroupStart }" end="${pageGroupEnd }" step="1"> 
@@ -104,9 +104,9 @@
             		<a href="/kmarket/product/list.do?pg=${num}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" class="${num eq currentPage ? 'on':'off' }">${num}</a>
 		        </span>
 			</c:forEach>    
-		    <c:if test="${PageGroupEnd < lastPageNum }">
+		    <c:if test="${pageGroupEnd < lastPageNum }">
 				<span class="next">
-		        	<a href="/kmarket/product/list.do?pg=${PageGroupEnd+1}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" >이전</a>
+		        	<a href="/kmarket/product/list.do?pg=${pageGroupEnd+1}&cate1=${cate1}&cate2=${cate2}&cate=${cate}" >다음 ></a>
 		        </span>
 			</c:if>
          </div>

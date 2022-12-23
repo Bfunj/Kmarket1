@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/kmarket/css/admin.css">
-    <link rel="stylesheet" href="/kmarket/css/admin2.css">
+    
 </head>
 <body>
     <div id="admin-wrapper">
@@ -60,7 +60,7 @@
                     <li>
                         <a href="#"><i class="fas fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="/kmarket/admin/product/list.do?uid=${sessUser.uid }">상품현황</a></li>
+                            <li><a href="/kmarket/admin/product/list.do?uid=${sessUser.uid }&pg=1">상품현황</a></li>
                             <li><a href="/kmarket/admin/product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>

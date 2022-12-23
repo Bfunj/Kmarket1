@@ -4,6 +4,8 @@ import java.util.List;
 
 import kr.co.kmarket.dao.CsDAO;
 import kr.co.kmarket.vo.ArticleVO;
+import kr.co.kmarket.vo.Cate1VO;
+import kr.co.kmarket.vo.Cate2VO;
 
 
 public enum CsService {
@@ -65,5 +67,12 @@ public enum CsService {
 	}
 	public int getStartNum(int currentPage) {
 		return (currentPage-1)*10;
+	}
+	
+	public List<Cate1VO> SelectCsCate1() {
+		return dao.SelectCsCate1();
+	}
+	public List<Cate2VO> SelectCsCate2(String cate1) {
+		return dao.SelectCsCate2(cate1);
 	}
 }

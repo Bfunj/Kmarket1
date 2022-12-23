@@ -61,21 +61,23 @@
 
 
         <div class="paging">
-	<c:if test="${PageGroupStart > 1 }">
+	<c:if test="${pageGroupStart > 1 }">
 	<span class="prev">
-		<a href="/kmarket/admin/product/list.do?uid=baekhj&pg=${PageGroupStart-1}" ><&nbsp;이전</a>
+		<a href="/kmarket/admin/product/list.do?uid=${sessUser.uid }&pg=${pageGroupStart-1}" ><&nbsp;이전</a>
 	</span>
 	</c:if>	
+	
 	<c:forEach var="num" begin="${pageGroupStart }" end="${pageGroupEnd }" step="1"> 
 		<span class="num">
-            		<a href="/kmarket/admin/product/list.do?uid=baekhj&pg=${PageGroupStart-1}" class="${num eq currentPage ? 'on':'off' }">${num}</a>
+            		<a href="/kmarket/admin/product/list.do?uid=${sessUser.uid }&pg=${num}" class="${num eq currentPage ? 'on':'off' }">${num}</a>
 		  </span>
 	</c:forEach>    
-	<c:if test="${PageGroupEnd < lastPageNum }">
+	<c:if test="${pageGroupEnd < lastPageNum }">
 		<span class="next">
-			<a href="/kmarket/admin/product/list.do?uid=baekhj&pg=${PageGroupStart-1}" >이전</a>
+			<a href="/kmarket/admin/product/list.do?uid=${sessUser.uid }&pg=${pageGroupEnd+1}" >다음 ></a>
 		 </span>
 	</c:if>
+
 </div>
                     
                     

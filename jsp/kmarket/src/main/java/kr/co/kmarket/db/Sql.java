@@ -4,10 +4,12 @@ public class Sql {
 	
 	//select cate1
 	public static final String SELECT_CATE1 = " SELECT * FROM `km_product_cate1`"; 
+	public static final String SELECT_CATE1_CS = " SELECT * FROM `bd_cate1`"; 
 	public static final String SELECT_CATE1_NAME = " SELECT * FROM `km_product_cate1` where `cate1`= ? "; 
 	
 	//select cate2
 	public static final String SELECT_CATE2 = " SELECT * FROM `km_product_cate2` where `cate1`=? ";
+	public static final String SELECT_CATE2_CS = " SELECT * FROM `bd_cate2` where `cate1`=? ";
 	public static final String SELECT_CATE2_ = " SELECT * FROM `km_product_cate2` ";
 	public static final String SELECT_CATE2_NAME = " SELECT * FROM `km_product_cate2` where `cate1`= ? and `cate2`= ?"; 
 
