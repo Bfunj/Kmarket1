@@ -47,6 +47,7 @@ public class ListController extends HttpServlet  {
 		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작번호
 		int start = service.getStartNum(currentPage); // 시작 인덱스
 		
+		
 		//list 불러오기
 		List<ProductVO> ListProduct = service.SelectProductList(cate1, cate2, cate, start);
 	

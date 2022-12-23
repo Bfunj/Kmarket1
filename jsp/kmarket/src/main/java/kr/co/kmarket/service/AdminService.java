@@ -93,6 +93,7 @@ public enum AdminService {
 	}
 	
 	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+		
 		int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
 		int pageGroupEnd = currentPageGroup * 10;

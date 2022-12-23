@@ -6,14 +6,15 @@
                 <nav><div><p>홈<span>></span>문의하기</p></div></nav>
                 <section class="view">
                     <aside><h2>문의하기</h2>
-                        <ul>
-                            <li class="on"><a href="#">회원</a></li>
-                            <li><a href="#">쿠폰/이벤트</a></li>
-                            <li><a href="#">주문/결제</a></li>
-                            <li><a href="#">배송</a></li>
-                            <li><a href="#">취소/반품/교환</a></li>
-                            <li><a href="#">여행/숙박/항공</a></li>
-                            <li><a href="#">안전거래</a></li>
+                    <ul>
+                           
+                             <li class="${cate eq 'qna_1' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_1">회원</a></li>
+                             <li class="${cate eq 'qna_2' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_2">쿠폰/이벤트주문/결제</a></li>
+                             <li class="${cate eq 'qna_3' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_3">주문/결제배송</a></li>
+                             <li class="${cate eq 'qna_4' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_4">배송취소/반품/교환</a></li>
+                             <li class="${cate eq 'qna_5' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_5">취소/반품/교환여행/숙박/항공</a></li>
+                             <li class="${cate eq 'qna_6' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_6">여행/숙박/항공안전거래</a></li>
+                             <li class="${cate eq 'qna_7' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_7">안전거래</a></li>
                         </ul>
                     </aside>
                     <article>

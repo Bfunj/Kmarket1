@@ -1,5 +1,6 @@
 package kr.co.kmarket.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.vo.ArticleVO;
 import kr.co.kmarket.vo.Cate1VO;
+import kr.co.kmarket.vo.Cate2VO;
 
 
 public class CsDAO  extends DBHelper {
@@ -175,6 +177,63 @@ public class CsDAO  extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		return total;
+	}
+	
+	
+	//admin category1
+	public List<Cate1VO> SelectCsCate1() {
+		
+		List<Cate1VO> cate1s = new ArrayList<>();
+		
+		try {
+			logger.info("select cate1 start...");
+			
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_CATE1_CS);
+			
+			while(rs.next()) {
+				Cate1VO cate1 = new Cate1VO();
+				cate1.setCate1(rs.getInt(1));
+				cate1.setC1Name(rs.getString(2));
+				
+				cate1s.add(cate1);
+			}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+			logger.error("cate1 error..");
+		}
+		return cate1s;
+	}
+	
+	public List<Cate2VO> SelectCsCate2(String cate1) {
+		
+		List<Cate2VO> cate2s = new ArrayList<>();
+		
+		try {
+			logger.info("select cate2 start...");
+			
+			conn = getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_CATE2_CS);
+			psmt.setString(1, cate1);
+			ResultSet rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				Cate2VO cate2 = new Cate2VO();
+				cate2.setCate1(rs.getInt(1));
+				cate2.setCate2(rs.getInt(2));
+				cate2.setC2Name(rs.getString(3));
+				
+				cate2s.add(cate2);
+			}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return cate2s;
 	}
 	
 }
