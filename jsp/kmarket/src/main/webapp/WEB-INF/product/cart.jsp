@@ -14,8 +14,6 @@
 		
 			$("input[name=check]").click(function() {
 				
-				
-				
 				var total = $("input[name=check]").length;
 				var checked = $("input[name=check]:checked").length;
 		
@@ -61,7 +59,6 @@
 			});
 			
 			//계산 필드
-			
 			$('input[class=checkprice]').click(function() {
 				var total = 0;
 				let checked = $('input[name=check]:checked').length;
@@ -71,7 +68,8 @@
 					arr.push($(this).val());
 				});
 				console.log("checkNo : " + arr);
-				if(checked >0){
+				
+				if(checked > 0){
 				$.ajax({
 					url : '/kmarket/product/CartPrice.do',
 					type : 'POST',					
@@ -82,20 +80,70 @@
 						console.log("data : "+data.price);
 						$('td[class=product_price]').empty("");
 						$('td[class=product_price]').append(data.price.toLocaleString());
+						$('td[class=product_delivery]').empty("");
+						$('td[class=product_delivery]').append(data.delivery.toLocaleString());
+						$('td[class=product_discount]').empty("");
+						$('td[class=product_discount]').append(data.discount.toLocaleString());
+						$('td[class=product_num]').empty("");
+						$('td[class=product_num]').append(data.count.toLocaleString());
+						$('td[class=product_point]').empty("");
+						$('td[class=product_point]').append(data.point.toLocaleString());
+						$('td[class=product_total]').empty("");
+						$('td[class=product_total]').append(data.total.toLocaleString());
 					}
 				});
+
+				
 				}else {
 					$('td[class=product_price]').empty("");
 					$('td[class=product_price]').append("0");
+					$('td[class=product_delivery]').empty("");
+					$('td[class=product_delivery]').append("0");
+					$('td[class=product_discount]').empty("");
+					$('td[class=product_discount]').append("0");
+					$('td[class=product_num]').empty("");
+					$('td[class=product_num]').append("0");
+					$('td[class=product_point]').empty("");
+					$('td[class=product_point]').append("0");
+					$('td[class=product_total]').empty("");
+					$('td[class=product_total]').append("0");
 				}
-				
-				
-			  });
-		    
-		     
+		  });
 			
+		$('input[name=order]').click(function(e){
+			e.preventDefault();
 			
+			let arr = [];
+			
+			let checked = $('input[name=check]:checked').length;
+			
+			$('input[name=check]:checked').each(function(){
+				arr.push($(this).val());
+			});
+			
+			let jsonData = {
+				"arr" : arr
+			};
+			
+			if(checked == 0){
+				alert('상품은 1개 이상 선택해주세요.');
+				
+			}else{
+				$.ajax({
+					url : '/kmarket/product/cart.do',
+					type : 'POST',
+					data : jsonData,
+					traditional : true,
+					dataType : 'json',
+					success : function(data){
+						if(data.result > 0){
+							location.href='/kmarket/product/order.do';
+						}
+					}
+				});
+			}
 		});
+	});
 
 </script>
  
@@ -142,17 +190,19 @@
                             <th>배송비</th>
                             <th>소계</th>
                         </tr>
+                        <c:choose>
+                        <c:when test="${empty carts}">
                         <tr class="empty">
                             <td colspan="7">장바구니에 상품이 없습니다.</td>
                         </tr>
+                        </c:when>
+                        <c:otherwise>
                         <c:forEach var="cart" items="${carts}">
                         <tr>
                             <td><input type="checkbox" name="check" class="checkprice" value="${cart.cartNo }" ></td>
                             <td>
                                 <article>
-
                                     <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
-
                                     <div>
                                         <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a></h2>
                                         <p>${cart.descript }</p>
@@ -161,15 +211,15 @@
                             </td>
                             <td>${cart.count }</td>
                             <td><fmt:formatNumber value="${cart.price }" pattern="#,###" /></td>
-                            <td>${cart.discount }</td>
+                            <td><fmt:formatNumber value="${(cart.discount)*(cart.price)/100}" pattern="#,###원" /></td>
                             <td>${cart.point }</td>
                             <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
-                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###" />
-                           
+                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###원" />
                             </td>
-                            
                         </tr>
                         </c:forEach>
+                        </c:otherwise>
+                        </c:choose>
                     </table>
                     <input type="button" name="del" value="선택삭제">
 
@@ -179,7 +229,8 @@
                         <table border="0">
                             <tr>
                                 <td>상품수</td>
-                                <td class="product_num">1</td>
+                                <td class="product_num">0</td>
+
                               </tr>
                               <tr>
                                 <td>상품금액</td>
@@ -187,7 +238,8 @@
                               </tr>
                               <tr>
                                 <td>할인금액</td>
-                                <td class="product_discount">-1,000</td>
+                                <td class="product_discount">0</td>
+
                               </tr>
                               <tr>
                                 <td>배송비</td>
@@ -195,11 +247,12 @@
                               </tr>              
                               <tr>
                                 <td>포인트</td>
-                                <td class="product_point">260</td>
+                                <td class="product_point">0</td>
                               </tr>
                               <tr>
                                 <td>전체주문금액</td>
-                                <td class="product_total">26,000</td>
+                                <td class="product_total">0</td>
+
                               </tr>
                         </table>
                         <input type="submit" name="order" id="order" value="주문하기">

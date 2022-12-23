@@ -105,7 +105,7 @@ $(function(){
 		
 		if(!company.match(regCompany)){
 			isCompanyOk = false;
-			$('.resultCompany').css('color', 'red').text(' (주)포함 입력, 예) (주)케이마켓.');
+			$('.resultCompany').css('color', 'red').text(' (주)포함 입력해주십시오, 예) (주)케이마켓.');
 		}else{
 			isCompanyOk = true;
 			$('.resultCompany').text('');
@@ -131,7 +131,7 @@ $(function(){
 		
 		if(!corp.match(regCorp)){
 			isCorpOk = false;
-			$('.resultCorp').css('color', 'red').text('사업자번호가 유효하지 않습니다.');
+			$('.resultCorp').css('color', 'red').text('- 표시 포함 12자리 입력해주십시오, 예) 123-45-67890.');
 		}else{
 			isCorpOk = true;
 			$('.resultCorp').text('');
@@ -144,7 +144,7 @@ $(function(){
 		
 		if(!online_reg.match(reOnline)){
 			isOnlineOk = false;
-			$('.resultOnline').css('color', 'red').text('통신판매번호가 유효하지 않습니다.');
+			$('.resultOnline').css('color', 'red').text('- 표시 포함 입력해주십시오, 예) 강남-12345');
 		}else{
 			isOnlineOk = true;
 			$('.resultOnline').text('');
@@ -156,7 +156,7 @@ $(function(){
 		
 		if(!tel.match(regTel)){
 			isTelOk = false;
-			$('.resultTel').css('color', 'red').text('전화번호가 유효하지 않습니다.');
+			$('.resultTel').css('color', 'red').text('- 표시 포함 입력해주십시오, 지역번호 포함, 예) 02-234-1234.');
 		}else{
 			isTelOk = true;
 			$('.resultTel').text('');
@@ -168,7 +168,7 @@ $(function(){
 		
 		if(!fax.match(regTel)){
 			isFaxOk = false;
-			$('.resultFax').css('color', 'red').text('팩스번호가 유효하지 않습니다.');
+			$('.resultFax').css('color', 'red').text('- 표시 포함 입력해주십시오, 지역번호 포함, 예) 02-234-1234');
 		}else{
 			isFaxOk = true;
 			$('.resultFax').text('');
@@ -275,7 +275,7 @@ $(function(){
 		
 		if(!hp.match(regHp)){
 			isHpOk = false;
-			$('.resultHp').css('color', 'red').text('휴대폰이 유효하지 않습니다.');
+			$('.resultHp').css('color', 'red').text('- 포함 13자리를 입력하세요.');
 		}else{
 			isHpOk = true;
 			$('.resultHp').text('');
@@ -293,27 +293,27 @@ $(function(){
 			return false;
 		}
 		if(!isCompanyOk){
-			alert('이름을 확인 하십시요.');
+			alert('회사명을 확인 하십시요.');
 			return false;
 		}
 		if(!isCeoOk){
-			alert('이름을 확인 하십시요.');
+			alert('대표자를 확인 하십시요.');
 			return false;
 		}
 		if(!isCorpOk){
-			alert('이름을 확인 하십시요.');
+			alert('사업자등록번호를 확인 하십시요.');
 			return false;
 		}
 		if(!isOnlineOk){
-			alert('이름을 확인 하십시요.');
+			alert('통신판매업신고을 확인 하십시요.');
 			return false;
 		}
 		if(!isTelOk){
-			alert('이름을 확인 하십시요.');
+			alert('전화번호를 확인 하십시요.');
 			return false;
 		}
 		if(!isFaxOk){
-			alert('이름을 확인 하십시요.');
+			alert('팩스번호를 확인 하십시요.');
 			return false;
 		}
 		if(!isEmailOk){
@@ -325,11 +325,11 @@ $(function(){
 			return false;
 		}
 		if(!isNameOk){
-			alert('이름을 확인 하십시요.');
+			alert('담당자 이름을 확인 하십시요.');
 			return false;
 		}
 		if(!isHpOk){
-			alert('휴대폰을 확인 하십시요.');
+			alert('담당자 휴대폰을 확인 하십시요.');
 			return false;
 		}
 		

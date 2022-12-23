@@ -6,8 +6,6 @@
 	$(function(){
 		$('input[class=cart]').click(function(){
 			
-			
-			
 			let uid = $('input[name=uid]').val();
 			let proNo = $('input[name=proNo]').val();
 			let count = $('input[name=num]').val();
@@ -43,10 +41,9 @@
 						}
 					}
 				});
-				
 			}
-			
 		});
+		
 		$('button[class=decrease]').click(function(){
 			let count = $('input[name=num]').val();
 			if(count>0){
@@ -62,8 +59,6 @@
 			}
 			document.getElementById("test").value = count;
 		});
-
-		
 	});
 	
 

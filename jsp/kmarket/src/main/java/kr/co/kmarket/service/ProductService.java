@@ -1,6 +1,9 @@
 package kr.co.kmarket.service;
 
+import java.util.List;
+
 import kr.co.kmarket.dao.ProductDAO;
+import kr.co.kmarket.vo.CartVO;
 import kr.co.kmarket.vo.ProductVO;
 
 public enum ProductService {
@@ -11,7 +14,7 @@ public enum ProductService {
 	public ProductVO SelectProductView(String proNo) {
 		return dao.SelectProductView(proNo); 
 	}
-	public int CartPrice(String cartNo) {
+	public List<CartVO> CartPrice(String cartNo) {
 		return dao.CartPrice(cartNo);
 	}
 	
