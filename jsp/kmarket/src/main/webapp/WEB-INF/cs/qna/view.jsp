@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../cs_header.jsp"/>
         <section id="cs">
@@ -6,8 +5,7 @@
                 <nav><div><p>홈<span>></span>문의하기</p></div></nav>
                 <section class="view">
                     <aside><h2>문의하기</h2>
-                    <ul>
-                           
+                    <ul>      
                              <li class="${cate eq 'qna_1' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_1">회원</a></li>
                              <li class="${cate eq 'qna_2' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_2">쿠폰/이벤트주문/결제</a></li>
                              <li class="${cate eq 'qna_3' ? 'on' : 'off'}"><a href="./list.do?&cate=qna_3">주문/결제배송</a></li>
