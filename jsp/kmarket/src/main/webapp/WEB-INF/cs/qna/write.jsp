@@ -73,13 +73,7 @@
                                             <option value="cate0">2차 분류 선택</option>                
                                              <option value=""></option>
                                         </select>
-                                        
                                     </td>
-                                   
-                                    
-                                    
-                                    
-                                
                                 </tr>
                                 <tr>
                                     <td>문의제목</td>

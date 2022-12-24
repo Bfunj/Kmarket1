@@ -26,23 +26,24 @@ public class CsDAO  extends DBHelper {
 	
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public int insertArticle(ArticleVO article) {
+	public int insertQnaArticle(ArticleVO article) {
 		int parent = 0;
 		try{
-			logger.info("insertArticle start...");
+			logger.info("insertQnaArticle start...");
 			conn = getConnection();
 			
 			// 트랜젝션 시작
 			conn.setAutoCommit(false);
 			
 			stmt = conn.createStatement();
-			psmt = conn.prepareStatement(Sql.INSERT_ARTICLE);
+			psmt = conn.prepareStatement(Sql.INSERT_QNA_ARTICLE);
 			
-			psmt.setString(1, article.getCate());
-			psmt.setString(2, article.getTitle());
-			psmt.setString(3, article.getContent());
-			psmt.setString(4, article.getUid());
-			psmt.setString(5, article.getRegip());
+			psmt.setString(1, article.getCate1());
+			psmt.setString(2, article.getCate2());
+			psmt.setString(3, article.getTitle());
+			psmt.setString(4, article.getContent());
+			psmt.setString(5, article.getUid());
+			psmt.setString(6, article.getRegip());
 			
 			psmt.executeUpdate(); // INSERT
 			rs = stmt.executeQuery(Sql.SELECT_MAX_NO); // SELECT
@@ -62,15 +63,16 @@ public class CsDAO  extends DBHelper {
 		return parent;
 	}
 	
-	public List<ArticleVO> selectArticles(String cate, int start) {
+	public List<ArticleVO> selectQnaArticles(String cate1, String cate2, int start) {
 		
 		List<ArticleVO> articles = new ArrayList<>();	
 		
 		try{
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_ARTICLES);
-			psmt.setString(1, cate);
-			psmt.setInt(2, start);
+			psmt = conn.prepareStatement(Sql.SELECT_QNA_ARTICLES);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			psmt.setInt(3, start);
 			
 			rs = psmt.executeQuery();
 			
@@ -79,14 +81,15 @@ public class CsDAO  extends DBHelper {
 				article.setNo(rs.getInt(1));
 				article.setParent(rs.getInt(2));
 				article.setComment(rs.getInt(3));
-				article.setCate(rs.getString(4));
-				article.setTitle(rs.getString(5));
-				article.setContent(rs.getString(6));
-				article.setFile(rs.getInt(7));
-				article.setHit(rs.getInt(8));
-				article.setUid(rs.getString(9));
-				article.setRegip(rs.getString(10));
-				article.setRdate(rs.getString(11));
+				article.setCate1(rs.getString(4));
+				article.setCate2(rs.getString(3));
+				article.setTitle(rs.getString(4));
+				article.setContent(rs.getString(5));
+				article.setFile(rs.getInt(6));
+				article.setHit(rs.getInt(7));
+				article.setUid(rs.getString(8));
+				article.setRegip(rs.getString(9));
+				article.setRdate(rs.getString(10));
 				
 				articles.add(article);
 			}
@@ -111,14 +114,15 @@ public class CsDAO  extends DBHelper {
 				av.setNo(rs.getInt(1));
 				av.setParent(rs.getInt(2));
 				av.setComment(rs.getInt(3));
-				av.setCate(rs.getString(4));
-				av.setTitle(rs.getString(5));
-				av.setContent(rs.getString(6));
-				av.setFile(rs.getInt(7));
-				av.setHit(rs.getInt(8));
-				av.setUid(rs.getString(9));
-				av.setRegip(rs.getString(10));
-				av.setRdate(rs.getString(11));
+				av.setCate1(rs.getString(4));
+				av.setCate2(rs.getString(5));
+				av.setTitle(rs.getString(6));
+				av.setContent(rs.getString(7));
+				av.setFile(rs.getInt(8));
+				av.setHit(rs.getInt(9));
+				av.setUid(rs.getString(10));
+				av.setRegip(rs.getString(11));
+				av.setRdate(rs.getString(12));
 				
 				ArticleNotice.add(av);
 			}
@@ -142,7 +146,7 @@ public class CsDAO  extends DBHelper {
 				av.setNo(rs.getInt(1));
 				av.setParent(rs.getInt(2));
 				av.setComment(rs.getInt(3));
-				av.setCate(rs.getString(4));
+				av.setCate1(rs.getString(4));
 				av.setTitle(rs.getString(5));
 				av.setContent(rs.getString(6));
 				av.setFile(rs.getInt(7));
@@ -161,12 +165,12 @@ public class CsDAO  extends DBHelper {
 		return ArticleQna;
 	}
 	
-	public int selectCountTotal(String cate) {
+	public int selectCountTotal(String cate1) {
 		int total = 0;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_COUNT_TOTAL);
-			psmt.setString(1, cate);
+			psmt.setString(1, cate1);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				total = rs.getInt(1);

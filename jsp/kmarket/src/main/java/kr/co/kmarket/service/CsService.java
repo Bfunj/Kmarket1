@@ -18,11 +18,11 @@ public enum CsService {
 	public List<ArticleVO> SelectArticleQna() {
 		return dao.SelectArticleQna();
 	}
-	public int insertArticle(ArticleVO article) {
-		return dao.insertArticle(article);
+	public int insertQnaArticle(ArticleVO article) {
+		return dao.insertQnaArticle(article);
 	}
-	public List<ArticleVO> selectArticles(String cate, int start){
-		return dao.selectArticles(cate,start);
+	public List<ArticleVO> selectQnaArticles(String cate1, String cate2, int start){
+		return dao.selectQnaArticles(cate1, cate2, start);
 	}
 	public int getCurrentPage(String pg) {
 		int currentPage = 1;	// 현재 페이지 기본값

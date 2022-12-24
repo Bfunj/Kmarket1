@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/cs/faq/view.do")
-public class FaqLViewController extends HttpServlet{
+public class FaqViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	@Override
 	public void init() throws ServletException {
