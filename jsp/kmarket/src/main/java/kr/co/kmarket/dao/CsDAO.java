@@ -134,32 +134,106 @@ public class CsDAO  extends DBHelper {
 		return ArticleNotice;
 	}
 	
-	public List<ArticleVO> SelectArticleQna() {
+	public List<ArticleVO> SelectArticleQna(String cate) {
 		List<ArticleVO> ArticleQna = new ArrayList<>();
 		try {
 			logger.info("SelectArticleQna ...");
 			conn = getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(Sql.SELECT_ARTICLE_QNA	);
+			
+			psmt = conn.prepareStatement(Sql.SELECT_ARTICLE_QNA);
+			psmt.setString(1, cate);
+			rs = psmt.executeQuery();
+			
 			while(rs.next()) {
 				ArticleVO av = new ArticleVO();
 				av.setNo(rs.getInt(1));
 				av.setParent(rs.getInt(2));
 				av.setComment(rs.getInt(3));
 				av.setCate1(rs.getString(4));
-				av.setTitle(rs.getString(5));
-				av.setContent(rs.getString(6));
-				av.setFile(rs.getInt(7));
-				av.setHit(rs.getInt(8));
-				av.setUid(rs.getString(9));
-				av.setRegip(rs.getString(10));
-				av.setRdate(rs.getString(11));
+				av.setCate2(rs.getString(5));
+				av.setTitle(rs.getString(6));
+				av.setContent(rs.getString(7));
+				av.setFile(rs.getInt(8));
+				av.setHit(rs.getInt(9));
+				av.setUid(rs.getString(10));
+				av.setRegip(rs.getString(11));
+				av.setRdate(rs.getString(12));
 				
 				ArticleQna.add(av);
 			}
 			close();
 		}catch(Exception e) {
 			logger.error("SelectArticleQna error ...");			
+			logger.error(e.getMessage());			
+		}
+		return ArticleQna;
+	}
+	
+	public List<ArticleVO> SelectArticleQna() {
+		List<ArticleVO> ArticleQna = new ArrayList<>();
+		try {
+			logger.info("SelectArticleQna ...");
+			conn = getConnection();
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_ARTICLE_QNA_INDEX);
+			
+			while(rs.next()) {
+				ArticleVO av = new ArticleVO();
+				av.setNo(rs.getInt(1));
+				av.setParent(rs.getInt(2));
+				av.setComment(rs.getInt(3));
+				av.setCate1(rs.getString(4));
+				av.setCate2(rs.getString(5));
+				av.setTitle(rs.getString(6));
+				av.setContent(rs.getString(7));
+				av.setFile(rs.getInt(8));
+				av.setHit(rs.getInt(9));
+				av.setUid(rs.getString(10));
+				av.setRegip(rs.getString(11));
+				av.setRdate(rs.getString(12));
+				
+				ArticleQna.add(av);
+			}
+			close();
+		}catch(Exception e) {
+			logger.error("SelectArticleQna error ...");			
+			logger.error(e.getMessage());			
+		}
+		return ArticleQna;
+	}
+	
+	public List<ArticleVO> SelectQnaListPage(String cate, int start) {
+		List<ArticleVO> ArticleQna = new ArrayList<>();
+		try {
+			logger.info("SelectArticleQnaPage ...");
+			conn = getConnection();
+			
+			psmt = conn.prepareStatement(Sql.SELECT_CS_QNA_VIEW_PAGE);
+			psmt.setString(1, cate);
+			psmt.setInt(2, start);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleVO av = new ArticleVO();
+				av.setNo(rs.getInt(1));
+				av.setParent(rs.getInt(2));
+				av.setComment(rs.getInt(3));
+				av.setCate1(rs.getString(4));
+				av.setCate2(rs.getString(5));
+				av.setTitle(rs.getString(6));
+				av.setContent(rs.getString(7));
+				av.setFile(rs.getInt(8));
+				av.setHit(rs.getInt(9));
+				av.setUid(rs.getString(10));
+				av.setRegip(rs.getString(11));
+				av.setRdate(rs.getString(12));
+				
+				ArticleQna.add(av);
+			}
+			close();
+		}catch(Exception e) {
+			logger.error("SelectArticleQnaPage error ...");			
 			logger.error(e.getMessage());			
 		}
 		return ArticleQna;
@@ -190,11 +264,12 @@ public class CsDAO  extends DBHelper {
 		List<Cate1VO> cate1s = new ArrayList<>();
 		
 		try {
-			logger.info("select cate1 start...");
+			logger.info("select Cs cate1 start...");
 			
 			conn = getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(Sql.SELECT_CATE1_CS);
+		
 			
 			while(rs.next()) {
 				Cate1VO cate1 = new Cate1VO();
@@ -210,6 +285,33 @@ public class CsDAO  extends DBHelper {
 			logger.error("cate1 error..");
 		}
 		return cate1s;
+	}
+public List<Cate2VO> SelectCsCate2() {
+		
+		List<Cate2VO> cate2s = new ArrayList<>();
+		
+		try {
+			logger.info("select Cs cate2 start...");
+			
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_CATE2_CS_INDEX);
+					
+			while(rs.next()) {
+				Cate2VO cate2 = new Cate2VO();
+				cate2.setCate1(rs.getInt(1));
+				cate2.setCate2(rs.getInt(2));
+				cate2.setC2Name(rs.getString(3));
+				
+				cate2s.add(cate2);
+			}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+			logger.error("cate2 error..");
+		}
+		return cate2s;
 	}
 	
 	public List<Cate2VO> SelectCsCate2(String cate1) {
@@ -238,6 +340,38 @@ public class CsDAO  extends DBHelper {
 			logger.error(e.getMessage());
 		}
 		return cate2s;
+	}
+	
+	public ArticleVO QnaView(String no) {
+		
+		ArticleVO av = null;
+		
+		try {
+			logger.info("select CsView start...");
+			
+			conn = getConnection();		
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_ARTICLE_QNA_VIEW);
+			psmt.setString(1, no);
+			ResultSet rs = psmt.executeQuery();
+		
+			if(rs.next()) {
+				av = new ArticleVO();
+				av.setNo(rs.getInt(1));
+				av.setCate1(rs.getString(4));
+				av.setCate2(rs.getString(5));
+				av.setTitle(rs.getString(6));
+				av.setContent(rs.getString(7));
+				av.setHit(rs.getInt(9));
+				av.setUid(rs.getString(10));
+				av.setRdate(rs.getString(12));
+				}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+			logger.error("csView error..");
+		}
+		return av;
 	}
 	
 }
