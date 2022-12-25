@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="./cs_header.jsp"/>
  
         <section id="cs">
@@ -34,15 +36,30 @@
                 </section>
                 <section class="qna">
                     <h1>문의하기
-                        <a href="./qna/list.do?cate=qna_1">전체보기</a>
+                        <a href="./qna/list.do?cate=10&pg=1">전체보기</a>
                     </h1>
                     <ul>
-                        <li><a href="#">[회원] 문의 글1</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>
-                        <li><a href="#">[회원] 문의 글2</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>
-                        <li><a href="#">[회원] 문의 글3</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>
-                        <li><a href="#">[회원] 문의 글4</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>
-                        <li><a href="#">[회원] 문의 글5</a><p><span class="uid">chh**</span><span class="date">22.10.31</span></p></li>
-
+             
+					  	<c:set var="done_loop" value="false"/>
+           				 <c:set var="i" value="1"></c:set>
+					   <c:forEach var="CsQnaList" items="${CsQnaList}">
+					    <c:if test="${done_loop ne true}">
+							      	<c:forEach var="cate2s" items="${cate2s}">
+						      			<c:if test="${cate2s.cate2 eq CsQnaList.cate2 and cate2s.cate1 eq CsQnaList.cate1}">
+										    <li><a href="./qna/view.do?&no=${CsQnaList.no }&cate=${CsQnaList.cate1}">
+										    [ ${cate2s.c2Name } ] ${CsQnaList.title }</a><p>
+										    <span class="uid">
+										    ${fn:substring(CsQnaList.uid, 0, fn:length(CsQnaList.uid) - 3)}***
+										    </span><span class="date">${CsQnaList.rdate }</span></p></li>
+										</c:if>			
+									</c:forEach>				    		    
+					    <c:set var="i" value="${i+1}"></c:set>
+					  	<c:if test="${i eq 6}">
+                       		<c:set var="done_loop" value="true"/>
+                    	</c:if>
+                    	</c:if>
+                    	
+					   </c:forEach>
                     </ul>
                     <a href="./qna/write.do" class="ask">문의글 작성 ></a>
                 </section>

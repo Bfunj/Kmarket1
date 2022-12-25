@@ -161,7 +161,7 @@ header > .logo img {
 #cs > .main > .faq > ol > li span {
     position: relative;
     top: 100px;
-    font-size: 14px;
+    font-size: 13px;
 }
 #cs > .main > section > ul > li > p {
     float: right;
@@ -664,7 +664,7 @@ header > .logo img {
     float: right;
     padding: 10px 20px;
     text-align: center;
-    margin-top: -48px;
+    margin-top: 0px;
     background-color: #067dfd;
     border: 1px solid #0063ce;
     border-radius: 2px;
@@ -743,7 +743,7 @@ header > .logo img {
     font-size: 16px;
 }
 #cs > .qna > .write > article table select {
-    width: 100px;
+    width: 130px;
     height: 40px;
     font-size: 16px;
     box-sizing: border-box;

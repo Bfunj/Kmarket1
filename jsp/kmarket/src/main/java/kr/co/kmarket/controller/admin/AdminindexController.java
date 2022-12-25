@@ -23,10 +23,10 @@ public class AdminindexController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		List<ArticleVO> artiNotice = service.SelectArticleNotice();
-		List<ArticleVO> artiQna = service.SelectArticleQna();
+		//List<ArticleVO> artiQna = service.SelectArticleQna();
 		
 		req.setAttribute("artiNotice", artiNotice);
-		req.setAttribute("artiQna", artiQna);
+		//req.setAttribute("artiQna", artiQna);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/index.jsp");
 		dispatcher.forward(req, resp);

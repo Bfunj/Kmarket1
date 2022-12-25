@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.kmarket.service.CsService;
-
+import kr.co.kmarket.vo.ArticleVO;
 import kr.co.kmarket.vo.Cate1VO;
 
 @WebServlet("/cs/qna/write.do")
@@ -59,7 +59,7 @@ public class QnaWriteController extends HttpServlet{
 		
 				
 		// 리다이렉트
-		resp.sendRedirect("/kmarket/cs/qna/list.do");
+		resp.sendRedirect("/kmarket/cs/qna/list.do?cate=10");
 
 
 	}

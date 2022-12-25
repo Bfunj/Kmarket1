@@ -15,8 +15,8 @@ public enum CsService {
 	public List<ArticleVO> SelectArticleNotice() {
 		return dao.SelectArticleNotice();
 	}
-	public List<ArticleVO> SelectArticleQna() {
-		return dao.SelectArticleQna();
+	public List<ArticleVO> SelectArticleQna(String cate) {
+		return dao.SelectArticleQna(cate);
 	}
 	public int insertQnaArticle(ArticleVO article) {
 		return dao.insertQnaArticle(article);
@@ -74,5 +74,17 @@ public enum CsService {
 	}
 	public List<Cate2VO> SelectCsCate2(String cate1) {
 		return dao.SelectCsCate2(cate1);
+	}
+	public ArticleVO QnaView(String no) {
+		return dao.QnaView(no);
+	}
+	public List<ArticleVO> SelectQnaListPage(String cate, int start) {
+		return dao.SelectQnaListPage(cate, start);
+	}
+	public List<Cate2VO> SelectCsCate2() {
+		return dao.SelectCsCate2();
+	}
+	public List<ArticleVO> SelectArticleQna() {
+		return dao.SelectArticleQna();
 	}
 }

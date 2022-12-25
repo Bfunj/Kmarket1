@@ -42,8 +42,6 @@ public class AdminProductListController extends HttpServlet {
 		int pageStartNum = service.getPageStartNum(total, currentPage); // 페이지 시작번호
 		int start = service.getStartNum(currentPage); // 시작 인덱스
 		
-		System.out.println("result0 : " + result[0]);
-		System.out.println("result1 : " + result[1]);
 		
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("currentPage", currentPage);
