@@ -4,6 +4,7 @@ public class Sql {
 	
 	//select cate1
 	public static final String SELECT_CATE1 = " SELECT * FROM `km_product_cate1`"; 
+	public static final String SELECT_CATE_CS_NOTICE = " SELECT * FROM `bd_notice_cate`"; 
 	public static final String SELECT_CATE1_CS = " SELECT * FROM `bd_cate1`"; 
 	public static final String SELECT_CATE1_NAME = " SELECT * FROM `km_product_cate1` where `cate1`= ? "; 
 	
@@ -124,6 +125,7 @@ public class Sql {
 	public static final String SELECT_PRODUCT_ADMIN2  	= " SELECT * FROM `km_product` ORDER BY `rdate` DESC LIMIT ?, 10 ";
 	// select CS list
 	public static final String SELECT_CS_QNA_VIEW_PAGE  	= " SELECT * FROM `bd_qna` where `cate1`=?  ORDER BY `rdate` DESC LIMIT ?, 10 ";
+	public static final String SELECT_CS_QNA_VIEW_PAGE_I  	= " SELECT * FROM `bd_qna`   ORDER BY `rdate` DESC LIMIT ?, 10 ";
 
 	
 	// select 상품 갯수
@@ -163,10 +165,12 @@ public class Sql {
 	
 	
 	// article 쿼리문
-	public static final String SELECT_ARTICLE_NOTICE = "SELECT *FROM `bd_qna` WHERE `cate1` like 'notice%';";
+	public static final String SELECT_ARTICLE_NOTICE_TOTAL = "SELECT *FROM `bd_notice` order by `no` DESC LIMIT ?,10 ";
+	public static final String SELECT_ARTICLE_NOTICE_CATE = "SELECT *FROM `bd_notice` WHERE `cate1` = ? order by `no` DESC LIMIT ?,10";
 	public static final String SELECT_ARTICLE_QNA = "SELECT * FROM `bd_qna` WHERE `cate1` = ? ORDER BY `no` desc ";
 	public static final String SELECT_ARTICLE_QNA_INDEX = "SELECT * FROM `bd_qna` ORDER BY `no` desc ";
 	public static final String SELECT_ARTICLE_QNA_VIEW = "SELECT * FROM `bd_qna` WHERE `no` = ? ";
+	public static final String SELECT_ARTICLE_NOTICE_VIEW = "SELECT * FROM `bd_notice` WHERE `no` = ? ";
 	public static final String SELECT_QNA_ARTICLES = "SELECT * FROM `bd_qna` WHERE `parent`=0 AND `cate1`=? AND`cate2`=? ORDER BY `no` DESC LIMIT ?,10";
 	public static final String INSERT_QNA_ARTICLE = "INSERT INTO `bd_qna` SET "
 											  + " `cate1`=?, "
@@ -178,6 +182,9 @@ public class Sql {
 											  + " `rdate`=NOW()";
 	public static final String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `bd_qna`";
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `bd_qna` where `parent`=0 AND `cate1`=?";	
+	public static final String SELECT_COUNT_TOTAL2 = "SELECT COUNT(`no`) FROM `bd_qna`";	
+	public static final String SELECT_COUNT_NOTICE = "SELECT COUNT(`no`) FROM `bd_qna` where `parent`=0 AND `cate1`=?";	
+	public static final String SELECT_COUNT_NOTICE_TOTAL = "SELECT COUNT(`no`) FROM `bd_qna` ";	
 	public static final String Delete_Cart = "DELETE FROM `km_product_cart` WHERE `cartNo` = ? ";
 	
 	public static final String CART_PRICE = "SELECT * FROM `km_product_cart`  WHERE `cartNo` = ? ";

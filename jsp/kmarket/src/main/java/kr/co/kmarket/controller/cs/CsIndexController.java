@@ -38,6 +38,14 @@ public class CsIndexController extends HttpServlet{
 		List<ArticleVO> CsQnaList = service.SelectArticleQna();
 		req.setAttribute("CsQnaList", CsQnaList);
 		
+		// Notice db 불러오기
+		List<ArticleVO> NoticeList = service.SelectNoticeList("10", 1);
+		req.setAttribute("NoticeList", NoticeList);
+		
+		// Notice cate 불러오기
+		List<Cate1VO> NoticeCate = service.SelectCsCateNotice();
+		req.setAttribute("NoticeCate", NoticeCate);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/cs/csIndex.jsp");
 		dispatcher.forward(req, resp);
 	}

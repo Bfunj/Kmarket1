@@ -8,13 +8,13 @@
                 <section class="view">
                     <aside><h2>문의하기</h2>
                     <ul>      
-                           <li class="${cate eq '10' ? 'on' : 'off'}"><a href="./list.do?&cate=10">회원</a></li>
-                             <li class="${cate eq '11' ? 'on' : 'off'}"><a href="./list.do?&cate=11">쿠폰/이벤트주문/결제</a></li>
-                             <li class="${cate eq '12' ? 'on' : 'off'}"><a href="./list.do?&cate=12">주문/결제배송</a></li>
-                             <li class="${cate eq '13' ? 'on' : 'off'}"><a href="./list.do?&cate=13">배송취소/반품/교환</a></li>
-                             <li class="${cate eq '14' ? 'on' : 'off'}"><a href="./list.do?&cate=14">취소/반품/교환여행/숙박/항공</a></li>
-                             <li class="${cate eq '15' ? 'on' : 'off'}"><a href="./list.do?&cate=15">여행/숙박/항공안전거래</a></li>
-                             <li class="${cate eq '16' ? 'on' : 'off'}"><a href="./list.do?&cate=16">안전거래</a></li>
+                           <li class="${cate eq '10' ? 'on' : 'off'}"><a href="./list.do?&cate=10&pg=1">회원</a></li>
+                             <li class="${cate eq '11' ? 'on' : 'off'}"><a href="./list.do?&cate=11&pg=1">쿠폰/혜택/이벤트</a></li>
+                             <li class="${cate eq '12' ? 'on' : 'off'}"><a href="./list.do?&cate=12&pg=1">주문/결제</a></li>
+                             <li class="${cate eq '13' ? 'on' : 'off'}"><a href="./list.do?&cate=13&pg=1">배송</a></li>
+                             <li class="${cate eq '14' ? 'on' : 'off'}"><a href="./list.do?&cate=14&pg=1">취소/반품/교환</a></li>
+                             <li class="${cate eq '15' ? 'on' : 'off'}"><a href="./list.do?&cate=15&pg=1">여행/숙박/항공</a></li>
+                             <li class="${cate eq '16' ? 'on' : 'off'}"><a href="./list.do?&cate=16&pg=1">안전거래</a></li>
                                 </ul>
                     </aside>
                     <article>

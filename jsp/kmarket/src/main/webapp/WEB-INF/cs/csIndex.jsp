@@ -10,28 +10,43 @@
                 </h1>
                 <section class="notice">
                     <h1>공지사항
-                        <a href="./notice/list.do?cate=notice_1">전체보기</a>
+                        <a href="./notice/list.do?cate=10&pg=1">전체보기</a>
                     </h1>
                     <ul>
-                        <li><a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a><span class="date">22.10.31</span></li>
-                        <li><a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a><span class="date">22.10.31</span></li>
-                        <li><a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a><span class="date">22.10.31</span></li>
-                        <li><a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a><span class="date">22.10.31</span></li>
-                        <li><a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a><span class="date">22.10.31</span></li>
-                    </ul>
+                	<c:set var="done_loop" value="false"/>
+           				 <c:set var="i" value="1"></c:set>
+                       <c:forEach var="NoticeList" items="${NoticeList}">      
+                          <c:if test="${done_loop ne true}">
+                         		<c:forEach var="NoticeCate" items="${NoticeCate}">
+                         		<c:if test="${NoticeCate.cate1 eq NoticeList.cate1 }">
+                           		         <li>
+	                           		         <a href="./notice/view.do?no=${NoticeList.no }&cate=${NoticeList.cate1}" class="title">[${NoticeCate.c1Name }] ${NoticeList.title }</a>
+	                           		         <p><span class="date">${NoticeList.rdate.substring(2,11) }</span></p>
+
+                           		         </li>
+                           		           </c:if>
+                          		</c:forEach>
+                          		 <c:set var="i" value="${i+1}"></c:set>
+					  	<c:if test="${i eq 6}">
+                       		<c:set var="done_loop" value="true"/>
+                    	</c:if>
+                    	</c:if>
+                       </c:forEach>
+                                   		
+      					</ul>
                 </section>
                 <section class="faq">
                     <h1>자주 묻는 질문
-                        <a href="./faq/list.do?cate=faq_1">전체보기</a>
+                        <a href="./faq/list.do?cate=10">전체보기</a>
                     </h1>
                     <ol>
-                        <li><a href="#"><span>회원</span></a></li>
-                        <li><a href="#"><span>쿠폰/이벤트</span></a></li>
-                        <li><a href="#"><span>주문/결제</span></a></li>
-                        <li><a href="#"><span>배송</span></a></li>
-                        <li><a href="#"><span>취소/반품/교환</span></a></li>
-                        <li><a href="#"><span>여행/숙박/항공</span></a></li>
-                        <li><a href="#"><span>안전거래</span></a></li>
+                        <li><a href="./faq/list.do?&cate=10"><span>회원</span></a></li>
+                        <li><a href="./faq/list.do?&cate=11"><span>쿠폰/이벤트</span></a></li>
+                        <li><a href="./faq/list.do?&cate=12"><span>주문/결제</span></a></li>
+                        <li><a href="./faq/list.do?&cate=13"><span>배송</span></a></li>
+                        <li><a href="./faq/list.do?&cate=14"><span>취소/반품/교환</span></a></li>
+                        <li><a href="./faq/list.do?&cate=15"><span>여행/숙박/항공</span></a></li>
+                        <li><a href="./faq/list.do?&cate=16"><span>안전거래</span></a></li>
                     </ol>
                 </section>
                 <section class="qna">
@@ -50,7 +65,7 @@
 										    [ ${cate2s.c2Name } ] ${CsQnaList.title }</a><p>
 										    <span class="uid">
 										    ${fn:substring(CsQnaList.uid, 0, fn:length(CsQnaList.uid) - 3)}***
-										    </span><span class="date">${CsQnaList.rdate }</span></p></li>
+										    </span><span class="date">${CsQnaList.rdate.substring(2,11) }</span></p></li>
 										</c:if>			
 									</c:forEach>				    		    
 					    <c:set var="i" value="${i+1}"></c:set>

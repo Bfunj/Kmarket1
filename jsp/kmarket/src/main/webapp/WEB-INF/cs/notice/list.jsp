@@ -7,11 +7,11 @@
                 <section class="list">
                     <aside><h2>공지사항</h2>
                         <ul>              
-			               	<li class="${cate eq 'notice_1' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_1">전체</a></li>
-			               	<li class="${cate eq 'notice_2' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_2">고객서비스</a></li>
-			               	<li class="${cate eq 'notice_3' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_3">안전거래</a></li>
-			               	<li class="${cate eq 'notice_4' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_4">위해상품</a></li>
-			               	<li class="${cate eq 'notice_5' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_5">이벤트당첨</a></li>
+			               	<li class="${cate eq '10' ? 'on' : 'off'}"><a href="./list.do?&cate=10">전체</a></li>
+			               	<li class="${cate eq '11' ? 'on' : 'off'}"><a href="./list.do?&cate=11">고객서비스</a></li>
+			               	<li class="${cate eq '12' ? 'on' : 'off'}"><a href="./list.do?&cate=12">안전거래</a></li>
+			               	<li class="${cate eq '13' ? 'on' : 'off'}"><a href="./list.do?&cate=13">위해상품</a></li>
+			               	<li class="${cate eq '14' ? 'on' : 'off'}"><a href="./list.do?&cate=14">이벤트당첨</a></li>
                         </ul>
                     </aside>
                     <article>
@@ -20,20 +20,34 @@
                         </nav>
                         <table>
                             <tbody>
-                                <tr><td><a href="../notice/view.do">[안내] 안내문1</a></td>
-                                    <td>2022.11.21</td>
-                                </tr>
-                                <tr><td><a href="../notice/view.do">[안내] 안내문10</a></td>
-                                    <td>2022.11.21</td>
-                                </tr>
+                                 
+                                   <c:forEach var="NoticeList" items="${NoticeList}">
+                                   		<c:forEach var="NoticeCate" items="${NoticeCate}">
+                                   			<c:if test="${NoticeCate.cate1 eq NoticeList.cate1 }">
+	                                    	<tr><td><a href="./view.do?no=${NoticeList.no }&cate=${NoticeList.cate1}">	                                    	
+	                                    	[${NoticeCate.c1Name} ] ${NoticeList.title }</a></td>
+	                                    		<td>${NoticeList.rdate.substring(5,16) }</td>
+	                                		</tr>
+											</c:if>
+                                   		</c:forEach>
+                                   </c:forEach>
+                        
                             </tbody>
                         </table>
-                        <div class="page">
-                            <a href="#" class="prev">이전</a>
-                            <a href="#" class="num on">1</a>
-                            <a href="#" class="num">2</a>
-                            <a href="#" class="num">3</a>
-                            <a href="#" class="next">다음</a>
+            
+                        
+                        
+                        
+                         <div class="page">
+                           	<c:if test="${pageGroupStart gt 1}">
+                        		 <a href="/kmarket/cs/notice/list.do?cate=${cate }&pg=${pageGroupStart-1}" class="prev">이전</a>
+                        	</c:if>
+                            <c:forEach var="i" begin="${pageGroupStart}" end="${pageGroupEnd}">
+                            	<a href="/kmarket/cs/notice/list.do?cate=${cate }&pg=${i}" class="num ${currentPage eq i? 'current':'off'}">${i}</a>
+                            </c:forEach>
+                            <c:if test="${pageGroupStart lt lastPageNum}">
+                            	<a href="/kmarket/cs/notice/list.do?cate=${cate }&pg=${pageGroupStart+1}" class="next">다음</a>
+                            </c:if>
                         </div>
                     </article>
                 </section>
