@@ -198,7 +198,10 @@
                         	 <c:forEach var="artiNotice" items="${artiNotice}">
                         	 	 <c:if test="${done_loop ne true}">
                         	 	<p>
-	                                <span>[공지] ${artiNotice.title }</span>
+	                                <span>
+	                                <a href="/kmarket/cs/notice/view.do?no=${artiNotice.no }&cate=${artiNotice.cate1}">	                                    	
+	                                    	[공지] ${artiNotice.title }</a>
+	                                </span>
 	                                <span>${artiNotice.rdate.substring(2,16) }</span>
                             	</p>
                             	 <c:set var="i" value="${i+1}"></c:set>
@@ -219,7 +222,11 @@
                         	 <c:forEach var="artiQna" items="${artiQna}">
                         	 	 <c:if test="${done_loop ne true}">
                         	 	<p>
-	                                <span>[문의] ${artiQna.title }</span>
+	                                <span>
+	                                 <a href="/kmarket/cs/qna/view.do?no=${artiQna.no }&cate=${artiQna.cate1}">	                                    	
+	                                    	[문의] ${artiQna.title }</a>
+	                                
+	                             </span>
 	                                <span>${artiQna.rdate.substring(2,16) }</span>
                             	</p>
                             	 <c:set var="i" value="${i+1}"></c:set>

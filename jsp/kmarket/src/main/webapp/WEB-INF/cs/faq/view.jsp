@@ -18,13 +18,13 @@
                 <section class="view">
                     <aside><h2>자주묻는 질문</h2>
                         <ul>
-                              <li class="${cate eq 'faq_1' ? 'on' : 'off'}"><a href="./list.do?&cate=faq_1">회원</a></li>      
-                            <li class="${cate eq 'faq_2' ? 'on' : 'off'}"><a href="./list.do?&cate=faq_2">쿠폰/이벤트</a></li>
-                            <li class="${cate eq 'faq_3' ? 'on' : 'off'}"><a href="./list.do?&cate=faq_3">주문/결제</a></li>
-                            <li class="${cate eq 'faq_4' ? 'on' : 'off'}"><a href="./list.do?&cate=faq_4">배송</a></li>
-                            <li class="${cate eq 'faq_5' ? 'on' : 'off'}"><a href="./list.do?&cate=faq_5">취소/반품/교환</a></li>
-                            <li class="${cate eq 'faq_6' ? 'on' : 'off'}"><a href="./list.do?&cate=faq_6">여행/숙박/항공</a></li>
-                            <li class="${cate eq 'faq_7' ? 'on' : 'off'}"><a href="./list.do?&cate=faq_7">안전거래</a></li>
+                                    <li class="${cate eq '10' ? 'on' : 'off'}"><a href="./list.do?&cate=10">회원</a></li>
+                             <li class="${cate eq '11' ? 'on' : 'off'}"><a href="./list.do?&cate=11">쿠폰/혜택/이벤트</a></li>
+                             <li class="${cate eq '12' ? 'on' : 'off'}"><a href="./list.do?&cate=12">주문/결제</a></li>
+                             <li class="${cate eq '13' ? 'on' : 'off'}"><a href="./list.do?&cate=13">배송</a></li>
+                             <li class="${cate eq '14' ? 'on' : 'off'}"><a href="./list.do?&cate=14">취소/반품/교환</a></li>
+                             <li class="${cate eq '15' ? 'on' : 'off'}"><a href="./list.do?&cate=15">여행/숙박/항공</a></li>
+                             <li class="${cate eq '16' ? 'on' : 'off'}"><a href="./list.do?&cate=16">안전거래</a></li>
                         </ul>
                     </aside>
                     <article>

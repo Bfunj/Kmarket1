@@ -77,8 +77,10 @@
                     <li>
                         <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
                         <ol>
-                            <li><a href="#">게시판현황</a></li>
-                            <li><a href="#">고객문의</a></li>
+                            <li><a href="/kmarket/admin/cs/NoticeList.do?pg=1">공지사항</a></li>
+                            <li><a href="/kmarket/admin/cs/FaqList.do?pg=1">자주묻는질문</a></li>
+                        	<li><a href="/kmarket/admin/cs/QnaList.do?pg=1">문의하기</a></li>
+                            
                         </ol>
                     </li>
                 </ul>

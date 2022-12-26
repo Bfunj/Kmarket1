@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../cs_header.jsp"/>
         <section id="cs">
             <div class="notice">
@@ -7,29 +8,27 @@
                     <aside><h2>공지사항</h2>
                             <ul>
                            
-               	<li class="${cate eq 'notice_1' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_1">전체</a></li>
-               	<li class="${cate eq 'notice_2' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_2">고객서비스</a></li>
-               	<li class="${cate eq 'notice_3' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_3">안전거래</a></li>
-               	<li class="${cate eq 'notice_4' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_4">위해상품</a></li>
-               	<li class="${cate eq 'notice_5' ? 'on' : 'off'}"><a href="./list.do?&cate=notice_5">이벤트당첨</a></li>
+            				<li class="${cate eq '10' ? 'on' : 'off'}"><a href="./list.do?&cate=10">전체</a></li>
+			               	<li class="${cate eq '11' ? 'on' : 'off'}"><a href="./list.do?&cate=11">고객서비스</a></li>
+			               	<li class="${cate eq '12' ? 'on' : 'off'}"><a href="./list.do?&cate=12">안전거래</a></li>
+			               	<li class="${cate eq '13' ? 'on' : 'off'}"><a href="./list.do?&cate=13">위해상품</a></li>
+			               	<li class="${cate eq '14' ? 'on' : 'off'}"><a href="./list.do?&cate=14">이벤트당첨</a></li>
 
                         </ul>
                     </aside>
                     <article>
                         <nav>
-                            <h2 class="title">[안내] 해외결제 사칭 문자 주의</h2>
-                            <span class="date">2022.11.20</span>
+                        <c:forEach var="NoticeCate" items="${NoticeCate}">
+                                 <c:if test="${NoticeCate.cate1 eq NoticeView.cate1 }">
+                            <h2 class="title">[${NoticeCate.c1Name} ] ${NoticeView.title }</h2>
+                            </c:if>
+                            </c:forEach>
+                            <span class="date">${NoticeView.rdate}</span>
                         </nav>
                        <div class="content">
-                        <p>안녕하세요. G마켓 입니다.<br>
-                        G마켓 해외직구를 사칭하는 피싱 문자가 최근 다시 신고되고 있어 주의 안내드립니다.<br>
-                        아래와 같이 G마켓 해외직구..<br><br>
-                        </p>
-                        <p>
-                            피싱 관련 피해신고 <br><br>
-                            ▶ 경찰청 사이버수사국 (국번없이)182 : http://cyberbureau.police.go.kr<br>
-                            ▶ KISA 인터넷침해대응센터 (국번없이)118 : http://www.krcert.or.kr<br>
-                            감사합니다.<br>
+                        <p>         
+                           ${NoticeView.content}  
+                                              
                         </p>
                        </div>
                        <a href="../notice/list.do" class="btnList">목록보기</a>
