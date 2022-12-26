@@ -93,7 +93,13 @@ public class Sql {
 													 + " `rdate`=NOW() ";
 	
 	public static final String Select_Product_Carts = "SELECT b.proName,b.descript,a.*,b.thumb1,b.cate1,b.cate2 FROM `km_product_cart` AS a JOIN "
-												+ "`km_product` AS b on a.proNo = b.proNo WHERE `uid` = ? ";
+												+ "`km_product` AS b on a.proNo = b.proNo WHERE `uid` = ?";
+	
+	public static final String Select_Product_Carts2 = "SELECT b.proName,b.descript,a.*,b.thumb1,b.cate1,b.cate2 FROM "
+													+"`km_product_cart` AS a JOIN "
+													+"`km_product` AS b on a.proNo = b.proNo "
+													+ "WHERE `uid` = ? "
+													+ "ORDER BY `cartNo` DESC LIMIT 1";
 	
 	public static final String Insert_Product_Cart = "INSERT INTO `km_product_cart` SET "
 													+ "`uid` = ?  ,"
@@ -185,6 +191,26 @@ public class Sql {
 	public static final String Select_Product_Order = "SELECT a.*,b.proName,b.descript,b.thumb1,b.cate1,b.cate2 FROM `km_product_cart` AS a "
 													+ "JOIN `km_product` AS b "
 													+ "ON a.proNo = b.proNo WHERE cartNo = ? ";
+	
+	public static final String Select_Product_Direct_Order = "SELECT * FROM `km_product` WHERE `proNo` = ?";
+	
+	public static final String Insert_Product_Order = "INSERT INTO `km_product_order` SET  "
+													+ "	`uid` = ?,"
+													+ "	`ordCount` = ?, "
+													+ "	`ordPrice` = ?, "
+													+ "	`ordDiscount` = ?, "
+													+ "	`ordDelivery` = ?, "
+													+ "	`savePoint` = ?, "
+													+ "	`usedPoint` = ?, "
+													+ "	`ordTotPrice` = ?, "
+													+ "	`recipName` = ?, "
+													+ "	`recipHp` = ?, "
+													+ "	`recipZip` = ?, "
+													+ "	`recipAddr1` = ?, "
+													+ "	`recipAddr2` = ?, "
+													+ "	`ordPayment`  = ?, "
+													+ "	`ordComplete` = 1, " //complete 는 우선 1로 지정한다.
+													+ "	`ordDate` = NOW()";
 		
 
 }

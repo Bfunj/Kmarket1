@@ -17,7 +17,7 @@ public class ProductVO {
 	private int delivery;
 	private int hit;
 	private int score;
-	private int reviw;
+	private int review;
 	private String thumb1;
 	private String thumb2;
 	private String thumb3;
@@ -178,11 +178,12 @@ public class ProductVO {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public int getReviw() {
-		return reviw;
+	
+	public int getReview() {
+		return review;
 	}
-	public void setReviw(int reviw) {
-		this.reviw = reviw;
+	public void setReview(int review) {
+		this.review = review;
 	}
 	public String getThumb1() {
 		return thumb1;

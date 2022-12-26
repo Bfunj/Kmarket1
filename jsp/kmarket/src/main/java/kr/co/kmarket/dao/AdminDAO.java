@@ -136,7 +136,7 @@ public class AdminDAO extends DBHelper{
 				pv.setDelivery(rs.getInt(13));
 				pv.setHit(rs.getInt(14));
 				pv.setScore(rs.getInt(15));
-				pv.setReviw(rs.getInt(16));
+				pv.setReview(rs.getInt(16));
 				pv.setThumb1(rs.getString(17));
 				pv.setThumb2(rs.getString(18));
 				pv.setThumb3(rs.getString(19));
@@ -290,7 +290,7 @@ public class AdminDAO extends DBHelper{
 				pv.setDelivery(rs.getInt(13));
 				pv.setHit(rs.getInt(14));
 				pv.setScore(rs.getInt(15));
-				pv.setReviw(rs.getInt(16));
+				pv.setReview(rs.getInt(16));
 				pv.setThumb1(rs.getString(17));
 				pv.setThumb2(rs.getString(18));
 				pv.setThumb3(rs.getString(19));
@@ -356,7 +356,7 @@ public class AdminDAO extends DBHelper{
 				pv.setDelivery(rs.getInt(13));
 				pv.setHit(rs.getInt(14));
 				pv.setScore(rs.getInt(15));
-				pv.setReviw(rs.getInt(16));
+				pv.setReview(rs.getInt(16));
 				pv.setThumb1(rs.getString(17));
 				pv.setThumb2(rs.getString(18));
 				pv.setThumb3(rs.getString(19));

@@ -45,6 +45,7 @@ public class CartPriceController extends HttpServlet{
 		int discount = 0;
 		int delivery = 0;
 		int point = 0;
+		int savePoint = 0;
 		int total = 0;
 		
 		for(String cartNo : cartNos) {

@@ -59,8 +59,50 @@
 			}
 			document.getElementById("test").value = count;
 		});
+		
+		//주문하기 페이지
+		$('input[class=order]').click(function(){
+			
+			let uid = $('input[name=uid]').val();
+			let proNo = $('input[name=proNo]').val();
+			let count = $('input[name=num]').val();
+			let price = $('input[name=ori_price]').val();
+			let discount = $('input[name=discount]').val();
+			let delivery =  $('input[name=delivery]').val();
+			
+			let jsonData = {
+					'uid' : uid,
+					'proNo' : proNo,
+					'count' : count,
+					'price' : price,
+					'discount' : discount,
+					'delivery' : delivery
+			};
+			
+			//로그인 유무 확인
+			if(uid == ''){
+				alert('로그인 후 이용가능합니다.');
+				location.href= '/kmarket/member/login.do';
+				
+			}else{
+				
+				$.ajax({
+					url : '/kmarket/product/directOrder.do' ,
+					method : 'POST' ,
+					data : jsonData ,
+					dataType : 'json',
+					success : function(data){
+						if(data.result > 0){
+							alert('주문페이지로 이동합니다.');
+							location.href = '/kmarket/product/directOrder.do';
+						}
+					}
+				});
+			}
+		});
+		
 	});
-	
+
 
 </script>
         <main id="product">

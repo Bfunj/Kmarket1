@@ -2,171 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./header.jsp"></jsp:include>
-<script>
-	
-	//포인트 작업
-	$(document).ready(function(){
-		
-		$('input[name=all]').click(function() {
-			if($(this).is(":checked")) $("input[name=check]").prop('checked', true);
-			else $("input[name=check]").prop("checked", false);
-		});
-	
-		$("input[name=check]").click(function() {
-			
-			var total = $("input[name=check]").length;
-			var checked = $("input[name=check]:checked").length;
-	
-			if(total != checked) $('input[name=all]').prop("checked", false);
-			else $('input[name=all]').prop("checked", true); 
-		});
-		
-		$('.btnPoint').click(function(){
-			//alert('클릭!');
-			
-			let userPoint = ${sessUser.point}
-			let point = $('input[name=point]').val();
-			let Price = $('input[name=totalPrice]').val();
-			let totalPrice = $('input[name=totalPrice]').val();
-			 
-			totalPrice = Price - point;
-			if(point < 3000){
-				alert('포인트는 3000점 이상 사용가능합니다.');
-			}
-			if(userPoint < point){
-				alert("현재 보유중인 포인트는 " + userPoint + " 입니다. " + "\n할인 받을 포인트를 확인해주세요." );
-			}
-			if(userPoint > point && point >= 3000){
-				
-				$('td[class=product_pointDiscount]').empty("");
-				$('td[class=product_pointDiscount]').append(point);
-				$('td[class=product_total]').empty("");
-				$('td[class=product_total]').append(totalPrice.toLocaleString());
-				$('input[name=totalPrice]').empty("");
-				$('td[class=product_total]').append("<input type='hidden' name='totalPrice' id='totalPrice' value='"+Price+"'>");
-			}
-			
-		});
-		
-		//계산 필드
-		$('.checkprice').prop('checked',true);
-		
-			var total = 0;
-			let checked = $('input[name=check]:checked').length;
-			let arr = [];
-			
-			$('input[name=check]:checked').each(function(){
-				arr.push($(this).val());
-			});
-			console.log("checkNo : " + arr);
-			
-			if(checked > 0){
-			$.ajax({
-				url : '/kmarket/product/CartPrice.do',
-				type : 'POST',					
-				data : {'arr' : arr},
-				traditional: true,
-				dataType : 'json',
-				success : function(data){
-					console.log("data : "+data.price);
-					$('td[class=product_price]').empty("");
-					$('td[class=product_price]').append(data.price.toLocaleString());
-					$('td[class=product_price]').append("<input type='hidden' name='product_price' id='product_price' value='"+data.price+"'>");
-					$('td[class=product_delivery]').empty("");
-					$('td[class=product_delivery]').append(data.delivery.toLocaleString());
-					$('td[class=product_delivery]').append("<input type='hidden' name='product_delivery' id='product_delivery' value='"+data.delivery+"'>");
-					$('td[class=product_discount]').empty("");
-					$('td[class=product_discount]').append(data.discount.toLocaleString());
-					$('td[class=product_discount]').append("<input type='hidden' name='product_discount' id='product_discount' value='"+data.discount+"'>");
-					$('td[class=product_num]').empty("");
-					$('td[class=product_num]').append(data.count.toLocaleString());
-					$('td[class=product_num]').append("<input type='hidden' name='product_num' id='product_num' value='"+data.count+"'>");
-					$('td[class=product_point]').empty("");
-					$('td[class=product_point]').append(data.point.toLocaleString());
-					$('td[class=product_point]').append("<input type='hidden' name='product_point' id='product_point' value='"+data.point+"'>");
-					$('td[class=product_savePoint]').empty("");
-					$('td[class=product_savePoint]').append(data.point.toLocaleString());
-					$('td[class=product_savePoint]').append("<input type='hidden' name='product_savePoint' id='product_savePoint' value='"+data.point+"'>");
-					$('td[class=product_total]').empty("");
-					$('td[class=product_total]').append(data.total.toLocaleString());
-					$('td[class=product_total]').append("<input type='hidden' name='totalPrice' id='totalPrice' value='"+data.total+"'>");
-					
-				}
-			});
-			
-			}else {
-				$('td[class=product_price]').empty("");
-				$('td[class=product_price]').append("0");
-				$('td[class=product_delivery]').empty("");
-				$('td[class=product_delivery]').append("0");
-				$('td[class=product_discount]').empty("");
-				$('td[class=product_discount]').append("0");
-				$('td[class=product_num]').empty("");
-				$('td[class=product_num]').append("0");
-				$('td[class=product_point]').empty("");
-				$('td[class=product_point]').append("0");
-				$('td[class=product_total]').empty("");
-				$('td[class=product_total]').append("0");
-			}
-			
-			//$("input[name=order]").click(function() {
-			$('#order').click(function(e){
-				e.preventDefault();
-				
-				console.log('here1');
-				//let uid = '${sessUser.uid}';
-				let uid = $('input[name=uid]').val();
-				let ordCount = $('input[name=product_num]').val();
-				let ordPrice = $('input[name=totalPrice]').val();
-				let ordDiscount = $('input[name=product_discount]').val();
-				let ordDelivery = $('input[name=product_delivery]').val();
-				let savePoint = $('input[name=product_savePoint]').val();
-				let usedPoint = $('input[name=point]').val();
-				let ordTotPrice = $('input[name=totalPrice]').val();
-				let recipName = $('input[name=orderer]').val();
-				let recipHp = $('input[name=hp]').val();
-				let recipZip = $('input[name=zip]').val();
-				let recipAddr1 = $('input[name=addr1]').val();
-				let recipAddr2 = $('input[name=addr2]').val();
-				let ordPayment = $('input[name=payment]:checked').val();
-				
-				console.log('here2');
-				let jsonData = {
-						'uid' : uid,
-						'ordCount' : ordCount,
-						'ordPrice' : ordPrice,
-						'ordDiscount' : ordDiscount,
-						'ordDelivery' : ordDelivery,
-						'savePoint' : savePoint,
-						'usedPoint' : usedPoint,
-						'ordTotPrice' : ordTotPrice,
-						'recipName' : recipName,
-						'recipHp' : recipHp,
-						'recipZip' : recipZip,
-						'recipAddr1' : recipAddr1,
-						'recipAddr2' : recipAddr2,
-						'ordPayment' : ordPayment
-				};
-				
-				console.log('here3');
-				$.ajax({
-					url : '/kmarket/product/order.do',
-					method : 'POST',
-					data : jsonData,
-					dataType : 'json',
-					success : function(data){
-						console.log('here4');
-						if(data.result > 0){
-							location.href = '/kmarket/index.do';		
-					}			
-				}
-			});
-		});
-	});
-
-
-
-</script>
         <main id="product">
             <aside>
                 <ul class="category">
@@ -216,7 +51,7 @@
                     <p>HOME > <span>패션·의류·뷰티</span> > <strong>남성의류</strong></p>
                 </nav>
 
-                <form action="#" method="post" class="order" onsubmit="return false;">
+                <form action="#">
                     <!-- 주문 상품 목록 -->
                     <table border="0">
                         <tr>
@@ -230,7 +65,7 @@
                             <th>소계</th>
                         </tr>
                         <c:choose>
-                        <c:when test="${empty carts}">
+                        <c:when test="">
                         <tr class="empty">
                             <td colspan="7">장바구니에 상품이 없습니다.</td>
                         </tr>
@@ -238,10 +73,10 @@
                         <c:otherwise>
                         <c:forEach var="cart" items="${carts }">
                         <tr>
-                            <td><input type="checkbox" name="check" class="checkprice" value="${cart.cartNo }"></td>
+                            <td><input type="checkbox" name="check" class="checkprice" value=""></td>
                            <td>
                                 <article>
-                                    <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
+                                    <a href="#"><img src="" alt="썸네일"></a>
                                     <div>
                                         <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a></h2>
                                         <p>${cart.descript }</p>
@@ -253,7 +88,7 @@
                             <td>${cart.discount}</td>
                             <td>${cart.point }</td>
                             <td>${cart.delivery }</td>
-                            <td><fmt:formatNumber value="${cart.total }" pattern="#,###원" />
+                            <td><fmt:formatNumber value="${cart.total}" pattern="#,###원" />
                         </tr>
                         </c:forEach>
                         </c:otherwise>
