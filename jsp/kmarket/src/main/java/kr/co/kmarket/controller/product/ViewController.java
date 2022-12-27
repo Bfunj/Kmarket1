@@ -81,10 +81,11 @@ public class ViewController extends HttpServlet  {
 		
 		String uid = req.getParameter("uid");
 		String proNo = req.getParameter("proNo");
-		String count = req.getParameter("count");
-		String price = req.getParameter("price");
-		String discount = req.getParameter("discount");
 		String delivery = req.getParameter("delivery");
+		int price = Integer.parseInt(req.getParameter("price"));
+		int count = Integer.parseInt(req.getParameter("count"));
+		int discount = Integer.parseInt(req.getParameter("discount"));
+		int total = price * count - (price * discount/100);
 		
 		CartVO cart = new CartVO();
 		cart.setUid(uid);
@@ -93,6 +94,8 @@ public class ViewController extends HttpServlet  {
 		cart.setPrice(price);
 		cart.setDiscount(discount);
 		cart.setDelivery(delivery);
+		cart.setTotal(total);
+		
 		
 		int check = ProductDAO.getInstance().SelectProductCart(uid, proNo);
 		
@@ -112,6 +115,7 @@ public class ViewController extends HttpServlet  {
 			
 			JsonObject json = new JsonObject();
 			json.addProperty("result", result);
+			System.out.println(total);
 			
 			PrintWriter writer = resp.getWriter();
 			writer.print(json.toString());

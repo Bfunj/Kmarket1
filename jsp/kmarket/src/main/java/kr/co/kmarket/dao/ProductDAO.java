@@ -103,6 +103,7 @@ public class ProductDAO extends DBHelper{
 			psmt.setInt(4, cart.getPrice());
 			psmt.setInt(5, cart.getDiscount());
 			psmt.setInt(6, cart.getDelivery());
+			psmt.setInt(7, cart.getTotal());
 			result = psmt.executeUpdate();
 			close();
 			
@@ -175,47 +176,8 @@ public class ProductDAO extends DBHelper{
 		return carts;
 	}
 	
-	//장바구니 출력하기
-		public List<CartVO> SelectProductCarts2(String uid) {
-			
-			List<CartVO> carts = new ArrayList<>();
-			
-			try {
-				logger.info("Select Product Carts Start2...");
-				conn = getConnection();
-				psmt = conn.prepareStatement(Sql.Select_Product_Carts2);
-				psmt.setString(1, uid);
-				rs = psmt.executeQuery();
-				
-				while(rs.next()) {
-					CartVO cart = new CartVO();
-					cart.setProName(rs.getString(1));
-					cart.setDescript(rs.getString(2));
-					cart.setCartNo(rs.getInt(3));
-					cart.setUid(rs.getString(4));
-					cart.setProNo(rs.getInt(5));
-					cart.setCount(rs.getInt(6));
-					cart.setPrice(rs.getInt(7));
-					cart.setDiscount(rs.getInt(8));
-					cart.setPoint(rs.getInt(9));
-					cart.setDelivery(rs.getInt(10));
-					cart.setTotal(rs.getInt(11));
-					cart.setRdate(rs.getString(12));
-					cart.setThumb1(rs.getString(13));
-					cart.setCate1(rs.getInt(14));
-					cart.setCate2(rs.getInt(15));
-					carts.add(cart);
-				}
-				close();
-				
-			}catch(Exception e) {
-				logger.error(e.getMessage());
-			}
-			return carts;
-		}
-	
 	//중복 상품 업데이트
-	public int UpdateProductCartCount(String count, String uid, String proNo) {
+	public int UpdateProductCartCount(int count, String uid, String proNo) {
 		
 		int result = 0;
 		
@@ -223,7 +185,7 @@ public class ProductDAO extends DBHelper{
 			logger.info("Update Product Cart Count");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.Update_Product_Cart_Count);
-			psmt.setString(1, count);
+			psmt.setInt(1, count);
 			psmt.setString(2, uid);
 			psmt.setString(3, proNo);
 			result = psmt.executeUpdate();
@@ -321,54 +283,6 @@ public class ProductDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}
 		return cart;
-	}
-	
-	public List<ProductVO> SelectProductDirectOrder (String proNo) {
-		
-		List<ProductVO> products = new ArrayList<>(); 
-		
-		try {
-			logger.info("Select Product Direct Order Start..");
-			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.Select_Product_Direct_Order);
-			psmt.setString(1, proNo);
-			rs = psmt.executeQuery();
-			
-			while(rs.next()) {
-				ProductVO product = new ProductVO();
-				product.setProNo(rs.getInt(1));
-				product.setCate1(rs.getInt(2));
-				product.setCate2(rs.getInt(3));
-				product.setProName(rs.getString(4));
-				product.setDescript(rs.getString(5));
-				product.setCompany(rs.getString(6));
-				product.setSeller(rs.getString(7));
-				product.setPrice(rs.getInt(8));
-				product.setDiscount(rs.getInt(9));
-				product.setPoint(rs.getInt(10));
-				product.setStock(rs.getInt(11));
-				product.setSold(rs.getInt(12));
-				product.setDelivery(rs.getInt(13));
-				product.setHit(rs.getInt(14));
-				product.setScore(rs.getInt(15));
-				product.setReview(rs.getInt(16));
-				product.setThumb1(rs.getString(17));
-				product.setThumb2(rs.getString(18));
-				product.setThumb3(rs.getString(19));
-				product.setDetail(rs.getString(20));
-				product.setStatus(rs.getString(21));
-				product.setDuty(rs.getString(22));
-				product.setRecipt(rs.getString(23));
-				product.setBizType(rs.getString(24));
-				product.setOrigin(rs.getString(25));
-				product.setIp(rs.getString(26));
-				product.setRdate(rs.getString(27));
-				products.add(product);
-			}
-		}catch(Exception e) {
-			logger.error(e.getMessage());
-		}
-		return products;
 	}
 	
 	public int InsertProductOrder(OrderVO vo) {

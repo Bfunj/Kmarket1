@@ -21,150 +21,133 @@
 			else $('input[name=all]').prop("checked", true); 
 		});
 		
+		
+		//계산 필드
+		$('input[class=checkprice]').prop('checked',true);
+		
+		var count = 0;
+		var price = 0;
+		var total = 0;
+		var discount = 0;
+		var delivery = 0;
+		var point = 0;
+		
+		$('input[name=total]').each(function(){
+			total += Number($(this).val());
+		});
+		$('input[name=count]').each(function(){
+			count += Number($(this).val());
+		});
+		$('input[name=price]').each(function(){
+			price += Number($(this).val());
+		});
+		$('input[name=discount]').each(function(){
+			discount += Number($(this).val());
+		});
+		$('input[name=delivery]').each(function(){
+			delivery += Number($(this).val());
+		});
+		$('input[name=point]').each(function(){
+			point += Number($(this).val());
+		});
+		
+		$('td[class=product_num]').empty("");
+		$('td[class=product_num]').append(count);
+		$('td[class=product_num]').append("<input type='hidden' name='product_num' value='"+ count +"'>");
+		$('td[class=product_price]').empty("");
+		$('td[class=product_price]').append(price.toLocaleString()+'원');
+		$('td[class=product_price]').append("<input type='hidden' name='product_price' value='"+ price +"'>");
+		$('td[class=product_discount]').empty("");
+		$('td[class=product_discount]').append(discount.toLocaleString()+'원');
+		$('td[class=product_discount]').append("<input type='hidden' name='product_discount' value='"+ discount +"'>");
+		$('td[class=product_total]').empty("");
+		$('td[class=product_total]').append(total.toLocaleString());
+		$('input[name=product_total]').val(total);
+		//$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ total +"'>");
+		$('td[class=product_savePoint]').empty("");
+		$('td[class=product_savePoint]').append((point * total / 100).toLocaleString()+'점');
+		$('td[class=product_savePoint]').append("<input type='hidden' name='product_savePoint' value='"+ point * total / 100 +"'>");
+		$('td[class=product_delivery]').empty("");
+		$('td[class=product_delivery]').append(delivery.toLocaleString()+'원');
+		$('td[class=product_delivery]').append("<input type='hidden' name='product_delivery' value='"+ delivery +"'>");
+		
+		let totprice = $('input[name=product_total]').val();
+		
 		$('.btnPoint').click(function(){
 			//alert('클릭!');
-			
 			let userPoint = ${sessUser.point}
-			let point = $('input[name=point]').val();
-			let Price = $('input[name=totalPrice]').val();
-			let totalPrice = $('input[name=totalPrice]').val();
-			 
-			totalPrice = Price - point;
+			let point = $('input[id=usedPoint]').val();
+			totprice = totprice - point;
+			
 			if(point < 3000){
 				alert('포인트는 3000점 이상 사용가능합니다.');
-			}
-			if(userPoint < point){
+			}else if(userPoint < point){
 				alert("현재 보유중인 포인트는 " + userPoint + " 입니다. " + "\n할인 받을 포인트를 확인해주세요." );
-			}
-			if(userPoint > point && point >= 3000){
-				
+			}else if(userPoint > point && point >= 3000){
 				$('td[class=product_pointDiscount]').empty("");
 				$('td[class=product_pointDiscount]').append(point);
 				$('td[class=product_total]').empty("");
-				$('td[class=product_total]').append(totalPrice.toLocaleString());
-				$('input[name=totalPrice]').empty("");
-				$('td[class=product_total]').append("<input type='hidden' name='totalPrice' id='totalPrice' value='"+Price+"'>");
+				$('td[class=product_total]').append(price.toLocaleString());
+				$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ price +"'>");
 			}
 			
+			
 		});
-		
-		//계산 필드
-		$('.checkprice').prop('checked',true);
-		
-			var total = 0;
-			let checked = $('input[name=check]:checked').length;
-			let arr = [];
 			
-			$('input[name=check]:checked').each(function(){
-				arr.push($(this).val());
-			});
-			console.log("checkNo : " + arr);
+		//주문하기
+		$('#order').click(function(e){
+			e.preventDefault();
 			
-			if(checked > 0){
+			console.log('here1');
+			//let uid = '${sessUser.uid}';
+			let uid = $('input[name=uid]').val();
+			let ordCount = $('input[name=product_num]').val();
+			let ordPrice = $('input[name=totalPrice]').val();
+			let ordDiscount = $('input[name=product_discount]').val();
+			let ordDelivery = $('input[name=product_delivery]').val();
+			let savePoint = $('input[name=product_savePoint]').val();
+			let usedPoint = $('input[name=point]').val();
+			let ordTotPrice = $('input[name=totalPrice]').val();
+			let recipName = $('input[name=orderer]').val();
+			let recipHp = $('input[name=hp]').val();
+			let recipZip = $('input[name=zip]').val();
+			let recipAddr1 = $('input[name=addr1]').val();
+			let recipAddr2 = $('input[name=addr2]').val();
+			let ordPayment = $('input[name=payment]:checked').val();
+			
+			console.log('here2');
+			let jsonData = {
+					'uid' : uid,
+					'ordCount' : ordCount,
+					'ordPrice' : ordPrice,
+					'ordDiscount' : ordDiscount,
+					'ordDelivery' : ordDelivery,
+					'savePoint' : savePoint,
+					'usedPoint' : usedPoint,
+					'ordTotPrice' : ordTotPrice,
+					'recipName' : recipName,
+					'recipHp' : recipHp,
+					'recipZip' : recipZip,
+					'recipAddr1' : recipAddr1,
+					'recipAddr2' : recipAddr2,
+					'ordPayment' : ordPayment
+			};
+			
+			console.log('here3');
 			$.ajax({
-				url : '/kmarket/product/CartPrice.do',
-				type : 'POST',					
-				data : {'arr' : arr},
-				traditional: true,
+				url : '/kmarket/product/order.do',
+				method : 'POST',
+				data : jsonData,
 				dataType : 'json',
 				success : function(data){
-					console.log("data : "+data.price);
-					$('td[class=product_price]').empty("");
-					$('td[class=product_price]').append(data.price.toLocaleString());
-					$('td[class=product_price]').append("<input type='hidden' name='product_price' id='product_price' value='"+data.price+"'>");
-					$('td[class=product_delivery]').empty("");
-					$('td[class=product_delivery]').append(data.delivery.toLocaleString());
-					$('td[class=product_delivery]').append("<input type='hidden' name='product_delivery' id='product_delivery' value='"+data.delivery+"'>");
-					$('td[class=product_discount]').empty("");
-					$('td[class=product_discount]').append(data.discount.toLocaleString());
-					$('td[class=product_discount]').append("<input type='hidden' name='product_discount' id='product_discount' value='"+data.discount+"'>");
-					$('td[class=product_num]').empty("");
-					$('td[class=product_num]').append(data.count.toLocaleString());
-					$('td[class=product_num]').append("<input type='hidden' name='product_num' id='product_num' value='"+data.count+"'>");
-					$('td[class=product_point]').empty("");
-					$('td[class=product_point]').append(data.point.toLocaleString());
-					$('td[class=product_point]').append("<input type='hidden' name='product_point' id='product_point' value='"+data.point+"'>");
-					$('td[class=product_savePoint]').empty("");
-					$('td[class=product_savePoint]').append(data.point.toLocaleString());
-					$('td[class=product_savePoint]').append("<input type='hidden' name='product_savePoint' id='product_savePoint' value='"+data.point+"'>");
-					$('td[class=product_total]').empty("");
-					$('td[class=product_total]').append(data.total.toLocaleString());
-					$('td[class=product_total]').append("<input type='hidden' name='totalPrice' id='totalPrice' value='"+data.total+"'>");
-					
-				}
-			});
-			
-			}else {
-				$('td[class=product_price]').empty("");
-				$('td[class=product_price]').append("0");
-				$('td[class=product_delivery]').empty("");
-				$('td[class=product_delivery]').append("0");
-				$('td[class=product_discount]').empty("");
-				$('td[class=product_discount]').append("0");
-				$('td[class=product_num]').empty("");
-				$('td[class=product_num]').append("0");
-				$('td[class=product_point]').empty("");
-				$('td[class=product_point]').append("0");
-				$('td[class=product_total]').empty("");
-				$('td[class=product_total]').append("0");
+					console.log('here4');
+					if(data.result > 0){
+						location.href = '/kmarket/product/complete.do';		
+				}			
 			}
-			
-			//$("input[name=order]").click(function() {
-			$('#order').click(function(e){
-				e.preventDefault();
-				
-				console.log('here1');
-				//let uid = '${sessUser.uid}';
-				let uid = $('input[name=uid]').val();
-				let ordCount = $('input[name=product_num]').val();
-				let ordPrice = $('input[name=totalPrice]').val();
-				let ordDiscount = $('input[name=product_discount]').val();
-				let ordDelivery = $('input[name=product_delivery]').val();
-				let savePoint = $('input[name=product_savePoint]').val();
-				let usedPoint = $('input[name=point]').val();
-				let ordTotPrice = $('input[name=totalPrice]').val();
-				let recipName = $('input[name=orderer]').val();
-				let recipHp = $('input[name=hp]').val();
-				let recipZip = $('input[name=zip]').val();
-				let recipAddr1 = $('input[name=addr1]').val();
-				let recipAddr2 = $('input[name=addr2]').val();
-				let ordPayment = $('input[name=payment]:checked').val();
-				
-				console.log('here2');
-				let jsonData = {
-						'uid' : uid,
-						'ordCount' : ordCount,
-						'ordPrice' : ordPrice,
-						'ordDiscount' : ordDiscount,
-						'ordDelivery' : ordDelivery,
-						'savePoint' : savePoint,
-						'usedPoint' : usedPoint,
-						'ordTotPrice' : ordTotPrice,
-						'recipName' : recipName,
-						'recipHp' : recipHp,
-						'recipZip' : recipZip,
-						'recipAddr1' : recipAddr1,
-						'recipAddr2' : recipAddr2,
-						'ordPayment' : ordPayment
-				};
-				
-				console.log('here3');
-				$.ajax({
-					url : '/kmarket/product/order.do',
-					method : 'POST',
-					data : jsonData,
-					dataType : 'json',
-					success : function(data){
-						console.log('here4');
-						if(data.result > 0){
-							location.href = '/kmarket/index.do';		
-					}			
-				}
-			});
 		});
 	});
-
-
+});
 
 </script>
         <main id="product">
@@ -248,12 +231,23 @@
                                     </div>
                                 </article>
                             </td>
-                            <td>${cart.count }</td>
-                            <td>${cart.price }</td>
-                            <td>${cart.discount}</td>
-                            <td>${cart.point }</td>
-                            <td>${cart.delivery }</td>
+                            <td>${cart.count }
+                            	<input type=hidden name="count" value="${cart.count }"></td>
+                            <td><fmt:formatNumber value="${cart.price }" pattern="#,###원" />
+                            	<input type="hidden" name="price" value="${cart.price }">
+                            </td>
+                            <td><fmt:formatNumber value="${(cart.discount)*(cart.price)/100}" pattern="#,###원" />
+                            	<input type="hidden" name="discount" value="${(cart.discount)*(cart.price)/100 }">
+                            </td>
+                            <td>${cart.point }%
+                            	<input type="hidden" name="point" value="${cart.point }">
+                            </td>
+                            <td>${cart.delivery }
+                            	<input type="hidden" name="delivery" value="${cart.delivery }">
+                            </td>
                             <td><fmt:formatNumber value="${cart.total }" pattern="#,###원" />
+                            	<input type="hidden" name="total" value="${cart.total }">
+                            </td>
                         </tr>
                         </c:forEach>
                         </c:otherwise>
@@ -290,7 +284,9 @@
                               </tr>
                               <tr>
                                 <td>전체주문금액</td>
-                                <td class="product_total">0</td>
+                                <td class="product_total">
+                                	<input type="hidden" name="product_total" value="0">
+                                </td>
                               </tr>
                         </table>
                         <input type="submit" name="order" id="order" value="결제하기">
