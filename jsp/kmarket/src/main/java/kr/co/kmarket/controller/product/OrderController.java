@@ -1,6 +1,7 @@
 package kr.co.kmarket.controller.product;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.JsonObject;
+
 import kr.co.kmarket.dao.ProductDAO;
 import kr.co.kmarket.vo.CartVO;
+import kr.co.kmarket.vo.OrderVO;
 
 @WebServlet("/product/order.do")
 public class OrderController extends HttpServlet  {
@@ -38,6 +42,46 @@ public class OrderController extends HttpServlet  {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-	
+		//데이터수신
+		String uid = req.getParameter("uid");
+		int ordCount = Integer.parseInt(req.getParameter("ordCount"));
+		String ordPrice = req.getParameter("ordPrice");
+		String ordDiscount = req.getParameter("ordDiscount");
+		String ordDelivery = req.getParameter("ordDelivery");
+		String savePoint = req.getParameter("savePoint");
+		String usedPoint = req.getParameter("usedPoint");
+		String ordTotPrice = req.getParameter("ordTotPrice");
+		String recipName = req.getParameter("recipName");
+		String recipHp = req.getParameter("recipHp");
+		String recipZip = req.getParameter("recipZip");
+		String recipAddr1 = req.getParameter("recipAddr1");
+		String recipAddr2 = req.getParameter("recipAddr2");
+		String ordPayment = req.getParameter("ordPayment");
+		
+		OrderVO ov = new OrderVO();
+		ov.setUid(uid);
+		ov.setOrdCount(ordCount);
+		ov.setOrdPrice(ordPrice);
+		ov.setOrdDiscount(ordDiscount);
+		ov.setOrdDelivery(ordDelivery);
+		ov.setSavePoint(savePoint);
+		ov.setUsedPoint(usedPoint);
+		ov.setOrdTotPrice(ordTotPrice);
+		ov.setRecipName(recipName);
+		ov.setRecipHp(recipHp);
+		ov.setRecipZip(recipZip);
+		ov.setRecipAddr1(recipAddr1);
+		ov.setRecipAddr2(recipAddr2);
+		ov.setOrdPayment(ordPayment);
+		
+		int result = ProductDAO.getInstance().InsertProductOrder(ov);
+		System.out.println("result : " + result);
+		
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+		
 	}
 }
