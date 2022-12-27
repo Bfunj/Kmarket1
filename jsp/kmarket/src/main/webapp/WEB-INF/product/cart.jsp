@@ -209,11 +209,10 @@
                                     </div>
                                 </article>
                             </td>
-                            <td>${cart.count }</td>
-                            <td><fmt:formatNumber value="${cart.price }" pattern="#,###" /></td>
+                            <td>${cart.count}</td>
+                            <td><fmt:formatNumber value="${cart.price }" pattern="#,###원" /></td>
                             <td><fmt:formatNumber value="${(cart.discount)*(cart.price)/100}" pattern="#,###원" /></td>
                             <td>${cart.point }</td>
-                            
                             <td><fmt:formatNumber value="${cart.delivery }" pattern="#,###" /></td>
                             <td><fmt:formatNumber value="${cart.total }" pattern="#,###원" />
                             </td>
@@ -253,6 +252,7 @@
                               <tr>
                                 <td>전체주문금액</td>
                                 <td class="product_total">0</td>
+                                
 
                               </tr>
                         </table>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="./header.jsp"></jsp:include>
 <script>
 
@@ -12,6 +13,7 @@
 			let price = $('input[name=ori_price]').val();
 			let discount = $('input[name=discount]').val();
 			let delivery =  $('input[name=delivery]').val();
+			discount = Number(discount);
 			
 			let jsonData = {
 					'uid' : uid,
@@ -36,7 +38,7 @@
 					dataType : 'json',
 					success : function(data){
 						if(data.result > 0){
-							alert('장바구니에 추가되었습니다.');
+							alert('장바구니에 추가되었습니다. \n장바구니로 이동합니다.');
 							location.href = '/kmarket/product/cart.do?uid='+uid;
 						}
 					}
@@ -62,45 +64,56 @@
 		
 		//주문하기 페이지
 		$('input[class=order]').click(function(){
-			
+			console.log("here1");
+			let proName = $('input[name=proName]').val();
+			let descript = $('input[name=descript]').val();
 			let uid = $('input[name=uid]').val();
 			let proNo = $('input[name=proNo]').val();
 			let count = $('input[name=num]').val();
 			let price = $('input[name=ori_price]').val();
 			let discount = $('input[name=discount]').val();
 			let delivery =  $('input[name=delivery]').val();
+			let cate1 = $('input[name=cate1]').val();
+			let cate2 = $('input[name=cate2]').val();
+			let thumb1 = $('input[name=thumb1]').val();
+			let total = $('input[name=total]').val();
+			discount = Number(discount);
+			total = Number(total);
 			
 			let jsonData = {
+					'cate1' : cate1,
+					'cate2' : cate2,
+					'thumb1' : thumb1,
+					'proName' : proName,
+					'descript' : descript,
 					'uid' : uid,
 					'proNo' : proNo,
 					'count' : count,
 					'price' : price,
 					'discount' : discount,
-					'delivery' : delivery
+					'delivery' : delivery,
+					'total' : total 
 			};
-			
+			console.log("here3");
 			//로그인 유무 확인
 			if(uid == ''){
 				alert('로그인 후 이용가능합니다.');
 				location.href= '/kmarket/member/login.do';
 				
 			}else{
-				
+				console.log("here4");
 				$.ajax({
 					url : '/kmarket/product/directOrder.do' ,
 					method : 'POST' ,
 					data : jsonData ,
 					dataType : 'json',
 					success : function(data){
-						if(data.result > 0){
-							alert('주문페이지로 이동합니다.');
-							location.href = '/kmarket/product/directOrder.do';
-						}
+							alert('주문 페이지로 이동합니다.');
+							location.href = '/kmarket/product/order.do';
 					}
 				});
 			}
 		});
-		
 	});
 
 
@@ -146,7 +159,9 @@
                         </nav>                        
                         <nav>
                             <h3>${productView.proName }</h3>
+                            <input type="hidden" name="proName" value="${productView.proName }">
                             <p>${productView.descript }</p>
+                            <input type="hidden" name="descript" value="${productView.descript }">
                             <h5 class="rating star${productView.score}"><a href="#">상품평보기</a></h5>
                            
                         </nav>
@@ -197,8 +212,14 @@
                         	<input type="hidden" name="uid" value="${sessUser.uid }">
                         	<input type="hidden" name="proNo" value="${productView.proNo }">
                         	<input type="hidden" name="ori_price" value="${productView.price }">
-                        	<input type="hidden" name="discount" value="${productView.discount }">
+                        	<input type="hidden" name="discount" value="${productView.discount}">
                         	<input type="hidden" name="delivery" value="${productView.delivery }">
+                        	<input type="hidden" name="cate1" value="${productView.cate1 }">
+                        	<input type="hidden" name="cate2" value="${productView.cate2 }">
+                        	<input type="hidden" name="point" value="${productView.point }">
+                        	<input type="hidden" name="delivery" value="${productView.delivery }">
+                        	<input type="hidden" name="thumb1" value="${productView.thumb1 }">
+                        	<input type="hidden" name="total" value="${(productView.price/100)*(100-productView.discount)+(productView.delivery)}">
                             <input type="button" class="cart" id="cart"  value="장바구니"/>
                             <input type="button" class="order" value="구매하기"/>
                         </div>

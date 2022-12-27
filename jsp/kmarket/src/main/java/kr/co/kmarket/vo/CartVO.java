@@ -26,6 +26,10 @@ public class CartVO {
 	public void setCate1(int cate1) {
 		this.cate1 = cate1;
 	}
+	
+	public void setCate1(String cate1) {
+		this.cate1 = Integer.parseInt(cate1);
+	}
 
 	public int getCate2() {
 		return cate2;
@@ -33,6 +37,10 @@ public class CartVO {
 
 	public void setCate2(int cate2) {
 		this.cate2 = cate2;
+	}
+	
+	public void setCate2(String cate2) {
+		this.cate2 = Integer.parseInt(cate2);
 	}
 
 	public void setThumb1(String thumb1) {
@@ -118,6 +126,11 @@ public class CartVO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	
+	public void setPoint(String point) {
+		this.point = Integer.parseInt(point);
+	}
+	
 	public int getDelivery() {
 		return delivery;
 	}
@@ -135,6 +148,11 @@ public class CartVO {
 	public void setTotal(int total) {
 		this.total = total;
 	}
+	
+	public void setTotal(String total) {
+		this.total = Integer.parseInt(total);
+	}
+	
 	public String getRdate() {
 		return rdate;
 	}
