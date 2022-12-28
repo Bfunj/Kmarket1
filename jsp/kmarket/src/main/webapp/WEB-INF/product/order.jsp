@@ -62,11 +62,10 @@
 		$('td[class=product_discount]').append("<input type='hidden' name='product_discount' value='"+ discount +"'>");
 		$('td[class=product_total]').empty("");
 		$('td[class=product_total]').append(total.toLocaleString());
-		$('input[name=product_total]').val(total);
-		//$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ total +"'>");
+		$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ total +"'>");
 		$('td[class=product_savePoint]').empty("");
-		$('td[class=product_savePoint]').append((point * total / 100).toLocaleString()+'점');
-		$('td[class=product_savePoint]').append("<input type='hidden' name='product_savePoint' value='"+ point * total / 100 +"'>");
+		$('td[class=product_savePoint]').append(Math.round((point * total / 100)).toLocaleString()+'점');
+		$('td[class=product_savePoint]').append("<input type='hidden' name='product_savePoint' value='"+ Math.round(point * total / 100) +"'>");
 		$('td[class=product_delivery]').empty("");
 		$('td[class=product_delivery]').append(delivery.toLocaleString()+'원');
 		$('td[class=product_delivery]').append("<input type='hidden' name='product_delivery' value='"+ delivery +"'>");
@@ -74,10 +73,10 @@
 		let totprice = $('input[name=product_total]').val();
 		
 		$('.btnPoint').click(function(){
-			//alert('클릭!');
 			let userPoint = ${sessUser.point}
 			let point = $('input[id=usedPoint]').val();
-			totprice = totprice - point;
+			let totPrice = $('input[name=product_total]').val();
+			tot_price = totPrice - point; //최종금액
 			
 			if(point < 3000){
 				alert('포인트는 3000점 이상 사용가능합니다.');
@@ -87,11 +86,9 @@
 				$('td[class=product_pointDiscount]').empty("");
 				$('td[class=product_pointDiscount]').append(point);
 				$('td[class=product_total]').empty("");
-				$('td[class=product_total]').append(price.toLocaleString());
-				$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ price +"'>");
+				$('td[class=product_total]').append(tot_price.toLocaleString());
+				$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ totPrice +"'>");
 			}
-			
-			
 		});
 			
 		//주문하기
@@ -99,15 +96,14 @@
 			e.preventDefault();
 			
 			console.log('here1');
-			//let uid = '${sessUser.uid}';
 			let uid = $('input[name=uid]').val();
 			let ordCount = $('input[name=product_num]').val();
-			let ordPrice = $('input[name=totalPrice]').val();
+			let ordPrice = $('input[name=product_total]').val();
 			let ordDiscount = $('input[name=product_discount]').val();
 			let ordDelivery = $('input[name=product_delivery]').val();
 			let savePoint = $('input[name=product_savePoint]').val();
-			let usedPoint = $('input[name=point]').val();
-			let ordTotPrice = $('input[name=totalPrice]').val();
+			let usedPoint = $('input[id=usedPoint]').val();
+			let ordTotPrice = $('input[name=product_total]').val();
 			let recipName = $('input[name=orderer]').val();
 			let recipHp = $('input[name=hp]').val();
 			let recipZip = $('input[name=zip]').val();
@@ -285,7 +281,7 @@
                               <tr>
                                 <td>전체주문금액</td>
                                 <td class="product_total">
-                                	<input type="hidden" name="product_total" value="0">
+                                	<input type="hidden" name="product_total" value="">
                                 </td>
                               </tr>
                         </table>
