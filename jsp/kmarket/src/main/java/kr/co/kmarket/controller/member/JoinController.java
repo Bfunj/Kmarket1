@@ -18,7 +18,6 @@ public class JoinController extends HttpServlet {
 	public void init() throws ServletException {
 	}
 	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/member/join.jsp");
