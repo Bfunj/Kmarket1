@@ -108,7 +108,7 @@ $(function(){
 			$('.resultCompany').css('color', 'red').text(' (주)포함 입력해주십시오, 예) (주)케이마켓.');
 		}else{
 			isCompanyOk = true;
-			$('.resultCompany').text('');
+			$('.resultCompany').text('ok');
 		}
 	});
 	
@@ -121,7 +121,7 @@ $(function(){
 			$('.resultCeo').css('color', 'red').text('대표명이 유효하지 않습니다.');
 		}else{
 			isCeoOk = true;
-			$('.resultCeo').text('');
+			$('.resultCeo').text('ok');
 		}
 	});
 	
@@ -131,10 +131,10 @@ $(function(){
 		
 		if(!corp.match(regCorp)){
 			isCorpOk = false;
-			$('.resultCorp').css('color', 'red').text('- 표시 포함 12자리 입력해주십시오, 예) 123-45-67890.');
+			$('.resultCorp').css('color', 'red').text('- 표시 포함 12자리 입력해주십시오, 예) 123-12-123456');
 		}else{
 			isCorpOk = true;
-			$('.resultCorp').text('');
+			$('.resultCorp').text('ok');
 		}
 	});
 	
@@ -147,7 +147,7 @@ $(function(){
 			$('.resultOnline').css('color', 'red').text('- 표시 포함 입력해주십시오, 예) 강남-12345');
 		}else{
 			isOnlineOk = true;
-			$('.resultOnline').text('');
+			$('.resultOnline').text('ok');
 		}
 	});
 	
@@ -156,10 +156,10 @@ $(function(){
 		
 		if(!tel.match(regTel)){
 			isTelOk = false;
-			$('.resultTel').css('color', 'red').text('- 표시 포함 입력해주십시오, 지역번호 포함, 예) 02-234-1234.');
+			$('.resultTel').css('color', 'red').text('- 표시 포함 입력해주십시오, 지역번호 포함, 예) 12-123-1234');
 		}else{
 			isTelOk = true;
-			$('.resultTel').text('');
+			$('.resultTel').text('ok');
 		}
 	});
 	
@@ -168,10 +168,10 @@ $(function(){
 		
 		if(!fax.match(regTel)){
 			isFaxOk = false;
-			$('.resultFax').css('color', 'red').text('- 표시 포함 입력해주십시오, 지역번호 포함, 예) 02-234-1234');
+			$('.resultFax').css('color', 'red').text('- 표시 포함 입력해주십시오, 지역번호 포함, 예) 12-123-1234');
 		}else{
 			isFaxOk = true;
-			$('.resultFax').text('');
+			$('.resultFax').text('ok');
 		}
 	});
 	
@@ -183,7 +183,7 @@ $(function(){
 			$('.resultEmail').css('color', 'red').text('이메일이 유효하지 않습니다.');
 		}else{
 			isEmailOk = true;
-			$('.resultEmail').text('');
+			$('.resultEmail').text('ok');
 		}			
 	});
 	

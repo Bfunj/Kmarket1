@@ -20,7 +20,6 @@
 	          	<c:when test="${empty sessUser }">
 		            <a href="/kmarket/member/login.do">로그인</a>
 		            <a href="/kmarket/member/signup.do">회원가입</a>
-		            
 		      	</c:when>
 		      	<c:otherwise>
 		      		<span>${sessUser.name }</span>님 반갑습니다.
@@ -31,6 +30,7 @@
 		              >&nbsp;장바구니</a>
 				</c:otherwise>
 		      </c:choose>
+		      		  <a href="/kmarket/index.do">HOME</a>
                     </p>
                 </div>
             </div>
