@@ -6,7 +6,7 @@
                 <nav>
                     <h3>공지사항 목록</h3>
                     <p>
-                        Home > 고객센터 > <strong>공지샇ㅇ</strong>
+                        Home > 고객센터 > <strong>공지사항</strong>
                     </p>
                 </nav>
                 <!-- 상품목록 컨텐츠 시작 -->
@@ -30,11 +30,58 @@
                             <th>날짜</th>
                             <th>관리</th>
                         </tr>
+                        
+                         <c:forEach var="noticeList" items="${noticeList}">
+                        
+                        	 <c:forEach var="cate1s" items="${cate1s}">
+                        	 <c:if test="${cate1s.cate1 eq noticeList.cate1 }">
+	                        	 	
+	                         		
+				                        <tr>
+				                            <td><input type="checkbox" name="상품코드"/></td>
+				                            <td>${noticeList.no }</td>
+				                            <td>${cate1s.c1Name }</td>
+				                            <td>${noticeList.title }</td>
+				                            <td>${noticeList.hit }</td>
+				                            <td>${noticeList.rdate.substring(2, 10) }</td>
+				                            <td>
+				                                <a href="#">[삭제]</a><br/>
+				                                <a href="#">[수정]</a>
+				                            </td>
+				                        </tr>
+
+			                        	</c:if>
+			                        </c:forEach>
+		                        
+                        	</c:forEach>
+                      
 
                     </table>
                     
-
                     <input type="button" value="선택삭제" />
+                    <a href="./NoticeWrite.do" class="btnWrite">작성하기</a>
+                    
+               
+
+ <div class="paging">
+	<c:if test="${pageGroupStart > 1 }">
+	<span class="prev">
+		<a href="/kmarket/admin/cs/NoticeList.do?uid=${sessUser.uid }&pg=${pageGroupStart-1}" ><&nbsp;이전</a>
+	</span>
+	</c:if>	
+	
+	<c:forEach var="num" begin="${pageGroupStart }" end="${pageGroupEnd }" step="1"> 
+		<span class="num">
+            		<a href="/kmarket/admin/cs/NoticeList.do?uid=${sessUser.uid }&pg=${num}" class="${num eq currentPage ? 'on':'off' }">${num}</a>
+		  </span>
+	</c:forEach>    
+	<c:if test="${pageGroupEnd < lastPageNum }">
+		<span class="next">
+			<a href="/kmarket/admin/cs/NoticeList.do?uid=${sessUser.uid }&pg=${pageGroupEnd+1}" >다음 ></a>
+		 </span>
+	</c:if>
+
+</div>
 
                 </section>
 
