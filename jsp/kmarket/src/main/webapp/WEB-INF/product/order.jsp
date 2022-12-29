@@ -157,6 +157,35 @@
 			}
 		});
 	});
+		
+		$('#order').click(function(e){
+			e.preventDefault();
+			
+			let arr = [];
+			
+			$('input[name=check]:checked').each(function(){
+				arr.push($(this).val());
+			});
+			
+			console.log("checkNo : " + arr);
+			
+			let jsonData = {
+					"arr" : arr
+			}
+			
+			$.ajax({
+				url : '/kmarket/product/complete.do' ,
+				type : 'POST' ,
+				data : jsonData ,
+				traditional : true ,
+				dataType : 'json',
+				success : function(data) {
+					
+				}
+			});
+			
+			
+		});
 });
 
 </script>
