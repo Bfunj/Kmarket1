@@ -11,6 +11,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.co.kmarket.dao.AdminDAO;
+import kr.co.kmarket.vo.ArticleVO;
 import kr.co.kmarket.vo.Cate1VO;
 import kr.co.kmarket.vo.Cate2VO;
 import kr.co.kmarket.vo.ProductVO;
@@ -131,6 +132,18 @@ public enum AdminService {
 	}
 	public int selectCountTotal(String seller) {
 		return dao.selectCountTotal(seller);
+	}
+	public int selectCountTotalNotice() {
+		return dao.selectCountTotalNotice();
+	}
+	public List<Cate1VO> SelectNoticeCate1() {
+		return dao.SelectNoticeCate1();
+	}
+	public int insertNoticeArticle(ArticleVO article) {
+		return dao.insertNoticeArticle(article);
+	}
+	public List<ArticleVO> SelectNotice(int start) {
+		return dao.SelectNotice(start);
 	}
 
 }

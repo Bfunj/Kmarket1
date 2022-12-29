@@ -465,3 +465,65 @@ button[type=submit] {
     color: #fe434c;
     font-weight: bold;
 }
+
+
+.btnWrite {
+    float: right;
+    padding: 10px 20px;
+    text-align: center;
+    margin-top: 0px;
+    background-color: #067dfd;
+    border: 1px solid #0063ce;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+
+
+.noticeText {
+  	width: 100%;
+    height: 360px;
+    resize: none;
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.noticeTitle{
+	width: 100%;
+    height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+    text-indent: 10px;
+}
+
+.noticeCancle{
+	display: inline-block;
+    width: 200px;
+    height: 60px;
+    margin: 40px auto 0;
+    border: 1px solid #ccc;
+    border-radius: 34px;
+    font-size: 16px;
+    color: #000;
+    line-height: 58px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.noticeSubmit{
+	display: inline-block;
+    width: 200px;
+    height: 60px;
+    margin: -4px auto 0;
+    background-color: #067dfd;
+    border: 1px solid #0063ce;
+    border-radius: 34px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+}
