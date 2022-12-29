@@ -32,15 +32,14 @@
 		var delivery = 0;
 		var point = 0;
 		
-		$('input[name=total]').each(function(){
-			total += Number($(this).val());
-		});
 		$('input[name=count]').each(function(){
 			count += Number($(this).val());
 		});
+		
 		$('input[name=price]').each(function(){
 			price += Number($(this).val());
 		});
+		
 		$('input[name=discount]').each(function(){
 			discount += Number($(this).val());
 		});
@@ -49,6 +48,10 @@
 		});
 		$('input[name=point]').each(function(){
 			point += Number($(this).val());
+		});
+		
+		$('input[name=total]').each(function(){
+			total += Number($(this).val());
 		});
 		
 		$('td[class=product_num]').empty("");
@@ -62,36 +65,40 @@
 		$('td[class=product_discount]').append("<input type='hidden' name='product_discount' value='"+ discount +"'>");
 		$('td[class=product_total]').empty("");
 		$('td[class=product_total]').append(total.toLocaleString());
-		$('input[name=product_total]').val(total);
-		//$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ total +"'>");
+		$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ total +"'>");
 		$('td[class=product_savePoint]').empty("");
-		$('td[class=product_savePoint]').append((point * total / 100).toLocaleString()+'점');
-		$('td[class=product_savePoint]').append("<input type='hidden' name='product_savePoint' value='"+ point * total / 100 +"'>");
+		$('td[class=product_savePoint]').append(Math.round((point * total / 100)).toLocaleString()+'점');
+		$('td[class=product_savePoint]').append("<input type='hidden' name='product_savePoint' value='"+ Math.round(point * total / 100) +"'>");
 		$('td[class=product_delivery]').empty("");
 		$('td[class=product_delivery]').append(delivery.toLocaleString()+'원');
 		$('td[class=product_delivery]').append("<input type='hidden' name='product_delivery' value='"+ delivery +"'>");
 		
 		let totprice = $('input[name=product_total]').val();
 		
+		let usePoint = $('input[id=usedPoint]').val();
+		
+		if(usePoint == ''){
+			$('input[id=usedPoint]').val(0);
+		}
+		
 		$('.btnPoint').click(function(){
-			//alert('클릭!');
 			let userPoint = ${sessUser.point}
 			let point = $('input[id=usedPoint]').val();
-			totprice = totprice - point;
+			let totPrice = $('input[name=product_total]').val();
+			tot_price = totPrice - point; //최종금액
 			
 			if(point < 3000){
 				alert('포인트는 3000점 이상 사용가능합니다.');
 			}else if(userPoint < point){
 				alert("현재 보유중인 포인트는 " + userPoint + " 입니다. " + "\n할인 받을 포인트를 확인해주세요." );
-			}else if(userPoint > point && point >= 3000){
+			}else if(userPoint >= point && point >= 3000){
 				$('td[class=product_pointDiscount]').empty("");
 				$('td[class=product_pointDiscount]').append(point);
 				$('td[class=product_total]').empty("");
-				$('td[class=product_total]').append(price.toLocaleString());
-				$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ price +"'>");
+				$('td[class=product_total]').append(tot_price.toLocaleString());
+				$('td[class=product_total]').append("<input type='hidden' name='product_total1' value='"+ tot_price +"'>");
+				$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ totPrice +"'>");
 			}
-			
-			
 		});
 			
 		//주문하기
@@ -99,21 +106,24 @@
 			e.preventDefault();
 			
 			console.log('here1');
-			//let uid = '${sessUser.uid}';
 			let uid = $('input[name=uid]').val();
 			let ordCount = $('input[name=product_num]').val();
-			let ordPrice = $('input[name=totalPrice]').val();
+			let ordPrice = $('input[name=product_total]').val();
 			let ordDiscount = $('input[name=product_discount]').val();
 			let ordDelivery = $('input[name=product_delivery]').val();
 			let savePoint = $('input[name=product_savePoint]').val();
-			let usedPoint = $('input[name=point]').val();
-			let ordTotPrice = $('input[name=totalPrice]').val();
+			let usedPoint = $('input[id=usedPoint]').val();
+			let ordTotPrice = $('input[name=product_total]').val();
 			let recipName = $('input[name=orderer]').val();
 			let recipHp = $('input[name=hp]').val();
 			let recipZip = $('input[name=zip]').val();
 			let recipAddr1 = $('input[name=addr1]').val();
 			let recipAddr2 = $('input[name=addr2]').val();
 			let ordPayment = $('input[name=payment]:checked').val();
+			
+			if(ordPayment == undefined){
+				alert('결제 방법을 확인해주세요.');
+			}
 			
 			console.log('here2');
 			let jsonData = {
@@ -147,6 +157,35 @@
 			}
 		});
 	});
+		
+		$('#order').click(function(e){
+			e.preventDefault();
+			
+			let arr = [];
+			
+			$('input[name=check]:checked').each(function(){
+				arr.push($(this).val());
+			});
+			
+			console.log("checkNo : " + arr);
+			
+			let jsonData = {
+					"arr" : arr
+			}
+			
+			$.ajax({
+				url : '/kmarket/product/complete.do' ,
+				type : 'POST' ,
+				data : jsonData ,
+				traditional : true ,
+				dataType : 'json',
+				success : function(data) {
+					
+				}
+			});
+			
+			
+		});
 });
 
 </script>
@@ -226,7 +265,9 @@
                                 <article>
                                     <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
                                     <div>
-                                        <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a></h2>
+                                        <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a>
+                                        	<input type="hidden" name="proNo" value="${cart.proNo }" >
+                                        </h2>
                                         <p>${cart.descript }</p>
                                     </div>
                                 </article>
@@ -285,7 +326,7 @@
                               <tr>
                                 <td>전체주문금액</td>
                                 <td class="product_total">
-                                	<input type="hidden" name="product_total" value="0">
+                                	<input type="hidden" name="product_total" value="">
                                 </td>
                               </tr>
                         </table>
@@ -303,7 +344,7 @@
                             </tr>
                             <tr>
                                 <td>휴대폰</td>
-                                <td><input type="text" name="hp" value="${sessUser.email }">
+                                <td><input type="text" name="hp" value="${sessUser.hp }">
                                 <span>- 포함 입력</span></td>
                             </tr>
                             <tr>
