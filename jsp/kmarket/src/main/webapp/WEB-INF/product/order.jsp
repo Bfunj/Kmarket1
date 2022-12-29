@@ -344,7 +344,7 @@
                             </tr>
                             <tr>
                                 <td>휴대폰</td>
-                                <td><input type="text" name="hp" value="${sessUser.email }">
+                                <td><input type="text" name="hp" value="${sessUser.hp }">
                                 <span>- 포함 입력</span></td>
                             </tr>
                             <tr>
