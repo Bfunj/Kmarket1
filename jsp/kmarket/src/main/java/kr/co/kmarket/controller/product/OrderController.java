@@ -45,18 +45,20 @@ public class OrderController extends HttpServlet  {
 		//데이터수신
 		String uid = req.getParameter("uid");
 		int ordCount = Integer.parseInt(req.getParameter("ordCount"));
-		String ordPrice = req.getParameter("ordPrice");
+		int ordPrice = Integer.parseInt(req.getParameter("ordPrice"));
 		String ordDiscount = req.getParameter("ordDiscount");
 		String ordDelivery = req.getParameter("ordDelivery");
 		String savePoint = req.getParameter("savePoint");
-		String usedPoint = req.getParameter("usedPoint");
-		String ordTotPrice = req.getParameter("ordTotPrice");
+		int usedPoint = Integer.parseInt(req.getParameter("usedPoint"));
+		int ordTotPrice = Integer.parseInt(req.getParameter("ordTotPrice"));
 		String recipName = req.getParameter("recipName");
 		String recipHp = req.getParameter("recipHp");
 		String recipZip = req.getParameter("recipZip");
 		String recipAddr1 = req.getParameter("recipAddr1");
 		String recipAddr2 = req.getParameter("recipAddr2");
 		String ordPayment = req.getParameter("ordPayment");
+		
+		ordTotPrice = ordPrice - usedPoint;
 		
 		OrderVO ov = new OrderVO();
 		ov.setUid(uid);
