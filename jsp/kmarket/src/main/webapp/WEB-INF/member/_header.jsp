@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +21,10 @@
         <header>
             <div class="top">
                 <div>
+                <c:if test="${sessUser eq null }">
                     <a href="/kmarket/member/login.do">로그인</a>
                     <a href="/kmarket/member/signup.do">회원가입</a>
+                    </c:if>
                     <a href="#">마이페이지</a>
                     <a href="/kmarket/product/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 </div>

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
+import kr.co.kmarket.vo.ArticleVO;
 import kr.co.kmarket.vo.Cate1VO;
 import kr.co.kmarket.vo.Cate2VO;
 import kr.co.kmarket.vo.ProductVO;
@@ -450,6 +451,129 @@ public class AdminDAO extends DBHelper{
 			logger.error(e.getMessage());
 		}
 		return total;
+	}
+	
+	
+	public List<Cate1VO> SelectNoticeCate1() {
+		
+		List<Cate1VO> cate1s = new ArrayList<>();
+		
+		try {
+			logger.info("select NOTICE cate1 start...");
+			
+			conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(Sql.SELECT_CATE1_NOTICE);
+		
+			
+			while(rs.next()) {
+				Cate1VO cate1 = new Cate1VO();
+				cate1.setCate1(rs.getInt(1));
+				cate1.setC1Name(rs.getString(2));
+				
+				cate1s.add(cate1);
+			}
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+			logger.error("cate1 error..");
+		}
+		return cate1s;
+	}
+	
+	
+	public int insertNoticeArticle(ArticleVO article) {
+		int parent = 0;
+		try{
+			logger.info("insertNoticeArticle start...");
+			conn = getConnection();
+			
+			// 트랜젝션 시작
+			conn.setAutoCommit(false);
+			
+			stmt = conn.createStatement();
+			psmt = conn.prepareStatement(Sql.INSERT_NOTICE_ARTICLE);
+			
+			psmt.setString(1, article.getCate1());
+			psmt.setString(2, article.getTitle());
+			psmt.setString(3, article.getContent());
+			psmt.setString(4, article.getUid());
+			psmt.setString(5, article.getRegip());
+			
+			psmt.executeUpdate(); // INSERT
+			rs = stmt.executeQuery(Sql.SELECT_MAX_NO_n); // SELECT
+			
+			// 작업확정
+			conn.commit(); 
+			
+			if(rs.next()){
+				parent = rs.getInt(1);				
+			}
+			
+			close();
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}
+		
+		return parent;
+	}
+	
+	
+	public int selectCountTotalNotice() {
+		int total =0;	
+		try{
+			logger.info("selectCountTotal start...");
+			conn = getConnection();
+			
+			Statement stmt = conn.createStatement();
+			ResultSet rs =stmt.executeQuery(Sql.SELECT_PRODUCT_COUNT_TOTAL_NOTICE);		
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+	
+	
+	public List<ArticleVO> SelectNotice(int start) {
+		
+		List<ArticleVO> av = new ArrayList<>();
+	
+		try {
+			logger.info("SELECT_NOTICE start...");
+			
+			conn = getConnection();
+			PreparedStatement psmt = conn.prepareStatement(Sql.SELECT_NOTICE);
+			psmt.setInt(1,start);	
+			ResultSet rs =psmt.executeQuery();	
+			
+			while(rs.next()) {
+				ArticleVO pv = new ArticleVO();
+				
+				pv.setNo(rs.getInt(1));
+				pv.setParent(rs.getInt(2));
+				pv.setComment(rs.getInt(3));
+				pv.setCate1(rs.getString(4));
+				pv.setCate2(rs.getString(5));
+				pv.setTitle(rs.getString(6));
+				pv.setContent(rs.getString(7));
+				pv.setFile(rs.getInt(8));
+				pv.setHit(rs.getInt(9));
+				pv.setUid(rs.getString(10));
+				pv.setRegip(rs.getString(11));
+				pv.setRdate(rs.getString(12));
+		
+				av.add(pv);
+			}
+			close();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}	
+		return av;
 	}
 	
 }
