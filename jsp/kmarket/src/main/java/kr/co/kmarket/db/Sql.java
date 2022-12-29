@@ -214,7 +214,7 @@ public class Sql {
 													+ "	`ordDelivery` = ?, "
 													+ "	`savePoint` = ?, "
 													+ "	`usedPoint` = ?, "
-													+ "	`ordTotPrice` = ?, "
+													+ "	`ordTotPrice` = ? , "
 													+ "	`recipName` = ?, "
 													+ "	`recipHp` = ?, "
 													+ "	`recipZip` = ?, "

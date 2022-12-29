@@ -32,15 +32,14 @@
 		var delivery = 0;
 		var point = 0;
 		
-		$('input[name=total]').each(function(){
-			total += Number($(this).val());
-		});
 		$('input[name=count]').each(function(){
 			count += Number($(this).val());
 		});
+		
 		$('input[name=price]').each(function(){
 			price += Number($(this).val());
 		});
+		
 		$('input[name=discount]').each(function(){
 			discount += Number($(this).val());
 		});
@@ -49,6 +48,10 @@
 		});
 		$('input[name=point]').each(function(){
 			point += Number($(this).val());
+		});
+		
+		$('input[name=total]').each(function(){
+			total += Number($(this).val());
 		});
 		
 		$('td[class=product_num]').empty("");
@@ -72,6 +75,12 @@
 		
 		let totprice = $('input[name=product_total]').val();
 		
+		let usePoint = $('input[id=usedPoint]').val();
+		
+		if(usePoint == ''){
+			$('input[id=usedPoint]').val(0);
+		}
+		
 		$('.btnPoint').click(function(){
 			let userPoint = ${sessUser.point}
 			let point = $('input[id=usedPoint]').val();
@@ -82,11 +91,12 @@
 				alert('포인트는 3000점 이상 사용가능합니다.');
 			}else if(userPoint < point){
 				alert("현재 보유중인 포인트는 " + userPoint + " 입니다. " + "\n할인 받을 포인트를 확인해주세요." );
-			}else if(userPoint > point && point >= 3000){
+			}else if(userPoint >= point && point >= 3000){
 				$('td[class=product_pointDiscount]').empty("");
 				$('td[class=product_pointDiscount]').append(point);
 				$('td[class=product_total]').empty("");
 				$('td[class=product_total]').append(tot_price.toLocaleString());
+				$('td[class=product_total]').append("<input type='hidden' name='product_total1' value='"+ tot_price +"'>");
 				$('td[class=product_total]').append("<input type='hidden' name='product_total' value='"+ totPrice +"'>");
 			}
 		});
@@ -110,6 +120,10 @@
 			let recipAddr1 = $('input[name=addr1]').val();
 			let recipAddr2 = $('input[name=addr2]').val();
 			let ordPayment = $('input[name=payment]:checked').val();
+			
+			if(ordPayment == undefined){
+				alert('결제 방법을 확인해주세요.');
+			}
 			
 			console.log('here2');
 			let jsonData = {
@@ -143,6 +157,35 @@
 			}
 		});
 	});
+		
+		$('#order').click(function(e){
+			e.preventDefault();
+			
+			let arr = [];
+			
+			$('input[name=check]:checked').each(function(){
+				arr.push($(this).val());
+			});
+			
+			console.log("checkNo : " + arr);
+			
+			let jsonData = {
+					"arr" : arr
+			}
+			
+			$.ajax({
+				url : '/kmarket/product/complete.do' ,
+				type : 'POST' ,
+				data : jsonData ,
+				traditional : true ,
+				dataType : 'json',
+				success : function(data) {
+					
+				}
+			});
+			
+			
+		});
 });
 
 </script>
@@ -222,7 +265,9 @@
                                 <article>
                                     <a href="#"><img src="/kmarket/file/${cart.cate1 }/${cart.cate2}/${cart.thumb1}" alt="썸네일"></a>
                                     <div>
-                                        <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a></h2>
+                                        <h2><a href="/kmarket/product/view.do?proNo=${cart.proNo }&cate1=${cart.cate1}&cate2=${cart.cate2}">${cart.proName }</a>
+                                        	<input type="hidden" name="proNo" value="${cart.proNo }" >
+                                        </h2>
                                         <p>${cart.descript }</p>
                                     </div>
                                 </article>

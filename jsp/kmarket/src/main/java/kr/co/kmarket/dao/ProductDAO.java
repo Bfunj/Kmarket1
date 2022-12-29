@@ -315,5 +315,9 @@ public class ProductDAO extends DBHelper{
 		}
 		return result;
 	}
+	
+	public void Insert_Product_OrderItem() {
+		
+	}
 }
 

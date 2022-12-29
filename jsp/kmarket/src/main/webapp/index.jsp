@@ -157,9 +157,11 @@
                   </div>
                   <h2>${listProductBest.proName }</h2>
                   <div class="org_price">
+
                     <del>
                     <fmt:formatNumber value="${listProductBest.price }" pattern="#,###" />
                     </del>
+
                     <span>${listProductBest.discount }%</span>
                   </div>
                   <div class="dis_price">
