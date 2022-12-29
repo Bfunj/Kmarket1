@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -99,8 +100,8 @@
               <li><a href="#">할인상품</a></li>
             </ul>
             <ul>
-              <li><a href="./cs/notice/list.do">공지사항</a></li>
-              <li><a href="./cs/faq/list.do">자주묻는질문</a></li>
+              <li><a href="./cs/notice/list.do?&cate=10">공지사항</a></li>
+              <li><a href="./cs/faq/list.do?&cate=10">자주묻는질문</a></li>
               <li><a href="./cs/qna/write.do">문의하기</a></li>
               <li><a href="./cs/csIndex.do">고객센터</a></li>
             </ul>
@@ -156,11 +157,15 @@
                   </div>
                   <h2>${listProductBest.proName }</h2>
                   <div class="org_price">
-                    <del>${listProductBest.price }</del>
+
+                    <del>
+                    <fmt:formatNumber value="${listProductBest.price }" pattern="#,###" />
+                    </del>
+
                     <span>${listProductBest.discount }%</span>
                   </div>
                   <div class="dis_price">
-                    <ins>${(listProductBest.price/100)*(100-listProductBest.discount)  }</ins>
+                    <ins>   <fmt:formatNumber value=" ${(listProductBest.price/100)*(100-listProductBest.discount)  }" pattern="#,###" /></ins>
                   </div>
                 </a>
               </li>
@@ -220,17 +225,19 @@
 	                <h2> ${listProductHit.proName }</h2>
 	                <p> ${listProductHit.descript }</p>
 	                <div class="org_price">
-	                  <del> ${listProductHit.price }</del>
+	                  <del>
+	                  <fmt:formatNumber value="${listProductHit.price }" pattern="#,###" />
+	                  </del>
 	                  <span> ${listProductHit.discount }%</span>
 	                </div>
 	                <div class="dis_price">
-	                 <ins> ${(listProductHit.price/100)*(100-listProductHit.discount)  }</ins>
+	                 <ins>      <fmt:formatNumber value=" ${(listProductHit.price/100)*(100-listProductHit.discount)  }" pattern="#,###" /></ins>
 	                 <c:choose>
 	                 <c:when test="${listProductHit.delivery eq 0 }">
 	                 <span class="free">무료배송</span>
 	                 </c:when>
 	                 <c:otherwise>
-	                 <span >배송비 ${listProductHit.delivery }</span>
+	                 <span >배송비 <fmt:formatNumber value="${listProductHit.delivery }" pattern="#,###" /></span>
 	                 </c:otherwise>
 	                 </c:choose>
 	                </div>
@@ -259,17 +266,19 @@
 	                <h2> ${listProduct.proName }</h2>
 	                <p> ${listProduct.descript }</p>
 	                <div class="org_price">
-	                  <del> ${listProduct.price }</del>
+	                  <del> 
+	                  <fmt:formatNumber value="${listProduct.price }" pattern="#,###" />
+	                  </del>
 	                  <span> ${listProduct.discount }%</span>
 	                </div>
 	                <div class="dis_price">
-	                 <ins> ${(listProduct.price/100)*(100-listProduct.discount)  }</ins>
+	                 <ins>   <fmt:formatNumber value="${(listProduct.price/100)*(100-listProduct.discount)  }" pattern="#,###" /></ins>
 	                 <c:choose>
 	                 <c:when test="${listProduct.delivery eq 0 }">
 	                 <span class="free">무료배송</span>
 	                 </c:when>
 	                 <c:otherwise>
-	                 <span >배송비 ${listProduct.delivery }</span>
+	                 <span >배송비 <fmt:formatNumber value="${listProduct.delivery }" pattern="#,###" /></span>
 	                 </c:otherwise>
 	                 </c:choose>
 	                </div>
@@ -298,17 +307,20 @@
 	                <h2> ${listProductNow.proName }</h2>
 	                <p> ${listProductNow.descript }</p>
 	                <div class="org_price">
-	                  <del> ${listProductNow.price }</del>
+	                  <del>
+	                  <fmt:formatNumber value="${listProductNow.price }" pattern="#,###" />
+	                  </del>
 	                  <span> ${listProductNow.discount }%</span>
 	                </div>
 	                <div class="dis_price">
-	                 <ins> ${(listProductNow.price/100)*(100-listProductNow.discount)  }</ins>
+	              
+	                 <ins>   <fmt:formatNumber value="${(listProductNow.price/100)*(100-listProductNow.discount)  }" pattern="#,###" /></ins>
 	                 <c:choose>
 	                 <c:when test="${listProductNow.delivery eq 0 }">
 	                 <span class="free">무료배송</span>
 	                 </c:when>
 	                 <c:otherwise>
-	                 <span >배송비 ${listProductNow.delivery }</span>
+	                 <span >배송비 <fmt:formatNumber value="${listProductNow.delivery }" pattern="#,###" /></span>
 	                 </c:otherwise>
 	                 </c:choose>
 	                </div>
@@ -338,17 +350,20 @@
 	                <h2> ${listProductDiscount.proName }</h2>
 	                <p> ${listProductDiscount.descript }</p>
 	                <div class="org_price">
-	                  <del> ${listProductDiscount.price }</del>
+	                  <del>
+	                  <fmt:formatNumber value="${listProductDiscount.price }" pattern="#,###" />
+	                  </del>
 	                  <span> ${listProductDiscount.discount }%</span>
 	                </div>
 	                <div class="dis_price">
-	                 <ins> ${(listProductDiscount.price/100)*(100-listProductDiscount.discount)  }</ins>
+	                
+	                 <ins> <fmt:formatNumber value="${(listProductDiscount.price/100)*(100-listProductDiscount.discount)  }" pattern="#,###" /></ins>
 	                 <c:choose>
 	                 <c:when test="${listProductDiscount.delivery eq 0 }">
 	                 <span class="free">무료배송</span>
 	                 </c:when>
 	                 <c:otherwise>
-	                 <span >배송비 ${listProductDiscount.delivery }</span>
+	                 <span >배송비 <fmt:formatNumber value="${listProductDiscount.delivery }" pattern="#,###" /></span>
 	                 </c:otherwise>
 	                 </c:choose>
 	                </div>
@@ -388,7 +403,9 @@
           </p>
         </div>
       </footer>
+      
       <button type="button" id="top">상단이동</button>
+      
     </div>
   </body>
 </html>

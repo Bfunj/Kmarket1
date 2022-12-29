@@ -6,6 +6,7 @@ public class Sql {
 	public static final String SELECT_CATE1 = " SELECT * FROM `km_product_cate1`"; 
 	public static final String SELECT_CATE_CS_NOTICE = " SELECT * FROM `bd_notice_cate`"; 
 	public static final String SELECT_CATE1_CS = " SELECT * FROM `bd_cate1`"; 
+	public static final String SELECT_CATE1_NOTICE = " SELECT * FROM `bd_notice_cate`"; 
 	public static final String SELECT_CATE1_NAME = " SELECT * FROM `km_product_cate1` where `cate1`= ? "; 
 	
 	//select cate2
@@ -123,6 +124,7 @@ public class Sql {
 	// select product admin
 	public static final String SELECT_PRODUCT_ADMIN  	= " SELECT * FROM `km_product` where `seller`=? ORDER BY `rdate` DESC LIMIT ?, 10 ";
 	public static final String SELECT_PRODUCT_ADMIN2  	= " SELECT * FROM `km_product` ORDER BY `rdate` DESC LIMIT ?, 10 ";
+	public static final String SELECT_NOTICE  			= " SELECT * FROM `bd_notice` ORDER BY `no` DESC LIMIT ?, 10 ";
 	// select CS list
 	public static final String SELECT_CS_QNA_VIEW_PAGE  	= " SELECT * FROM `bd_qna` where `cate1`=?  ORDER BY `rdate` DESC LIMIT ?, 10 ";
 	public static final String SELECT_CS_QNA_VIEW_PAGE_I  	= " SELECT * FROM `bd_qna`   ORDER BY `rdate` DESC LIMIT ?, 10 ";
@@ -132,6 +134,7 @@ public class Sql {
 	public static final String SELECT_PRODUCT_COUNT_TOTAL = "SELECT COUNT(`proNo`) FROM `km_product` where `cate1`=? and `cate2`=? ";	
 	public static final String SELECT_PRODUCT_COUNT_TOTAL_ADMIN = "SELECT COUNT(`proNo`) FROM `km_product` where `seller`=? ";	
 	public static final String SELECT_PRODUCT_COUNT_TOTAL_ADMIN2 = "SELECT COUNT(`proNo`) FROM `km_product`  ";	
+	public static final String SELECT_PRODUCT_COUNT_TOTAL_NOTICE = "SELECT COUNT(`no`) FROM `bd_notice`  ";	
 	
 	public static final String SELECT_PRODUCT_LIST_CATE_SOLD ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `sold` desc LIMIT ?, 10";
 	public static final String SELECT_PRODUCT_LIST_CATE_PRICE_A ="SELECT * FROM `km_product` where `cate1`=? and `cate2`=? ORDER BY `price` ASC LIMIT ?, 10";
@@ -180,7 +183,15 @@ public class Sql {
 											  + " `uid`=?, "
 											  + " `regip`=?, "
 											  + " `rdate`=NOW()";
+	public static final String INSERT_NOTICE_ARTICLE = "INSERT INTO `bd_notice` SET "
+			  + " `cate1`=?, "
+			  + " `title`=?, "
+			  + " `content`=?, "
+			  + " `uid`=?, "
+			  + " `regip`=?, "
+			  + " `rdate`=NOW()";
 	public static final String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `bd_qna`";
+	public static final String SELECT_MAX_NO_n = "SELECT MAX(`no`) FROM `bd_notice`";
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`no`) FROM `bd_qna` where `parent`=0 AND `cate1`=?";	
 	public static final String SELECT_COUNT_TOTAL2 = "SELECT COUNT(`no`) FROM `bd_qna`";	
 	public static final String SELECT_COUNT_NOTICE = "SELECT COUNT(`no`) FROM `bd_qna` where `parent`=0 AND `cate1`=?";	
@@ -203,7 +214,7 @@ public class Sql {
 													+ "	`ordDelivery` = ?, "
 													+ "	`savePoint` = ?, "
 													+ "	`usedPoint` = ?, "
-													+ "	`ordTotPrice` = ?, "
+													+ "	`ordTotPrice` = ? , "
 													+ "	`recipName` = ?, "
 													+ "	`recipHp` = ?, "
 													+ "	`recipZip` = ?, "

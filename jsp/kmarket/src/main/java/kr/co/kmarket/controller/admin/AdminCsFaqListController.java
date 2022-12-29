@@ -25,8 +25,6 @@ public class AdminCsFaqListController extends HttpServlet {
 		String pg = req.getParameter("pg");
 		req.setAttribute("pg", pg);
 		
-		
-		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/admin/cs/FaqList.jsp");
 		dispatcher.forward(req, resp);
 	}
