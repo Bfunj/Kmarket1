@@ -161,31 +161,57 @@
 		$('#order').click(function(e){
 			e.preventDefault();
 			
-			let arr = [];
-			
-			$('input[name=check]:checked').each(function(){
-				arr.push($(this).val());
-			});
-			
-			console.log("checkNo : " + arr);
-			
-			let jsonData = {
-					"arr" : arr
-			}
-			
-			$.ajax({
-				url : '/kmarket/product/complete.do' ,
-				type : 'POST' ,
-				data : jsonData ,
-				traditional : true ,
-				dataType : 'json',
-				success : function(data) {
-					
-				}
-			});
-			
-			
+		let proNo_arr = [];
+		let	count_arr = []; 
+		let price_arr = [];
+		let discount_arr = [];
+		let point_arr = [];
+		let delivery_arr = [];
+		
+		$('input[name=proNo]').each(function(){
+			proNo_arr.push($(this).val());
 		});
+		
+		$('input[name=count]').each(function(){
+			count_arr.push($(this).val());
+		});
+		
+		$('input[name=price]').each(function(){
+			price_arr.push($(this).val());			
+		});
+		
+		$('input[name=discount]').each(function(){
+			discount_arr.push($(this).val());
+		});
+		
+		$('input[id=point1]').each(function(){
+			point_arr.push($(this).val());
+		});
+		
+		$('input[name=delivery]').each(function(){
+			delivery_arr.push($(this).val());
+		});
+		
+		let jsonData = {
+				"proNo_arr" : proNo_arr,
+				"count_arr" : count_arr,
+				"price_arr" : price_arr,
+				"discount_arr" : discount_arr,
+				"point_arr" : point_arr,
+				"delivery_arr" : delivery_arr
+		}
+		
+		$.ajax({
+			url :  '/kmarket/product/complete.do',
+			type : 'POST',
+			data : jsonData,
+			traditional : true,
+			dataType : 'json',
+			success : function(data){
+								
+			}
+		});
+	});
 });
 
 </script>
@@ -281,7 +307,7 @@
                             	<input type="hidden" name="discount" value="${(cart.discount)*(cart.price)/100 }">
                             </td>
                             <td>${cart.point }%
-                            	<input type="hidden" name="point" value="${cart.point }">
+                            	<input type="hidden" name="point" id="point1" value="${cart.point }">
                             </td>
                             <td>${cart.delivery }
                             	<input type="hidden" name="delivery" value="${cart.delivery }">

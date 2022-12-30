@@ -15,6 +15,7 @@ import kr.co.kmarket.db.DBHelper;
 import kr.co.kmarket.db.Sql;
 import kr.co.kmarket.vo.CartVO;
 import kr.co.kmarket.vo.Cate1VO;
+import kr.co.kmarket.vo.OrderItemVO;
 import kr.co.kmarket.vo.OrderVO;
 import kr.co.kmarket.vo.ProductVO;
 
@@ -316,8 +317,25 @@ public class ProductDAO extends DBHelper{
 		return result;
 	}
 	
-	public void Insert_Product_OrderItem() {
+	public void Insert_Product_OrderItem(OrderItemVO oiv) {
 		
+		try {
+			logger.info("Insert_Product_Order Item Start...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.Insert_Product_Order_Item);
+			psmt.setInt(1, oiv.getProdNo());
+			psmt.setInt(2, oiv.getCount());
+			psmt.setInt(3, oiv.getPrice());
+			psmt.setInt(4, oiv.getDiscount());
+			psmt.setInt(5, oiv.getPoint());
+			psmt.setInt(6, oiv.getDelivery());
+			psmt.setInt(7, oiv.getTotal());
+			psmt.executeUpdate();
+			close();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
 	}
 }
 

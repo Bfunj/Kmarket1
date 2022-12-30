@@ -212,7 +212,16 @@ public class Sql {
 													+ "	`ordPayment`  = ?, "
 													+ "	`ordComplete` = 1, " //complete 는 우선 1로 지정한다.
 													+ "	`ordDate` = NOW()";
-		
+	
+	public static final String Insert_Product_Order_Item = "INSERT INTO `km_product_order_item` SET "
+														+ "`ordNo`	  = 1 ,"
+														+ "`prodNo`   = ? ,"
+														+ "`count` 	  = ? ,"
+														+ "`price` 	  = ? ,"
+														+ "`discount` = ? ,"
+														+ "`point` 	  = ? ,"
+														+ "`delivery` = ? ,"
+														+ "`total` 	  = ? "; 
 
 }
 

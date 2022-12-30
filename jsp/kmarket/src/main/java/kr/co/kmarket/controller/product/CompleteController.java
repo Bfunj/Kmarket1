@@ -31,14 +31,23 @@ public class CompleteController extends HttpServlet  {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String orderNos[] = req.getParameterValues("arr");
+		String proNo_arr[] = req.getParameterValues("proNo_arr");
+		String count_arr[] = req.getParameterValues("count_arr");
+		String price_arr[] = req.getParameterValues("price_arr");
+		String discount_arr[] = req.getParameterValues("discount_arr");
+		String point_arr[] = req.getParameterValues("point_arr");
+		String delivery_arr[] = req.getParameterValues("delivery_arr");
 		
-		List<OrderItemVO> oiv = new ArrayList<>();
+		OrderItemVO oiv = new OrderItemVO();
+		oiv.setProdNo(0);
+		oiv.setCount(0);
+		oiv.setPrice(0);
+		oiv.setDiscount(0);
+		oiv.setPoint(0);
+		oiv.setDelivery(0);
+		oiv.setTotal(0);
 		
-		for(String orderNo : orderNos) {
-			ProductDAO.getInstance().Insert_Product_OrderItem();
-			
-		}
+		ProductDAO.getInstance().Insert_Product_OrderItem(oiv);
 		
 		
 	}
